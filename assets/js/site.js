@@ -65,7 +65,9 @@ async function loadReleaseDownloads() {
     if (!response.ok) throw new Error("发行清单请求失败。");
     const release = validateReleaseManifest(await response.json());
     const versionBadge = document.querySelector("[data-release-version]");
-    versionBadge.textContent = `v${release.version} · ${release.status === "published" ? "现已发布" : "发布准备中"}`;
+    // 重构建标签用于区分安装文件，用户只需要知道这是同一程序版本的安装修复版。
+    const displayVersion = release.version.replace(/-rebuild\.\d+$/, " 安装修复版");
+    versionBadge.textContent = `v${displayVersion} · ${release.status === "published" ? "现已发布" : "发布准备中"}`;
 
     if (release.status !== "published") {
       for (const status of document.querySelectorAll("[data-profile-status]")) {

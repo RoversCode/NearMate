@@ -48,6 +48,8 @@
 | `checksumsUrl` | 同一 Release 下 `SHA256SUMS.txt` 或 `SHA256SUMS` 的完整附件地址 |
 | `profiles.<profile>.assets` | 对应版本的完整附件数组，建议安装程序在前、分卷按序排列 |
 
+同一程序版本的安装修复包可使用 `v0.1.0-rebuild.1` 这类独立 tag。清单中的 `version` 必须保留完整版本号，网页会将 `-rebuild.<序号>` 显示为“安装修复版”。原 Release 与附件应保留，用户下载时不能混用原版与修复版分卷。
+
 每个安装附件包含四个字段：
 
 | 字段 | 要求 |
