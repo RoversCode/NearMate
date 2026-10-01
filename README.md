@@ -1,88 +1,85 @@
-# NearMate
+<div align="center">
+  <img src="./assets/images/nearmate.png" width="180" alt="NearMate 品牌形象">
+  <h1>NearMate</h1>
+  <p><strong>工作在手边，搭子在身边。</strong></p>
+  <p>常驻 Windows 桌面的 AI 工作搭子，让你喜欢的角色陪你交流，也帮你推进手头的事。</p>
+  <p>
+    <a href="https://roverscode.github.io/NearMate/">官方网站</a> ·
+    <a href="https://github.com/RoversCode/NearMate/releases/latest">下载 Windows 版</a> ·
+    <a href="https://roverscode.github.io/NearMate/#community">加入体验交流</a> ·
+    <a href="https://github.com/RoversCode/NearMate/issues">问题反馈</a>
+  </p>
+  <p>Windows x64 · CUDA / Universal 双版本 · 应用内可申请 24 小时试用</p>
+</div>
 
-**工作在手边，搭子在身边。**
+## 让你的桌面，多一个帮手
 
-NearMate 是常驻 Windows 桌面的 AI 工作搭子环境。用角色卡定义当前角色，配合 Live2D 与语音交流，围绕当前屏幕、选中文字和本轮材料处理日常小任务；配置后台工作并授权后，还能调用工具推进多步骤工作。
+- **聊你正在看的。** 当前屏幕、选中文字、截图和文件都能成为交流的上下文。问一句「这张图讲了什么」，或把材料交给搭子一起理思路。
+- **以你喜欢的方式相处。** 用角色卡设置当前角色的身份和语气，搭配 Live2D 虚拟形象与语音；可以打字，也可以直接说话。
+- **让事情继续往前走。** 配置后台工作后，当前角色可以调用工具整理材料、处理文件或完成多步骤操作。需要权限或补充信息时，会请你决定；进展和结果可以在界面查看。
 
-- **官方网站：** [roverscode.github.io/NearMate](https://roverscode.github.io/NearMate/)
-- **安装文件与版本说明：** [GitHub Releases](https://github.com/RoversCode/NearMate/releases)
-- **问题反馈：** [GitHub Issues](https://github.com/RoversCode/NearMate/issues)
+NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟形象、声音与相处方式由你在应用内配置。
 
-本仓库保存官网与公开发行支持文件。NearMate 应用源码不在这个仓库内；仓库可公开访问，不代表应用或所含素材自动获得开源许可。
+## 它在桌面上是什么样
+
+<div align="center">
+  <a href="./assets/images/desktop-demo.jpg"><img src="./assets/images/desktop-demo.jpg" width="1000" alt="NearMate 实机画面：聊天窗口展示音频转换结果与交付文件，右侧是用户配置的桌面虚拟形象"></a>
+</div>
+
+实机演示：把音频转成 MP3，在聊天窗口查看结果卡与交付文件。右侧为用户配置的虚拟形象。点击图片可以查看大图。
 
 ## 下载与安装
 
-当前面向 **Windows x64**，提供两个独立安装版本：
+前往 [官网下载页](https://roverscode.github.io/NearMate/#download) 或 [GitHub Releases](https://github.com/RoversCode/NearMate/releases/latest)，选择适合这台电脑的版本：
 
-| 版本 | 适用方向 | 运行环境 |
-| --- | --- | --- |
-| CUDA | 配备兼容 NVIDIA 显卡的电脑 | CUDA |
-| Universal | AMD / Intel 等设备；通过首次向导确认支持情况 | DirectML、Vulkan、CPU |
+| 版本 | 适合的电脑 |
+| --- | --- |
+| **CUDA · NVIDIA 版** | 配备兼容 NVIDIA 显卡的 Windows x64 电脑 |
+| **Universal · 通用版** | AMD / Intel 等设备；提供 DirectML、Vulkan 与 CPU 运行方式，通过首次向导确认支持情况 |
 
-1. 在官网或 Releases 选择一个版本。
-2. 下载该版本的安装程序 `.exe` 和**全部** `.bin` 分卷。
-3. 把这些文件放在同一文件夹，保留原文件名，再运行 `.exe`。不要混用 CUDA 与 Universal 分卷。
-4. 跟随应用内向导完成授权、模型 API 配置、设备检查、语音模型下载和试听。
+两种版本提供相同的产品功能，实际运行速度取决于硬件与所选模型。
 
-Releases 同时提供 `SHA256SUMS.txt`，可用 PowerShell 核对文件摘要：
+1. 下载所选版本的安装程序 **`.exe` 和全部 `.bin` 分卷**。
+2. 把所有文件放在同一文件夹，保留原文件名，再双击 `.exe` 安装。
+3. 打开 NearMate，跟随首次向导完成配置。
 
-```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '你下载的安装文件完整路径'
-```
+**不要混用 CUDA / Universal，也不要混用不同发行的分卷。** Releases 附带 `SHA256SUMS.txt`，可用于核对下载文件是否完整。当前安装程序尚未使用 Windows 代码签名。
 
-### 24 小时试用与模型费用
+## 第一次见面
 
-可以在应用内申请 24 小时试用，**无需先填写 NearMate Key**。服务开放时间、每日额度和设备资格会影响领取结果，请以应用内显示为准。试用的新会话需要联网。
+1. **取得产品授权。** 在应用内申请 24 小时试用，或填写已有的 NearMate Key。
+2. **连接模型 API。** 准备支持的模型服务 API Key，并按向导配置。产品授权与模型 API 是两项独立配置。
+3. **准备语音与角色。** 按向导检查设备、下载所需语音模型、完成试听，再选择角色卡与虚拟形象。
+4. **开始一件小事。** 试着说「帮我解释一下这张图」，或提交一份材料，请搭子整理思路。
 
-NearMate 试用不包含模型 API 额度。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作也需要配置相应服务与凭据。
+需要后台工作时，在控制台的「后台工作」设置中另行配置相应服务、模型与凭据，再选择合适的权限。
 
-### 数据与运行边界
+### 试用与费用
 
-NearMate 在本机运行桌面界面和部分语音能力，模型推理、授权和后台工作可能访问外部服务。对话和选用的屏幕、材料内容会根据功能需要发送给已配置的服务。请依据服务厂商的数据政策选择使用内容。
+**24 小时试用无需先填写 NearMate Key。** 领取成功后连续计时 24 小时，领取结果受服务开放时间、每日名额与设备资格限制，以应用内显示为准。首次准备和试用的每次新启动会话都需要联网。
 
-近期对话与任务上下文只在后台进程运行期间保留，退出后不继续保留这些运行期记忆。角色卡和设置单独保存。
+试用提供 NearMate 的产品使用资格，**不包含模型 API 额度**。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作所接入的服务也可能产生费用。正式授权信息可在体验交流群了解。
 
-## 官网开发
+### 数据与记忆
 
-网站使用原生 HTML、CSS 与少量 JavaScript，不依赖前端框架或第三方运行时包。需要 Node.js 22 或更新版本执行校验与构建，不需要 `npm install`。
+桌面界面和部分语音能力在本机运行；模型推理、授权和后台工作可能访问外部服务。对话及选用的屏幕、材料内容会按功能需要发送给已配置的服务，请结合厂商的数据政策选择使用内容。
 
-```powershell
-npm run check
-npm run build
-python -m http.server 4173 --bind 127.0.0.1 --directory dist
-```
+近期对话和任务上下文在后台进程运行期间保留，退出后台进程后不继续保留。角色卡与设置单独保存。
 
-在浏览器打开 [localhost:4173](http://localhost:4173/)。请通过 HTTP 预览，直接双击 HTML 会让浏览器阻止读取下载清单。
+## 一起体验 NearMate
 
-```text
-index.html                      页面内容、语义结构与 FAQ
-assets/css/site.css             响应式布局、主题和无障碍状态
-assets/js/site.js               手机导航、安装版本选择和下载列表
-assets/js/release-manifest.js   浏览器与构建共用的发行清单校验
-assets/images/nearmate.png      NearMate 品牌图
-data/release.json               当前版本、下载附件、大小与 SHA256
-scripts/check.mjs               本地资源、页面锚点与发行清单校验
-scripts/build.mjs               校验后复制公开资源到 dist
-.github/workflows/pages.yml     GitHub Pages 自动部署
-releases/                      首版说明、版本说明模板与发布流程
-```
+分享角色搭配、交流使用方法，或反馈遇到的问题。
 
-页面采用系统字体，不加载统计脚本、外部字体或第三方前端库。未发布、网络失败和清单错误时都会保留 Releases 入口，不推测安装文件地址。禁用 JavaScript 时仍可访问 Releases。
+**QQ 体验交流群：1029360240**。用手机 QQ 扫描下方二维码，也可以搜索群号加入。
 
-## GitHub Pages
+<div align="center">
+  <a href="./assets/images/community-qq.jpg"><img src="./assets/images/community-qq.jpg" width="300" alt="QQ 体验交流群二维码，群号 1029360240；图中群名为 StreamPet 体验交流群"></a>
+</div>
 
-1. 在仓库 **Settings → Pages → Build and deployment** 中选择 **GitHub Actions**。
-2. 将官网更新推送到 `main`；也可以手动运行 **Deploy GitHub Pages** 工作流。
-3. 工作流先校验清单和静态资源，只把 `dist` 上传到 Pages。
-
-网站地址为 **https://roverscode.github.io/NearMate/**。所有站内资源采用相对路径，兼容仓库名子路径。大型安装包由 GitHub Releases 托管，不放在 Git 或 Pages 产物中。
-
-## 发布新版本
-
-参见 [发布流程](releases/PUBLISHING.md)。发布顺序是：**核对并上传完整安装文件 → 发布 Release → 验证附件可访问 → 更新下载清单 → 部署官网**。
-
-`data/release.json` 中 `status: "pending"` 表示安装包尚未对外发布。此时网页只显示准备状态与 Releases 入口。只有全部文件已真实发布并验证后，才切换为 `published`。
+二维码与群内名称仍显示历史名称「StreamPet 体验交流群」，即本产品的体验群。
 
 ## 反馈问题
 
-请在 Issue 中说明版本、CUDA / Universal、Windows 版本、硬件概况、复现步骤和错误提示。公开提交前，请从截图或日志中移除 API Key、授权 Key、个人文件路径、聊天正文等私密内容。
+请通过 [GitHub Issues](https://github.com/RoversCode/NearMate/issues) 提交问题，说明 NearMate 版本、CUDA / Universal、Windows 版本、硬件概况、复现步骤和错误提示；也欢迎在体验群里交流。
+
+公开提交截图或日志前，请移除 API Key、NearMate Key、个人文件路径及私密聊天内容。
