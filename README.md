@@ -28,6 +28,8 @@ NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟�
 
 实机演示：把音频转成 MP3，在聊天窗口查看结果卡与交付文件。右侧为用户配置的虚拟形象。点击图片可以查看大图。
 
+**再花 60 秒，认识你的桌面搭子。** [在官网观看宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Promo-60s-1080p.mp4)
+
 ## 下载与安装
 
 前往 [官网下载页](https://roverscode.github.io/NearMate/#download) 或 [GitHub Releases](https://github.com/RoversCode/NearMate/releases/latest)，选择适合这台电脑的版本：

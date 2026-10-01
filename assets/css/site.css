@@ -565,6 +565,82 @@ h2 {
   quotes: none;
 }
 
+.film-section {
+  padding-bottom: 112px;
+}
+
+.film-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 36px;
+  margin-bottom: 28px;
+}
+
+.film-heading .eyebrow {
+  color: var(--green);
+  margin-bottom: 15px;
+}
+
+.film-heading h2 {
+  font-size: 34px;
+}
+
+.film-heading>p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+  padding-bottom: 4px;
+}
+
+.film-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 14px 40px #1c352510;
+}
+
+.film-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  background: #080c1b;
+}
+
+.film-card figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 28px;
+}
+
+.film-card strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.film-meta {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.film-card .text-link {
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.film-note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .start-section {
   background: #eaf0e2;
   padding-block: 88px;
@@ -1279,6 +1355,14 @@ h2 {
   .section-heading>p:last-child {
     justify-self: start;
   }
+  .film-section {
+    padding-bottom: 80px;
+  }
+  .film-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
   .feature-row {
     grid-template-columns: 28px 1fr;
     gap: 15px;
@@ -1559,6 +1643,33 @@ h2 {
   }
   .section-heading>p:last-child {
     font-size: 14px;
+  }
+  .film-section {
+    padding-bottom: 62px;
+  }
+  .film-heading {
+    margin-bottom: 22px;
+  }
+  .film-heading .eyebrow {
+    margin-bottom: 12px;
+  }
+  .film-heading h2 {
+    font-size: 27px;
+  }
+  .film-card figcaption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 18px;
+  }
+  .film-card strong {
+    font-size: 13px;
+  }
+  .film-card .text-link {
+    font-size: 13px;
+  }
+  .film-meta, .film-note {
+    font-size: 11px;
   }
   .feature-row {
     padding-block: 25px;
