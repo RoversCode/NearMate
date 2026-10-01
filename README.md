@@ -28,7 +28,13 @@ NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟�
 
 实机演示：把音频转成 MP3，在聊天窗口查看结果卡与交付文件。右侧为用户配置的虚拟形象。点击图片可以查看大图。
 
-**再花 60 秒，认识你的桌面搭子。** [在官网观看宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Promo-60s-1080p.mp4)
+## 2 分 36 秒，认识你的桌面搭子
+
+影片保留真实演示中的角色声音，也带你认识默认角色「火花」：有网感、嘴硬护短，正事认真。再看看角色卡如何定义身份、语气、关系和声音，让你喜欢的角色陪你交流、推进手头的事。
+
+https://github.com/user-attachments/assets/9d0eea0c-6f5d-46e5-9220-b78c9e8a31e2
+
+**播放后请开启声音。** [在官网观看完整宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Product-Film-1080p.mp4)
 
 ## 下载与安装
 
