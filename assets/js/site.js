@@ -34,7 +34,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".header-inner")) setMenuOpen(false);
 });
-window.matchMedia("(min-width: 601px)").addEventListener("change", () => setMenuOpen(false));
+window.matchMedia("(min-width: 681px)").addEventListener("change", () => setMenuOpen(false));
 
 for (const button of profileButtons) {
   button.addEventListener("click", () => {

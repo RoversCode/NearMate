@@ -92,6 +92,12 @@ test("README 的 Markdown 资源也必须存在", async (context) => {
   await assert.rejects(checkSite({ rootDirectory, log: () => {} }), /ENOENT/);
 });
 
+test("拒绝引用源码中存在但不会部署的 README", async (context) => {
+  const { rootDirectory } = await createSite(context);
+  await writeFile(resolve(rootDirectory, "guide/next.html"), page('<h1 id="voice">语音</h1><a href="../README.md">仓库说明</a>'));
+  await assert.rejects(checkSite({ rootDirectory, log: () => {} }), /未包含在公开发布资源中/);
+});
+
 test("拒绝通过目录联接读取站点外的资源", async (context) => {
   const { rootDirectory, container } = await createSite(context);
   const outside = resolve(container, "outside");

@@ -63,6 +63,11 @@ export async function checkSite({ rootDirectory = defaultSiteRoot, log = console
       if (!targetInfo.isFile()) throw new Error(`资源不是普通文件：${reference}`);
       // 目录联接和符号链接也必须留在站点内，不能只检查表面上的相对路径。
       ensureInsideSite(siteRoot, await realpath(target), reference);
+      // 源码里存在的文档不一定会部署；链接目标必须和构建使用同一份公开白名单。
+      const publishedPath = relative(siteRoot, target);
+      if (!PUBLIC_SITE_ENTRIES.some(entry => publishedPath === entry || publishedPath.startsWith(`${entry}${sep}`))) {
+        throw new Error(`资源未包含在公开发布资源中：${reference}`);
+      }
       if (!encodedFragment) continue;
       const fragment = decodeURIComponent(encodedFragment);
       const page = pages.get(target);

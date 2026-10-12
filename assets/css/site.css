@@ -1450,13 +1450,8 @@ h2 {
   }
 }
 
-@media(max-width:600px) {
-  html {
-    scroll-padding-top: 25px;
-  }
-  .page-width, .header-inner {
-    width: calc(100% - 40px);
-  }
+/* 六项导航在窄屏放不下时提前使用现有菜单，避免挤到品牌文字。 */
+@media(max-width:680px) {
   .site-header {
     height: 74px;
   }
@@ -1510,6 +1505,15 @@ h2 {
   .site-nav .nav-download {
     justify-content: space-between;
     margin-top: 4px;
+  }
+}
+
+@media(max-width:600px) {
+  html {
+    scroll-padding-top: 25px;
+  }
+  .page-width, .header-inner {
+    width: calc(100% - 40px);
   }
   .hero {
     padding-top: 30px;
@@ -1899,7 +1903,7 @@ h2 {
 }
 
 /* JavaScript 被关闭时仍显示导航，用户可以直接进入下载区和常见问题。 */
-@media(max-width:600px) {
+@media(max-width:680px) {
   html:not(.js) .site-header {
     height: auto;
   }
@@ -1919,6 +1923,9 @@ h2 {
     box-shadow: none;
     padding: 6px;
   }
+}
+
+@media(max-width:600px) {
   .trial-inline {
     font-size: 12px;
   }
