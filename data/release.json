@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "version": "0.1.0-rebuild.4",
+  "version": "0.1.0-rebuild.5",
   "status": "published",
   "publishedAt": "2026-10-12",
-  "releaseUrl": "https://github.com/RoversCode/NearMate/releases/tag/v0.1.0-rebuild.4",
-  "checksumsUrl": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/SHA256SUMS.txt",
+  "releaseUrl": "https://github.com/RoversCode/NearMate/releases/tag/v0.1.0-rebuild.5",
+  "checksumsUrl": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/SHA256SUMS.txt",
   "profiles": {
     "universal": {
       "assets": [
         {
           "name": "NearMate-universal-setup.exe",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-universal-setup.exe",
-          "size": 4685523,
-          "sha256": "e46d55281d4faf92d4e4dc2defaa13feedcb4165085df3346f0ea08ae8eb856f"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-universal-setup.exe",
+          "size": 4685505,
+          "sha256": "3a59897869b327720edd8444f6e83b953baf99abd8b4fb47cfad77178a17b4e1"
         },
         {
           "name": "NearMate-universal-setup-1.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-universal-setup-1.bin",
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-universal-setup-1.bin",
           "size": 1995314176,
-          "sha256": "2b22fc8d71cfd049da62fbe44d10c71467af577984e75b57fc1649e1b1c42fbe"
+          "sha256": "3b76f3ca2ba38f9eefc881422480f6f54d01d42508bacf236cf412d7d12d44ae"
         },
         {
           "name": "NearMate-universal-setup-2.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-universal-setup-2.bin",
-          "size": 1019862039,
-          "sha256": "d504cf465d08f0125187cb683be0585eb4e1463dbacfd1efe28b50e800529b0e"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-universal-setup-2.bin",
+          "size": 1020091613,
+          "sha256": "b82d71da147b153009e2ff0e91f7666142288ab94f22e6ca8086aceda58271bd"
         }
       ]
     },
@@ -32,27 +32,27 @@
       "assets": [
         {
           "name": "NearMate-cuda-setup.exe",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-cuda-setup.exe",
-          "size": 4692759,
-          "sha256": "dbc48ef17ff7695e9f98b5d9cf7ae910782c78b0a4680205fb491f23804f73ee"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-cuda-setup.exe",
+          "size": 4692740,
+          "sha256": "4a705de2569debe0627db47b8e529ce84376955ce872e6060e611d1fdc4f401a"
         },
         {
           "name": "NearMate-cuda-setup-1.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-cuda-setup-1.bin",
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-cuda-setup-1.bin",
           "size": 1995307008,
-          "sha256": "9582949562e4b1cffc49c91912a04107bea6666e62adaaf84dfdca21c00e2ba5"
+          "sha256": "94da177c03c65ce50416b16690634dd19fa2d8961b63a2bd0b2e00ed390bd8e4"
         },
         {
           "name": "NearMate-cuda-setup-2.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-cuda-setup-2.bin",
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-cuda-setup-2.bin",
           "size": 2000000000,
-          "sha256": "65c7da830e846bd22123fa85dac02e3fc0b79a5adc92e7ea42d3ed83dd26a944"
+          "sha256": "a7774ff3757be7e4c9273ca4da844a07bb5e802629296fba892bdf0d658f3f82"
         },
         {
           "name": "NearMate-cuda-setup-3.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.4/NearMate-cuda-setup-3.bin",
-          "size": 168746988,
-          "sha256": "89b85cd0e0634379ad4c18e8e6f4122448696ed2fd12e7dd4223784f259f7746"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.5/NearMate-cuda-setup-3.bin",
+          "size": 168486109,
+          "sha256": "61addf34774716425ef8e9be76a78569bbd1eb4cb35289180aeb307a93242950"
         }
       ]
     }
