@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NearMate 选配功能：后台工作的服务和权限、天气查询凭据，以及角色卡和虚拟形象。">
+    <title>选配功能 · NearMate 使用手册</title>
+    <link rel="icon" href="../assets/images/nearmate.png">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/guide.css">
+    <link rel="canonical" href="https://roverscode.github.io/NearMate/guide/optional-services.html">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="guide-header">
+      <div class="guide-header-inner">
+        <a class="guide-brand" href="../index.html"><img src="../assets/images/nearmate.png" width="36" height="36" alt="">NearMate</a>
+        <nav aria-label="官网导航">
+          <a href="../index.html">返回官网</a><a href="../index.html#download">下载软件</a><a href="https://github.com/RoversCode/NearMate/issues">反馈问题</a>
+        </nav>
+      </div>
+    </header>
+    <div class="guide-layout">
+      <aside class="guide-sidebar">
+        <p>使用手册</p>
+        <nav aria-label="手册章节">
+          <a href="./index.html">开始之前</a><a href="./first-run.html">首次初始化</a><a href="./chat-and-voice.html">聊天与语音</a><a href="./optional-services.html" aria-current="page">选配功能</a><a href="./troubleshooting.html">遇到问题</a>
+        </nav>
+      </aside>
+      <main class="guide-content" id="main" tabindex="-1">
+        <header>
+          <p class="guide-kicker">需要时再配置</p>
+          <h1>把能力按需补齐</h1>
+          <p class="guide-intro">日常聊天和语音就绪后，再考虑后台工作和实时天气。没有配置这些选项，也能先开始交流。</p>
+        </header>
+        <nav class="guide-toc" aria-label="本页目录">
+          <ol>
+            <li><a href="#background-work">后台工作</a></li>
+            <li><a href="#weather">天气查询</a></li>
+            <li><a href="#character">角色卡与虚拟形象</a></li>
+          </ol>
+        </nav>
+        <section id="background-work">
+          <h2>让当前角色完成后台工作</h2>
+          <p>当你希望整理文件、处理材料或完成多步骤操作时，可以配置后台工作。它的模型服务和凭据与首次向导中的聊天服务分别保存。</p>
+          <ol>
+            <li>打开控制台的<strong>设置 → AI 与服务 → 后台工作</strong>。</li>
+            <li>填写你所使用服务的 Base URL，以及 API Key 或 Auth Token。</li>
+            <li>选择后台工作主模型，确认服务支持该模型。</li>
+            <li>阅读权限说明，选择适合你的权限模式，再保存。</li>
+          </ol>
+          <p>具体服务地址、模型名、凭据取得方式和价格由服务提供方决定。普通聊天已能连接，不代表后台工作服务也已配置。</p>
+          <h3>先从一项范围清楚的小任务开始</h3>
+          <div class="guide-example">
+            <p>“把这份会议记录整理成待办清单，保存为一个文本文件。”提交对应材料，并说明你希望得到什么文件。</p>
+          </div>
+          <p>当前角色会根据问题决定是否需要后台工作。任务运行期间，可以在聊天界面查看进展、权限请求、资料问题和结果；控制台的任务页也可以查看任务情况。</p>
+          <h3>权限与补充资料由你决定</h3>
+          <ul>
+            <li><strong>请求权限：</strong>先阅读任务和需要执行的动作，再点击允许或拒绝。允许会覆盖当前任务后续的权限请求，不代表任务已经完成；新的任务需要重新判断权限。</li>
+            <li><strong>询问资料：</strong>在资料卡中提供答案或补充材料；明确不知道时，也可以如实说明。</li>
+            <li><strong>任务完成：</strong>查看聊天里的结果卡和交付文件，核对内容后再使用。</li>
+          </ul>
+          <p>默认权限模式会对 Bash 等敏感操作请求确认。全权限模式需要你明确开启；选择前应理解它允许的操作范围。服务调用可能产生费用，可在后台工作用量页查看本地记录；真实账单以厂商为准。</p>
+          <p>普通后台工作一次只运行一项。当前任务还在执行或收尾时，新普通任务可能被拒绝，等它结束后再提出。执行中的目标说错时，清楚说明哪个目标需要纠正；文件或外部操作不保证能完整回滚。</p>
+          <p>交付文件默认放在 Windows“文档”目录下的 <strong>NearMate Workspace</strong> 中，聊天结果卡可以帮助定位。请保存需要长期保留的成果。</p>
+        </section>
+        <section id="weather">
+          <h2>查询实时天气</h2>
+          <p>如果你希望当前角色查询实时天气，需要另外配置和风天气服务。</p>
+          <ol>
+            <li>按和风天气平台说明开通服务，取得项目的 <strong>API Host</strong> 与 <strong>API Key</strong>。</li>
+            <li>打开控制台的<strong>设置 → AI 与服务</strong>，找到天气凭据设置。</li>
+            <li>将 Host 与 Key 填入对应字段并保存。</li>
+            <li>回到聊天，说明城市和时间，例如“查一下北京今天的天气”。</li>
+          </ol>
+          <p>Host 是平台分配的接口地址，Key 是调用凭据，二者不能互换。是否收费、可调用哪些接口和额度限制，以天气平台的账户说明为准。</p>
+          <p>没有配置时，天气工具会提示先配置；这不会阻止普通聊天和语音。配置后仍查询失败时，检查 Host、Key、服务权限及网络，再按页面给出的原因处理。</p>
+        </section>
+        <section id="character">
+          <h2>调整角色卡与虚拟形象</h2>
+          <p>在控制台的角色卡页面调整当前角色的身份、语气和关系设定。角色卡决定“谁在陪你交流”；桌面的 Live2D 虚拟形象是她的视觉载体，可以通过人物模型入口单独调整。</p>
+          <p>改变语音模型或角色语音素材后，到 StreamVox 页面重新准备、试听并确认。仅下载另一款模型不会自动替换正在使用的声音；明确选择“准备并试听”才会进入切换流程。</p>
+          <p>创建或编辑角色时，把希望的语言风格和交流边界写清楚，比只堆砌性格标签更容易得到稳定体验。</p>
+        </section>
+        <nav class="guide-pagination" aria-label="继续阅读">
+          <a href="./chat-and-voice.html">← 聊天与语音</a><a href="./troubleshooting.html">下一页：遇到问题 →</a>
+        </nav>
+      </main>
+    </div>
+    <footer class="guide-footer">
+      开始使用无需配置全部选项。更多帮助可在<a href="../index.html#community">体验交流</a>中获取。
+    </footer>
+  </body>
+</html>

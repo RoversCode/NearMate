@@ -5,6 +5,7 @@
   <p>常驻 Windows 桌面的 AI 工作搭子，让你喜欢的角色陪你交流，也帮你推进手头的事。</p>
   <p>
     <a href="https://roverscode.github.io/NearMate/">官方网站</a> ·
+    <a href="https://roverscode.github.io/NearMate/guide/">使用手册</a> ·
     <a href="https://github.com/RoversCode/NearMate/releases/latest">下载 Windows 版</a> ·
     <a href="https://roverscode.github.io/NearMate/#community">加入体验交流</a> ·
     <a href="https://github.com/RoversCode/NearMate/issues">问题反馈</a>
@@ -54,6 +55,8 @@ https://github.com/user-attachments/assets/9d0eea0c-6f5d-46e5-9220-b78c9e8a31e2
 **不要混用 CUDA / Universal，也不要混用不同发行的分卷。** Releases 附带 `SHA256SUMS.txt`，可用于核对下载文件是否完整。当前安装程序尚未使用 Windows 代码签名。
 
 ## 第一次见面
+
+从安装到第一次聊天，请按 [使用手册](https://roverscode.github.io/NearMate/guide/) 操作。首次向导分为六步：激活 NearMate、连接 DeepSeek、连接 Qwen、检查电脑、准备语音、试听并开始。两家模型凭据在 Qwen 步骤统一验证并保存。
 
 1. **取得产品授权。** 在应用内申请 24 小时试用，或填写已有的 NearMate Key。
 2. **连接模型 API。** 准备支持的模型服务 API Key，并按向导配置。产品授权与模型 API 是两项独立配置。

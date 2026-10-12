@@ -1,7 +1,7 @@
 import { cp, mkdir, lstat, rm } from "node:fs/promises";
 import { resolve, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkSite } from "./check.mjs";
+import { checkSite, PUBLIC_SITE_ENTRIES } from "./check.mjs";
 
 const siteRoot = fileURLToPath(new URL("../", import.meta.url));
 const outputDirectory = resolve(siteRoot, "dist");
@@ -21,7 +21,7 @@ await rm(outputDirectory, { recursive: true, force: true });
 await mkdir(outputDirectory, { recursive: true });
 
 // 明确列出公开资源，不把仓库文档、工作流或任何安装包复制到 Pages。
-for (const entry of ["index.html", "assets", "data", ".nojekyll"]) {
+for (const entry of PUBLIC_SITE_ENTRIES) {
   await cp(resolve(siteRoot, entry), resolve(outputDirectory, entry), { recursive: true });
 }
 console.log(`静态网站已生成：${outputDirectory}`);

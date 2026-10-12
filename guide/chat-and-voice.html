@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NearMate 聊天与语音入门：发送第一条消息，检查音频设备，通过唤醒或跟进交流，提交屏幕和材料。">
+    <title>聊天与语音 · NearMate 使用手册</title>
+    <link rel="icon" href="../assets/images/nearmate.png">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/guide.css">
+    <link rel="canonical" href="https://roverscode.github.io/NearMate/guide/chat-and-voice.html">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="guide-header">
+      <div class="guide-header-inner">
+        <a class="guide-brand" href="../index.html"><img src="../assets/images/nearmate.png" width="36" height="36" alt="">NearMate</a>
+        <nav aria-label="官网导航">
+          <a href="../index.html">返回官网</a><a href="../index.html#download">下载软件</a><a href="https://github.com/RoversCode/NearMate/issues">反馈问题</a>
+        </nav>
+      </div>
+    </header>
+    <div class="guide-layout">
+      <aside class="guide-sidebar">
+        <p>使用手册</p>
+        <nav aria-label="手册章节">
+          <a href="./index.html">开始之前</a><a href="./first-run.html">首次初始化</a><a href="./chat-and-voice.html" aria-current="page">聊天与语音</a><a href="./optional-services.html">选配功能</a><a href="./troubleshooting.html">遇到问题</a>
+        </nav>
+      </aside>
+      <main class="guide-content" id="main" tabindex="-1">
+        <header>
+          <p class="guide-kicker">设置完成以后</p>
+          <h1>从一句话开始</h1>
+          <p class="guide-intro">先确认文字聊天正常，再检查声音设备。聊天窗口负责日常交流，控制台负责设置。</p>
+        </header>
+        <nav class="guide-toc" aria-label="本页目录">
+          <ol>
+            <li><a href="#first-message">发送第一条消息</a></li>
+            <li><a href="#voice">开始语音交流</a></li>
+            <li><a href="#screen">聊当前屏幕</a></li>
+            <li><a href="#materials">把材料交给角色</a></li>
+            <li><a href="#shortcuts">常用快捷键</a></li>
+          </ol>
+        </nav>
+        <section id="first-message">
+          <h2>发送第一条消息</h2>
+          <ol>
+            <li>把鼠标移到桌面角色上，点击旁边的<strong>聊天气泡图标</strong>。</li>
+            <li>在聊天输入区输入一句话，例如“你好，介绍一下你能怎么陪我工作”。</li>
+            <li>点击发送，等待当前角色回答。</li>
+          </ol>
+          <p>回答会出现在聊天窗口中。聊天展开时，主要对话内容在这里呈现；控制台不承担日常聊天。</p>
+          <div class="guide-example">
+            <p><strong>可以接着问：</strong>“我正在写一封邮件，帮我把语气改得自然一点。”先给出要改的文字，再说明希望的语气，比只说“帮我写”更容易得到适合的回答。</p>
+          </div>
+          <p>输入尚在准备或排队时，还没有正式进入对话。出现准备失败提示时，先按提示重试或修改；语音输入可能暂时暂停尚未发送的文字，请查看待发状态后决定是否恢复。</p>
+        </section>
+        <section id="voice">
+          <h2>开始语音交流</h2>
+          <p>完成首次语音试听后，先打开控制台的<strong>设置 → 声音与语音</strong>检查麦克风，再在 Windows 声音设置中检查播放设备。</p>
+          <ol>
+            <li>在音频设备设置中确认输入设备。使用系统默认设备，或者手动选中需要的麦克风。</li>
+            <li>执行麦克风测试，按提示录制短音频。检查音量结果并回放，确认能听到自己的声音。</li>
+            <li>更改麦克风后，按页面操作保存并等待应用结果。在 Windows 中确认输出设备、系统音量和应用音量正常。</li>
+            <li>说出当前角色的唤醒词，或使用<strong>追问快捷键</strong>开启跟进，再对角色说话。</li>
+          </ol>
+          <p>默认角色火花的唤醒词为<strong>“你好火花”</strong>和<strong>“火花同学”</strong>。换角色或改过唤醒词后，以控制台<strong>角色卡 → 唤醒入口</strong>中的当前配置为准。</p>
+          <p>被唤醒后，当前角色可能先给一个短回应，然后进入正式交流。跟进开启时，你可以在一次回应后继续补充，不必每句话都重新唤醒。</p>
+          <p>默认追问快捷键是 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>。它会切换免唤醒跟进，并立即停止当前讲话；如果你修改过快捷键，以设置页显示并成功登记的组合为准。跟进状态不确定时，先观察界面状态，再开始说话。</p>
+          <div class="guide-note">
+            <p>控制台的“扬声器参考”用于回声消除，不是选择播放输出的开关。播放设备在 Windows 声音设置中调整。第一次测试建议用一句短问题，例如“现在可以听见我吗？”，确认正常后再继续。</p>
+          </div>
+          <p>如果角色没有回应、试听没声音或麦克风测试失败，请查看<a href="./troubleshooting.html#no-sound">声音问题排查</a>。</p>
+        </section>
+        <section id="screen">
+          <h2>聊你当前正在看的内容</h2>
+          <p>把需要讨论的窗口放在屏幕上，再告诉当前角色你想了解哪一部分。例如：“看一下当前页面，这段说明是什么意思？”NearMate 会围绕本次交流的电脑现场理解问题。</p>
+          <p>如果页面文字很小、窗口被遮挡或你要精确讨论一张图，更稳妥的做法是把对应截图或图片拖入聊天输入区，再一起发送。说明“重点看图右侧的表格”，可以帮助角色定位。</p>
+          <div class="guide-note">
+            <p>屏幕内容可能按功能需要发送到你配置的模型服务。发起交流前，先隐藏不需要讨论的密码、账户信息和私密窗口。</p>
+          </div>
+        </section>
+        <section id="materials">
+          <h2>把材料交给当前角色</h2>
+          <ol>
+            <li>将图片、文件或支持的材料拖入聊天输入区，检查待提交材料列表。</li>
+            <li>在正文里说明目标，例如“请把这份文档整理成三个要点”。</li>
+            <li>把材料和这次问题一起提交。</li>
+          </ol>
+          <p>加入输入区的材料，要随这次交流提交以后才成为本轮材料。发送前可以移除不需要的项目；移除待提交项目不会删除你的原文件。</p>
+          <p>选中网页或软件中的文字、图片和片段后，可以按<strong>收集选中内容快捷键</strong>加入待提交材料。默认是 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd>；收集以后，回到聊天检查内容，再补充你希望怎么处理。</p>
+          <p>短粘贴直接作为正文，较长的粘贴可能转成材料。独立链接也可以放进正文，并说明你希望查询或讨论什么。</p>
+          <p>近期材料入口可以重新使用当前运行期间仍可找到的本地文件。文件移动、删除或退出后台进程后，不保证还能继续使用。需要长期保留的信息，请保存原文件和任务成果。</p>
+        </section>
+        <section id="shortcuts">
+          <h2>常用快捷键</h2>
+          <ul>
+            <li><strong>追问：</strong><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>，切换跟进，并停止当前讲话。</li>
+            <li><strong>桌宠召回：</strong><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd>，召回并置顶虚拟形象，再按一次收起。</li>
+            <li><strong>收集选中内容：</strong><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd>，将选中的内容加入待提交材料。</li>
+          </ul>
+          <p>这些是默认值。控制台<strong>设置 → 常用</strong>可以修改或关闭快捷键。保存后查看登记结果；如果组合被其它软件占用，请换一个组合，不要只根据“已保存”判断系统快捷键已经生效。</p>
+        </section>
+        <nav class="guide-pagination" aria-label="继续阅读">
+          <a href="./first-run.html">← 首次初始化</a><a href="./optional-services.html">下一页：选配功能 →</a>
+        </nav>
+      </main>
+    </div>
+    <footer class="guide-footer">
+      需要帮助时，查看<a href="./troubleshooting.html">常见问题</a>或<a href="../index.html#community">加入体验交流</a>。
+    </footer>
+  </body>
+</html>

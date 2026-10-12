@@ -26,7 +26,9 @@ jobs:
         with:
           node-version: '22'
       - name: Validate and build public website
-        run: npm run build
+        run: |
+          npm test
+          npm run build
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website

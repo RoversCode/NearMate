@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NearMate 问题排查：模型连接失败、语音模型下载、没有声音、启动失败和试用领取。">
+    <title>遇到问题 · NearMate 使用手册</title>
+    <link rel="icon" href="../assets/images/nearmate.png">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/guide.css">
+    <link rel="canonical" href="https://roverscode.github.io/NearMate/guide/troubleshooting.html">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="guide-header">
+      <div class="guide-header-inner">
+        <a class="guide-brand" href="../index.html"><img src="../assets/images/nearmate.png" width="36" height="36" alt="">NearMate</a>
+        <nav aria-label="官网导航">
+          <a href="../index.html">返回官网</a><a href="../index.html#download">下载软件</a><a href="https://github.com/RoversCode/NearMate/issues">反馈问题</a>
+        </nav>
+      </div>
+    </header>
+    <div class="guide-layout">
+      <aside class="guide-sidebar">
+        <p>使用手册</p>
+        <nav aria-label="手册章节">
+          <a href="./index.html">开始之前</a><a href="./first-run.html">首次初始化</a><a href="./chat-and-voice.html">聊天与语音</a><a href="./optional-services.html">选配功能</a><a href="./troubleshooting.html" aria-current="page">遇到问题</a>
+        </nav>
+      </aside>
+      <main class="guide-content" id="main" tabindex="-1">
+        <header>
+          <p class="guide-kicker">按出错阶段找原因</p>
+          <h1>卡住时，先看页面提示</h1>
+          <p class="guide-intro">记录当前步骤和具体错误，再按下面的方法处理。不要通过删除授权身份或反复清空配置来重试。</p>
+        </header>
+        <nav class="guide-toc" aria-label="本页目录">
+          <ol>
+            <li><a href="#ai-connection">模型服务连接失败</a></li>
+            <li><a href="#voice-download">下载或语音准备失败</a></li>
+            <li><a href="#no-sound">没有声音或不能说话</a></li>
+            <li><a href="#startup">启动失败</a></li>
+            <li><a href="#trial">无法领取试用</a></li>
+            <li><a href="#feedback">怎样反馈问题</a></li>
+          </ol>
+        </nav>
+        <section id="ai-connection">
+          <h2>模型服务连接失败</h2>
+          <p>统一验证失败时，页面会保留填写内容，并说明当前原因。先检查提示涉及哪一家，再修改对应字段。</p>
+          <ul>
+            <li><strong>网络或超时：</strong>确认这台电脑能访问相应厂商服务，网络稳定后重新验证。</li>
+            <li><strong>鉴权失败：</strong>确认 API Key 完整，没有漏复制、额外空格或误填 NearMate 激活码。</li>
+            <li><strong>Qwen 工作空间问题：</strong>核对北京地域的 WorkspaceId，以及与该工作空间配套的 Key 和调用权限。</li>
+            <li><strong>账户额度或限流：</strong>打开厂商账户检查开通状态、余额与限制，按平台要求处理后再试。</li>
+          </ul>
+          <p>返回 DeepSeek 步骤只修改需要调整的内容，再到 Qwen 步骤统一验证。曾经保存的 Key 可以留空保留；不要为了查看密钥而公开截图。完整填写方式见<a href="./first-run.html#deepseek">DeepSeek</a>和<a href="./first-run.html#qwen">Qwen</a>说明。</p>
+          <p>如果保存成功后实际聊天失败，仍应查看当次错误。验证只能证明检查时服务可连接，厂商后续状态、网络及实际请求仍可能变化。</p>
+        </section>
+        <section id="voice-download">
+          <h2>下载或语音准备失败</h2>
+          <p>看清失败发生在下载、校验、加载还是音色准备阶段，再展开详细原因。</p>
+          <ul>
+            <li><strong>连接中断：</strong>检查网络后继续准备，已验证的下载缓存会被复用。</li>
+            <li><strong>磁盘空间不足：</strong>释放空间，或返回“检查电脑”更换模型保存位置。</li>
+            <li><strong>文件无法保存：</strong>关闭可能占用文件的程序，查看具体无法写入的位置，再尝试。</li>
+            <li><strong>运行组件缺失或损坏：</strong>使用原安装程序修复或更新安装包。重复下载模型不能解决组件缺失。</li>
+            <li><strong>模型或执行方式加载失败：</strong>保留具体原因，检查执行方式和驱动，再按界面提供的操作重新选择或修复。</li>
+          </ul>
+          <p>取消或关闭程序后，可以重新进入控制台查看状态。若仍在释放资源，等待阶段结束后再重试。重新准备后需要完成试听确认，才会恢复正常使用。</p>
+        </section>
+        <section id="no-sound">
+          <h2>没有声音，或角色没有听到你</h2>
+          <h3>试听没有声音</h3>
+          <ol>
+            <li>检查 Windows 音量、应用音量，以及耳机或扬声器是否连接。</li>
+            <li>在 Windows 声音设置中核对播放输出设备。控制台的“扬声器参考”用于回声消除，不是播放输出选择。</li>
+            <li>重新完整播放试听。如果出现播放错误，保留错误提示。</li>
+          </ol>
+          <h3>语音输入没有回应</h3>
+          <ol>
+            <li>先发送一条文字消息，确认模型服务与当前运行状态正常。</li>
+            <li>在<strong>设置 → 声音与语音</strong>执行麦克风测试，检查是否收到声音，并回放录音。</li>
+            <li>确认 Windows 允许应用使用麦克风，手动选择时核对实际设备。</li>
+            <li>通过唤醒或追问快捷键进入跟进后，再说一句短问题。检查界面是否显示相应状态。</li>
+          </ol>
+          <p>如果文字也无法发送，先查看产品授权、模型服务或运行准备提示；这不一定是麦克风问题。详细操作见<a href="./chat-and-voice.html#voice">语音交流入门</a>。</p>
+        </section>
+        <section id="startup">
+          <h2>软件启动失败</h2>
+          <p>启动窗口会检查随包组件，并准备本地运行环境。看到“正在初始化”时先等待当前阶段；已经失败时，按窗口给出的原因处理。</p>
+          <ul>
+            <li><strong>缺少或损坏运行文件：</strong>保留同一发行的安装程序及全部分卷，使用安装程序修复，或下载完整的新发行重新安装。</li>
+            <li><strong>已有实例或端口被占用：</strong>检查 NearMate 是否已经在运行，关闭确认属于 NearMate 的旧实例后再启动。</li>
+            <li><strong>准备超时或后台停止：</strong>使用提示中的“查看诊断日志”，记录出错阶段和退出信息，再反馈。</li>
+          </ul>
+          <p>升级会保留稳定用户数据。不要把模型放进安装目录，也不要删除授权身份来尝试重新激活。如果只是模型下载中断，回控制台继续即可，不必先重装。</p>
+        </section>
+        <section id="trial">
+          <h2>无法领取试用，或试用已经结束</h2>
+          <p>试用领取受开放时间、每日名额和设备资格限制。页面显示尚未开放或名额已用完时，按提示稍后再查看；公开名额查询不会预留资格。</p>
+          <p>已成功领取后连续计时 24 小时，不会因关闭程序而暂停。试用新启动需要联网；网络请求失败时先恢复网络，再重新读取状态。试用到期后，可按页面说明取得正式产品授权。</p>
+          <p>不要删除授权身份文件来重试，也不要把模型 API Key 当作 NearMate 激活码。无法确定领取结果时，重新打开或刷新状态，让软件读取权威结果。</p>
+        </section>
+        <section id="feedback">
+          <h2>怎样反馈问题</h2>
+          <p>通过<a href="https://github.com/RoversCode/NearMate/issues">GitHub Issues</a>或<a href="../index.html#community">体验交流群</a>反馈时，请提供：</p>
+          <ul>
+            <li>NearMate 版本、CUDA 或 Universal、Windows 版本和显卡情况。</li>
+            <li>你正在进行哪一步，按什么顺序操作，以及期望出现什么结果。</li>
+            <li>页面具体提示、错误阶段和必要的日志片段。</li>
+          </ul>
+          <div class="guide-note">
+            <p>公开发送前，移除 API Key、NearMate 激活码、私人文件路径和聊天内容。截图只保留相关区域。支持人员排查问题不需要你公开完整密钥。</p>
+          </div>
+        </section>
+        <nav class="guide-pagination" aria-label="继续阅读">
+          <a href="./optional-services.html">← 选配功能</a><a href="./index.html">返回手册目录 →</a>
+        </nav>
+      </main>
+    </div>
+    <footer class="guide-footer">
+      NearMate Windows 使用手册 · 可随时从应用内的使用手册入口回到这里。
+    </footer>
+  </body>
+</html>
