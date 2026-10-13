@@ -7,6 +7,7 @@
     <a href="https://roverscode.github.io/NearMate/">官方网站</a> ·
     <a href="https://roverscode.github.io/NearMate/guide/">使用手册</a> ·
     <a href="https://github.com/RoversCode/NearMate/releases/latest">下载 Windows 版</a> ·
+    <a href="https://catfk.com/item/6wwzyw">购买授权 Key</a> ·
     <a href="https://roverscode.github.io/NearMate/#community">加入体验交流</a> ·
     <a href="https://github.com/RoversCode/NearMate/issues">问题反馈</a>
   </p>
@@ -69,7 +70,7 @@ https://github.com/user-attachments/assets/9d0eea0c-6f5d-46e5-9220-b78c9e8a31e2
 
 **24 小时试用无需先填写 NearMate Key。** 领取成功后连续计时 24 小时，领取结果受服务开放时间、每日名额与设备资格限制，以应用内显示为准。首次准备和试用的每次新启动会话都需要联网。
 
-试用提供 NearMate 的产品使用资格，**不包含模型 API 额度**。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作所接入的服务也可能产生费用。正式授权信息可在体验交流群了解。
+试用提供 NearMate 的产品使用资格，**不包含模型 API 额度**。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作所接入的服务也可能产生费用。需要正式产品授权时，可直接[购买授权 Key](https://catfk.com/item/6wwzyw)，收到后在产品授权页面填写 NearMate 激活码。
 
 ### 数据与记忆
 
