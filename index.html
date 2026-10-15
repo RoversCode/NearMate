@@ -3,418 +3,320 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f6f0">
-    <meta name="description" content="NearMate 是常驻 Windows 桌面的 AI 工作搭子环境。用你喜欢的角色，围绕当前屏幕和材料交流，在授权后把小任务推进。下载 Windows 版本，在应用内申请 24 小时试用。">
-    <title>NearMate · 工作在手边，搭子在身边</title>
+    <meta name="theme-color" content="#070914">
+    <meta name="description" content="NearMate 是常驻 Windows 桌面的实时语音 AI 搭子：喊一声就唤醒，能打开应用、看懂屏幕替你操作、定时提醒、把大活儿交给后台。下载 Windows 版，在应用内申请 24 小时试用。">
+    <title>NearMate · 喊一声，她就动手</title>
     <link rel="icon" type="image/png" href="./assets/images/nearmate.png">
     <link rel="canonical" href="https://roverscode.github.io/NearMate/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:title" content="NearMate · 工作在手边，搭子在身边">
-    <meta property="og:description" content="常驻 Windows 桌面的 AI 工作搭子。角色、语音、屏幕上下文与经授权的后台工作，来到同一张桌面。">
+    <meta property="og:title" content="NearMate · 喊一声，她就动手">
+    <meta property="og:description" content="常驻 Windows 桌面的实时语音 AI 搭子。不用打字、不用切窗口，说句话，她就动手。">
     <meta property="og:url" content="https://roverscode.github.io/NearMate/">
-    <link rel="stylesheet" href="./assets/css/site.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
     <script type="module" src="./assets/js/site.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳到正文</a>
     <header class="site-header">
       <div class="header-inner">
-        <a class="wordmark" href="#" aria-label="NearMate 首页"><img src="./assets/images/nearmate.png" width="36" height="36" alt=""><span>NearMate<span class="wordmark-dot">.</span></span></a><button class="menu-toggle" type="button" aria-label="打开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
+        <a class="wordmark" href="#" aria-label="NearMate 首页"><img src="./assets/images/nearmate.png" width="34" height="34" alt=""><span>NearMate</span></a><button class="menu-toggle" type="button" aria-label="打开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
         <nav class="site-nav" id="site-nav" aria-label="主导航">
-          <a href="#possibilities">能做什么</a><a href="#start">如何开始</a><a href="./guide/">使用手册</a><a href="#questions">常见问题</a><a href="#community">体验交流</a><a class="nav-download" href="#download">下载 NearMate <span aria-hidden="true">↗</span></a>
+          <a href="#features">能做什么</a><a href="#film">宣传片</a><a href="#start">如何开始</a><a href="./guide/">使用手册</a><a href="#questions">常见问题</a><a href="#community">交流群</a><a class="nav-download" href="#download">下载</a>
         </nav>
       </div>
     </header>
     <main id="main">
-      <section class="hero page-width" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">
-            <span class="eyebrow-line"></span> YOUR DESKTOP, WITH COMPANY
-          </p>
-          <h1 id="hero-title">
-            工作在手边，<br>搭子<span class="highlight-word">在身边<span class="underline" aria-hidden="true"></span></span>。
-          </h1>
-          <p class="hero-description">
-            一个常驻桌面的 AI 工作搭子。<br>看你正在看的，聊你正在想的，<br>也帮你把手头的小事往前推进。
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#download"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 3.5 9 2.5v7H2zm8-1.2L18 1v8.5h-8zM2 10.5h7v7l-7-1zm8 0h8V19l-8-1.2z"/></svg>下载 Windows 版</a><a class="text-link" href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/RoversCode/NearMate/releases" target="_blank" rel="noreferrer">查看 GitHub Releases <span aria-hidden="true">↗</span></a><a class="text-link" href="#film">看完整宣传片 <span aria-hidden="true">▷</span></a>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="page-width hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span>实时语音 · Windows 桌面搭子</p>
+            <h1 id="hero-title">喊一声，<br><span class="gradient-text">她就动手。</span></h1>
+            <p class="hero-description">不用打字，不用切窗口。<br>叫一声名字，说你想做的事——打开应用、操作电脑、定个提醒，她都接得住，还会顺嘴损你两句。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#download"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 3.5 9 2.5v7H2zm8-1.2L18 1v8.5h-8zM2 10.5h7v7l-7-1zm8 0h8V19l-8-1.2z"/></svg>下载 Windows 版</a><a class="button button-ghost" href="#film"><span class="play-icon" aria-hidden="true"></span>看 2 分半宣传片</a>
+            </div>
+            <ul class="hero-facts" aria-label="基本信息">
+              <li><strong>24h</strong><span>免 Key 应用内试用</span></li>
+              <li><strong>x64</strong><span>Windows 10 / 11</span></li>
+              <li><strong>2 版</strong><span>CUDA 与 Universal</span></li>
+            </ul>
           </div>
-          <p class="hero-note">
-            Windows x64<span aria-hidden="true"> / </span>CUDA 与 Universal 双版本
-          </p>
-          <a class="trial-inline" href="#start"><span class="trial-mark" aria-hidden="true">24h</span><span>无需 NearMate Key，可在应用内申请试用</span><span aria-hidden="true">↗</span></a>
+          <figure class="hero-stage">
+            <div class="screen-frame">
+              <img src="./assets/images/demo-operate.jpg" width="1600" height="812" alt="NearMate 实机画面：聊天窗口记录着「用计算器算六乘七」的任务，旁边计算器已显示结果 42" fetchpriority="high">
+            </div>
+            <div class="bubble bubble-user">
+              <span class="bubble-who">我</span>
+              <p>用计算器算一下六乘七。</p>
+            </div>
+            <div class="bubble bubble-spark">
+              <span class="bubble-who"><img src="./assets/images/nearmate.png" width="22" height="22" alt="">火花</span>
+              <p>六乘七都要开计算器？行，我去给你按。</p>
+              <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <figcaption>实机录屏截图 · 默认角色「火花」</figcaption>
+          </figure>
         </div>
-        <figure class="hero-art">
-          <div class="art-stage">
-            <div class="art-topline">
-              <span>NEAR YOU. WITH YOU.</span><span>01 / DESKTOP</span>
-            </div>
-            <p class="art-background-text" aria-hidden="true">
-              A little help.<br>A little company.
-            </p>
-            <div class="sample-prompt">
-              <span class="prompt-icon" aria-hidden="true">✳</span><span>“这份材料，帮我理一下思路。”</span><span class="prompt-attachment">本轮材料</span>
-            </div>
-            <img class="hero-character" src="./assets/images/nearmate.png" alt="NearMate 品牌形象：戴着聊天气泡发饰的短发桌面搭子" width="1254" height="1254" fetchpriority="high">
-            <div class="companion-label">
-              <span class="label-symbol" aria-hidden="true">✳</span>
-              <div>
-                <strong>角色，由你定义。</strong><span>性格、声音，还有相处的方式。</span>
-              </div>
-            </div>
-            <div class="art-caption">
-              <span class="caption-rule"></span><span>离你正在做的事，再近一点。</span>
-            </div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>语音唤醒</span><span>打开应用</span><span>看懂屏幕</span><span>替你操作</span><span>定时提醒</span><span>后台任务</span><span>天气出行</span><span>角色卡</span><span>专属音色</span>
+            <span>语音唤醒</span><span>打开应用</span><span>看懂屏幕</span><span>替你操作</span><span>定时提醒</span><span>后台任务</span><span>天气出行</span><span>角色卡</span><span>专属音色</span>
           </div>
-          <figcaption>
-            品牌形象与交互场景示意 · 非实机截图
-          </figcaption>
-        </figure>
+        </div>
       </section>
-      <div class="capability-strip">
-        <div class="page-width">
-          <span>你的桌面，多一个帮手。</span>
-          <ul aria-label="核心能力">
-            <li>
-              角色卡
-            </li>
-            <li>
-              Live2D
-            </li>
-            <li>
-              语音交流
-            </li>
-            <li>
-              屏幕与材料
-            </li>
-            <li>
-              后台工作
-            </li>
-          </ul>
-        </div>
-      </div>
-      <section class="possibilities page-width section-space" id="possibilities" aria-labelledby="possibilities-title">
+
+      <section class="features page-width section-space" id="features" aria-labelledby="features-title">
         <div class="section-heading">
-          <p class="eyebrow">
-            A COMPANION THAT GETS IT
-          </p>
-          <h2 id="possibilities-title">
-            不必离开手头的事。<br><span class="muted">叫上你的搭子，一起。</span>
-          </h2>
-          <p>
-            NearMate 承载你选择的角色，<br>让交流和行动发生在日常工作的旁边。
-          </p>
+          <p class="eyebrow">WHAT SHE CAN DO</p>
+          <h2 id="features-title">说句话的事，<span class="gradient-text">交给她。</span></h2>
+          <p>下面每一张图都来自真实录屏，每一句对话都是她当时的原话。</p>
         </div>
-        <div class="feature-list">
-          <article class="feature-row">
-            <span class="feature-number">01</span>
-            <div class="feature-title">
-              <h3>
-                先理解，你的“这个”。
-              </h3>
-              <span>CONTEXT</span>
+
+        <article class="feature">
+          <div class="feature-copy">
+            <span class="feature-index">01</span>
+            <h3>喊一声，她就在</h3>
+            <p>叫名字就能唤醒，不用按快捷键。早上、晚上、深夜，她的回应各不相同。</p>
+            <div class="dialogue">
+              <p class="say say-user"><span>我</span>你好，火花同学。</p>
+              <p class="say say-spark"><span>火花</span>我在呢，慢慢说。</p>
             </div>
-            <div class="feature-body">
-              <p>
-                当前屏幕、选中的文字，或刚刚拖入的截图与文件，都能成为交流的上下文。少一点复制粘贴，多一点直接开口。
-              </p>
-              <p class="feature-example">
-                试着说：<q>帮我解释一下这张图。</q>
-              </p>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-wake.jpg" width="1600" height="1084" loading="lazy" alt="Windows 桌面右下角常驻着 NearMate 的桌面形象，等待语音唤醒"></figure>
+        </article>
+
+        <article class="feature feature-reverse">
+          <div class="feature-copy">
+            <span class="feature-index">02</span>
+            <h3>一句话，打开应用</h3>
+            <p>网易云、B 站、QQ……说出名字就行，本地软件和网页都能拉起来。</p>
+            <div class="dialogue">
+              <p class="say say-user"><span>我</span>帮我打开一下 B 站。</p>
+              <p class="say say-spark"><span>火花</span>B 站已经给你踹开了，主页在那蹦跶着呢。</p>
             </div>
-          </article>
-          <article class="feature-row">
-            <span class="feature-number">02</span>
-            <div class="feature-title">
-              <h3>
-                有自己的声音，也有你的默契。
-              </h3>
-              <span>CHARACTER</span>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-apps.jpg" width="1600" height="900" loading="lazy" alt="语音指令后浏览器已打开 B 站首页"></figure>
+        </article>
+
+        <article class="feature">
+          <div class="feature-copy">
+            <span class="feature-index">03</span>
+            <h3>看懂屏幕，自己动手</h3>
+            <p>交代一个任务，她盯着界面一步步点。实机演示：打开计算器，自己按出 6 × 7。</p>
+            <div class="dialogue">
+              <p class="say say-spark"><span>火花</span>计算器窗口给我拉起来了，正在盯界面找数字键。</p>
+              <p class="say say-spark"><span>火花</span>算好了，六乘七等于四十二。</p>
             </div>
-            <div class="feature-body">
-              <p>
-                用角色卡定义身份和语气，搭配 Live2D 虚拟形象与语音。想打字就打字，想说话就说话，以你舒服的方式合作。
-              </p>
-              <p class="feature-example">
-                从角色卡开始，找到合拍的相处方式。
-              </p>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-operate.jpg" width="1600" height="812" loading="lazy" alt="NearMate 自动操作 Windows 计算器，结果显示 42"></figure>
+        </article>
+
+        <article class="feature feature-reverse">
+          <div class="feature-copy">
+            <span class="feature-index">04</span>
+            <h3>定时提醒，到点就喊</h3>
+            <p>一句话定好提醒，到点弹窗加语音一起来。别指望她客气。</p>
+            <div class="dialogue">
+              <p class="say say-user"><span>我</span>三十秒以后我要去上个厕所，你提醒我一下。</p>
+              <p class="say say-spark"><span>火花</span>宝子，到点了，去上厕所哦！别搁那憋着了啊！</p>
             </div>
-          </article>
-          <article class="feature-row">
-            <span class="feature-number">03</span>
-            <div class="feature-title">
-              <h3>
-                聊完之后，事情还能继续。
-              </h3>
-              <span>ACTION</span>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-remind.jpg" width="1600" height="1084" loading="lazy" alt="桌面右上角弹出「时间到了」提醒卡片"></figure>
+        </article>
+
+        <article class="feature">
+          <div class="feature-copy">
+            <span class="feature-index">05</span>
+            <h3>大活儿丢给后台</h3>
+            <p>格式转换、视频总结这类耗时任务交给后台智能体。动文件前先问你授权，结果放进卡片里。</p>
+            <div class="dialogue">
+              <p class="say say-spark"><span>火花</span>好，本次授权已经生效。</p>
+              <p class="say say-spark"><span>火花</span>转好了哈。完整的已经发到聊天窗口了，想细看就去结果卡里翻。</p>
             </div>
-            <div class="feature-body">
-              <p>
-                需要处理材料、整理文件或完成多步骤操作时，配置后台工作并给出授权，让当前角色调用工具推进任务。进展和结果可以随时查看。
-              </p>
-              <p class="feature-example">
-                试着说：<q>根据这份材料，整理一份待办清单。</q>
-              </p>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-background.jpg" width="1600" height="900" loading="lazy" alt="聊天窗口显示后台任务完成后的结果卡片"></figure>
+        </article>
+
+        <article class="feature feature-reverse">
+          <div class="feature-copy">
+            <span class="feature-index">06</span>
+            <h3>有脾气的搭子</h3>
+            <p>不是客服腔，会接梗也会回嘴。运行期间记得你们刚聊过什么。</p>
+            <div class="dialogue">
+              <p class="say say-user"><span>我</span>你是我最好的伙伴。</p>
+              <p class="say say-spark"><span>火花</span>哎呦，突然这么软，我可受不了。别是憋着要坑我啥吧？不过算你识相。</p>
             </div>
-          </article>
+          </div>
+          <figure class="feature-shot"><img src="./assets/images/demo-persona.jpg" width="1600" height="900" loading="lazy" alt="NearMate 桌面形象旁的对话气泡里是火花的回嘴"></figure>
+        </article>
+      </section>
+
+      <section class="character section-space" aria-labelledby="character-title">
+        <div class="page-width character-layout">
+          <div class="character-copy">
+            <p class="eyebrow">CHARACTER CARD</p>
+            <h2 id="character-title">搭子的样子，<br><span class="gradient-text">你说了算。</span></h2>
+            <p>「火花」只是默认角色。用角色卡写下她是谁、怎么说话、怎么称呼你，再绑定一副专属声音。</p>
+            <ul class="trait-list">
+              <li>名字与人设</li><li>说话风格</li><li>主人称呼</li><li>专属音色</li><li>唤醒台词</li>
+            </ul>
+          </div>
+          <figure class="character-shot"><img src="./assets/images/demo-character-card.jpg" width="1400" height="822" loading="lazy" alt="NearMate 控制台的角色卡编辑页，填写着角色称呼「火花」与主人称呼「宝子」"></figure>
         </div>
       </section>
-      <section class="film-section page-width" id="film" aria-labelledby="film-title">
-        <div class="film-heading">
-          <div>
-            <p class="eyebrow">THE NEARMATE PRODUCT FILM</p>
-            <h2 id="film-title">看看搭子，怎么陪你做事。</h2>
-          </div>
-          <p>听听真实演示中的角色声音，看看角色卡如何定义身份、语气、关系和声音。<br>用 2 分 36 秒，认识你的桌面搭子。</p>
+
+      <section class="film-section page-width section-space" id="film" aria-labelledby="film-title">
+        <div class="section-heading section-heading-center">
+          <p class="eyebrow">PRODUCT FILM</p>
+          <h2 id="film-title">两分半，<span class="gradient-text">看她干活。</span></h2>
+          <p>全部实机录屏与角色原声，请开声音观看。</p>
         </div>
         <figure class="film-card">
-          <video controls playsinline preload="none" poster="./assets/images/promo-poster.jpg" width="1920" height="1080" aria-label="NearMate 2 分 36 秒完整宣传片">
+          <video controls playsinline preload="none" poster="./assets/images/film-poster.jpg" width="1920" height="1080" aria-label="NearMate 产品宣传片">
             <source src="https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Product-Film-1080p.mp4" type="video/mp4">
             <p>可<a href="https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Product-Film-1080p.mp4">下载 MP4 宣传片</a>观看。</p>
           </video>
-          <figcaption>
-            <div><strong>NearMate · 工作在手边，搭子在身边。</strong><span class="film-meta">2 分 36 秒 · 1080p · 角色原声与实机演示</span></div>
-            <a class="text-link" href="https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.1/NearMate-Product-Film-1080p.mp4" download="NearMate-Product-Film-1080p.mp4">下载完整 MP4 <span aria-hidden="true">↓</span></a>
-          </figcaption>
         </figure>
-        <p class="film-note">影片保留真实演示中的角色声音，也带你认识默认角色「火花」：有网感、嘴硬护短，正事认真。请开启声音观看完整影片；实际界面与功能以当前发行版为准。</p>
       </section>
-      <section class="start-section" id="start" aria-labelledby="start-title">
-        <div class="page-width start-layout">
-          <div class="start-intro">
-            <p class="eyebrow">
-              MAKE YOURSELF AT HOME
-            </p>
-            <h2 id="start-title">
-              从第一次见面，<br>到第一次帮上忙。
-            </h2>
-            <p>
-              安装后，跟着应用里的向导走。<br>把角色和模型准备好，就可以开始了。
-            </p>
-            <div class="trial-note">
-              <span class="trial-large">24<span>小时</span></span>
-              <div>
-                <strong>在应用内申请试用</strong>
-                <p>
-                  无需先填写 NearMate Key。是否可领取，取决于服务开放时间、每日额度与设备资格；请以应用内结果为准。
-                </p>
-              </div>
-            </div>
+
+      <section class="start-section section-space" id="start" aria-labelledby="start-title">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">GET STARTED</p>
+            <h2 id="start-title">三步，<span class="gradient-text">把她请上桌面。</span></h2>
+            <p>安装后跟着应用里的向导走即可。</p>
           </div>
           <ol class="setup-steps">
             <li>
               <span class="step-number">1</span>
-              <div>
-                <h3>
-                  下载合适的 Windows 版本
-                </h3>
-                <p>
-                  NVIDIA 显卡可选 CUDA；其他设备可查看 Universal。把同一版本的所有分卷放在同一文件夹，再运行安装程序。
-                </p>
-              </div>
+              <h3>下载合适的版本</h3>
+              <p>NVIDIA 显卡选 CUDA，其他设备选 Universal。同一版本的所有分卷放进同一个文件夹，再运行安装程序。</p>
             </li>
             <li>
               <span class="step-number">2</span>
-              <div>
-                <h3>
-                  领取试用，连接你的 AI
-                </h3>
-                <p>
-                  在软件内申请试用，或<a class="text-link" href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key</a>后填写收到的 NearMate 激活码，然后配置模型 API。模型 API 需自行准备，使用费用由厂商单独收取。
-                </p>
-              </div>
+              <h3>领取试用，连接 AI</h3>
+              <p>在软件内申请 24 小时试用，或<a class="inline-link" href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key</a>后填写激活码，再配置模型 API。模型 API 需自行准备，费用由厂商单独收取。</p>
             </li>
             <li>
               <span class="step-number">3</span>
-              <div>
-                <h3>
-                  准备语音，认识你的角色
-                </h3>
-                <p>
-                  按向导检查电脑、下载所需语音模型并完成试听。设置角色后，就能在桌面开始交流。
-                </p>
-              </div>
+              <h3>准备语音，开口</h3>
+              <p>按向导检查电脑、下载语音模型并试听。设置好角色，喊她的名字就能开始。</p>
             </li>
           </ol>
+          <p class="trial-note"><strong>关于试用：</strong>无需先填写 NearMate Key。能否领取取决于服务开放时间、每日额度与设备资格，以应用内结果为准。<a class="inline-link" href="./guide/">查看完整使用手册 →</a></p>
         </div>
       </section>
+
       <section class="download-section page-width section-space" id="download" aria-labelledby="download-title">
         <div class="download-shell">
           <div class="download-heading">
             <div>
-              <p class="eyebrow">
-                A PLACE ON YOUR DESKTOP
-              </p>
-              <h2 id="download-title">
-                给搭子，留个位置。
-              </h2>
-              <p>
-                选择适合这台电脑的安装包。
-              </p>
+              <p class="eyebrow">DOWNLOAD</p>
+              <h2 id="download-title">给搭子，留个位置。</h2>
+              <p>选择适合这台电脑的安装包。</p>
             </div>
             <span class="version-badge" data-release-version>正在读取版本信息</span>
           </div>
           <div class="download-content">
             <div class="profile-picker" role="group" aria-label="选择安装版本">
-              <button class="profile-choice is-selected" type="button" data-profile="universal" aria-pressed="true" aria-controls="profile-universal"><span><strong>Universal</strong><span class="choice-type">通用版</span></span><span class="choice-description">AMD / Intel 等设备<br>DirectML · Vulkan · CPU</span><span class="choice-check" aria-hidden="true">✓</span></button><button class="profile-choice" type="button" data-profile="cuda" aria-pressed="false" aria-controls="profile-cuda"><span><strong>CUDA</strong><span class="choice-type">NVIDIA 版</span></span><span class="choice-description">配备兼容的 NVIDIA 显卡<br>CUDA 加速运行环境</span><span class="choice-check" aria-hidden="true">✓</span></button>
+              <button class="profile-choice is-selected" type="button" data-profile="universal" aria-pressed="true" aria-controls="profile-universal"><span class="choice-head"><strong>Universal</strong><span class="choice-type">通用版</span></span><span class="choice-description">AMD / Intel 等设备<br>DirectML · Vulkan · CPU</span><span class="choice-check" aria-hidden="true">✓</span></button><button class="profile-choice" type="button" data-profile="cuda" aria-pressed="false" aria-controls="profile-cuda"><span class="choice-head"><strong>CUDA</strong><span class="choice-type">NVIDIA 版</span></span><span class="choice-description">配备兼容的 NVIDIA 显卡<br>CUDA 加速运行环境</span><span class="choice-check" aria-hidden="true">✓</span></button>
             </div>
             <div class="download-detail">
               <div id="profile-universal" class="profile-panel" data-download-panel="universal">
-                <h3>
-                  Universal 安装文件
-                </h3>
-                <p class="download-status" data-profile-status="universal" role="status">
-                  安装文件发布后，将在这里提供直接下载。
-                </p>
-                <ul class="asset-list" data-assets="universal" aria-label="Universal 安装文件">
-                </ul>
+                <h3>Universal 安装文件</h3>
+                <p class="download-status" data-profile-status="universal" role="status">安装文件发布后，将在这里提供直接下载。</p>
+                <ul class="asset-list" data-assets="universal" aria-label="Universal 安装文件"></ul>
               </div>
               <div id="profile-cuda" class="profile-panel" data-download-panel="cuda" hidden>
-                <h3>
-                  CUDA 安装文件
-                </h3>
-                <p class="download-status" data-profile-status="cuda" role="status">
-                  安装文件发布后，将在这里提供直接下载。
-                </p>
-                <ul class="asset-list" data-assets="cuda" aria-label="CUDA 安装文件">
-                </ul>
+                <h3>CUDA 安装文件</h3>
+                <p class="download-status" data-profile-status="cuda" role="status">安装文件发布后，将在这里提供直接下载。</p>
+                <ul class="asset-list" data-assets="cuda" aria-label="CUDA 安装文件"></ul>
               </div>
-              <p class="split-note">
-                <strong>分卷安装，文件要放在一起。</strong><br>请逐个下载所选版本的全部文件（.exe 与 .bin），放在同一文件夹中，保留原文件名，然后运行 .exe。两个版本的分卷不能混用。
-              </p>
+              <p class="split-note"><strong>分卷安装，文件要放在一起。</strong>请逐个下载所选版本的全部文件（.exe 与 .bin），放在同一文件夹中，保留原文件名，然后运行 .exe。两个版本的分卷不能混用。</p>
               <div class="download-links">
-                <a href="https://github.com/RoversCode/NearMate/releases" target="_blank" rel="noreferrer">在 GitHub Releases 下载 <span aria-hidden="true">↗</span></a><a data-checksums hidden>SHA256 校验文件</a>
+                <a href="https://github.com/RoversCode/NearMate/releases" target="_blank" rel="noreferrer">在 GitHub Releases 下载 ↗</a><a href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key ↗</a><a data-checksums hidden>SHA256 校验文件</a>
               </div>
               <noscript>
-                <p class="no-script">
-                  当前浏览器未启用 JavaScript，请通过上方 GitHub Releases 入口下载完整安装文件。
-                </p>
+                <p class="no-script">当前浏览器未启用 JavaScript，请通过上方 GitHub Releases 入口下载完整安装文件。</p>
               </noscript>
             </div>
           </div>
           <div class="download-footnote">
-            <span>Windows x64</span><span>首次使用需联网完成授权与模型准备</span><span>模型 API 费用另计</span>
+            <span>Windows 10 / 11 x64</span><span>首次使用需联网完成授权与模型准备</span><span>模型 API 费用另计</span>
           </div>
         </div>
       </section>
-      <section class="faq-section page-width" id="questions" aria-labelledby="questions-title">
+
+      <section class="faq-section page-width section-space" id="questions" aria-labelledby="questions-title">
         <div class="faq-heading">
-          <p class="eyebrow">
-            GOOD TO KNOW
-          </p>
-          <h2 id="questions-title">
-            开始之前，<br>你可能想知道。
-          </h2>
-          <a class="text-link" href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">反馈问题 <span aria-hidden="true">↗</span></a>
+          <p class="eyebrow">FAQ</p>
+          <h2 id="questions-title">开始之前，<br>你可能想知道。</h2>
+          <a class="inline-link" href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">反馈问题 ↗</a>
         </div>
         <div class="faq-list">
           <details>
-            <summary>
-              NearMate 是一个固定的角色吗？<span aria-hidden="true">+</span>
-            </summary>
+            <summary>NearMate 是一个固定的角色吗？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>NearMate 是让角色贴近电脑任务的运行环境。你可以用角色卡设置当前角色的身份和语气，再选择虚拟形象与语音。宣传中的「火花」是默认角色，实际角色由你在应用里配置。</p></div>
+          </details>
+          <details>
+            <summary>24 小时试用包括模型 API 吗？<span aria-hidden="true">+</span></summary>
             <div class="faq-answer">
-              <p>
-                NearMate 是让角色贴近电脑任务的运行环境。你可以用角色卡设置当前角色的身份和语气，再选择虚拟形象与语音。官网上的人物是品牌形象，实际角色由你在应用里配置。
-              </p>
+              <p>试用覆盖 NearMate 产品使用资格，不提供模型厂商的 API 额度。模型 API 需要自行准备，厂商会单独计费。试用可在应用内申请，无需先填写 NearMate Key；领取资格受服务开放时间、每日额度与设备资格限制，每次新启动试用会话都需要联网。</p>
+              <p>需要正式产品授权时，可直接<a class="inline-link" href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key</a>，收到后在产品授权页面填写激活码。</p>
             </div>
           </details>
           <details>
-            <summary>
-              24 小时试用包括模型 API 吗？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                试用覆盖 NearMate 产品使用资格，不提供模型厂商的 API 额度。模型 API 需要自行准备，厂商会单独计费。试用可在应用内申请，无需先填写 NearMate Key；领取资格受服务开放时间、每日额度与设备资格限制，每次新启动试用会话都需要联网。
-              </p>
-              <p>需要正式产品授权时，可直接<a class="text-link" href="https://catfk.com/item/6wwzyw" target="_blank" rel="noopener noreferrer">购买授权 Key</a>，收到后在产品授权页面填写激活码。</p>
-            </div>
+            <summary>应该下载 CUDA 还是 Universal？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>CUDA 版面向配备兼容 NVIDIA 显卡的电脑。Universal 版提供 DirectML、Vulkan 与 CPU 运行路径，适合查看其他设备的支持情况。两个版本的功能目标一致，但运行环境不同。安装后请通过向导检查设备与模型要求；实际速度取决于硬件和所选模型。</p></div>
           </details>
           <details>
-            <summary>
-              应该下载 CUDA 还是 Universal？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                CUDA 版面向配备兼容 NVIDIA 显卡的电脑。Universal 版提供 DirectML、Vulkan 与 CPU 运行路径，适合查看其他设备的支持情况。两个版本的功能目标一致，但运行环境不同。安装后请通过向导检查设备与模型要求；实际速度取决于硬件和所选模型。
-              </p>
-            </div>
+            <summary>为什么下载后有多个 .bin 文件？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>安装包采用分卷发布。请下载同一个版本下的安装程序和全部 .bin 文件，把它们放进同一文件夹，保留原文件名，再双击 .exe。缺少任意一个分卷都无法完成安装。SHA256 校验文件可用于核对下载内容是否完整。</p></div>
           </details>
           <details>
-            <summary>
-              为什么下载后有多个 .bin 文件？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                安装包采用分卷发布。请下载同一个版本下的安装程序和全部 .bin 文件，把它们放进同一文件夹，保留原文件名，再双击 .exe。缺少任意一个分卷都无法完成安装。SHA256 校验文件可用于核对下载内容是否完整。
-              </p>
-            </div>
+            <summary>所有数据都会留在本机吗？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>NearMate 在本机运行桌面界面和部分语音能力，但模型推理、授权及后台工作可能访问外部服务。对话和选用的屏幕、材料内容会按功能需要发送给已配置的服务。请结合对应厂商的数据政策，决定使用哪些材料与服务。</p></div>
           </details>
           <details>
-            <summary>
-              所有数据都会留在本机吗？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                NearMate 在本机运行桌面界面和部分语音能力，但模型推理、授权及后台工作可能访问外部服务。对话和选用的屏幕、材料内容会按功能需要发送给已配置的服务。请结合对应厂商的数据政策，决定使用哪些材料与服务。
-              </p>
-            </div>
+            <summary>它会一直记得聊天内容吗？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>当前版本会在后台进程运行期间保留近期对话和任务上下文，用来衔接交流；退出后台进程后，这些运行期记忆不会继续保留。角色卡与设置单独保存。</p></div>
           </details>
           <details>
-            <summary>
-              它会一直记得聊天内容吗？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                当前版本会在后台进程运行期间保留近期对话和任务上下文，用来衔接交流；退出后台进程后，这些运行期记忆不会继续保留。角色卡与设置单独保存。
-              </p>
-            </div>
-          </details>
-          <details>
-            <summary>
-              后台工作需要额外配置吗？<span aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-answer">
-              <p>
-                需要。在控制台的“后台工作”设置中配置相应服务、凭据与主模型，再选择适合的权限。任务需要权限或补充资料时，会在界面中请求你的决定；执行情况和交付结果可在活动记录中查看。
-              </p>
-            </div>
+            <summary>后台工作需要额外配置吗？<span aria-hidden="true">+</span></summary>
+            <div class="faq-answer"><p>需要。在控制台的“后台工作”设置中配置相应服务、凭据与主模型，再选择适合的权限。任务需要权限或补充资料时，会在界面中请求你的决定；执行情况和交付结果可在活动记录中查看。</p></div>
           </details>
         </div>
       </section>
+
       <section class="community-section page-width" id="community" aria-labelledby="community-title">
         <div class="community-shell">
           <div class="community-copy">
-            <p class="eyebrow">A LITTLE COMPANY, TOGETHER</p>
-            <h2 id="community-title">搭子之外，<br>也有一起体验的人。</h2>
-            <p class="community-description">分享角色搭配，聊聊使用方法，<br>也把遇到的问题带给我们。</p>
+            <p class="eyebrow">COMMUNITY</p>
+            <h2 id="community-title">搭子之外，<br>还有一起玩的人。</h2>
+            <p>分享角色搭配，聊聊用法，也把遇到的问题带给我们。</p>
             <p class="community-number"><span>QQ 体验交流群</span><strong>1029360240</strong></p>
-            <p class="community-instruction">用手机 QQ 扫码，或搜索群号加入。</p>
-            <a class="text-link" href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">通过 GitHub 反馈问题 <span aria-hidden="true">↗</span></a>
+            <p class="community-instruction">用手机 QQ 扫码，或搜索群号加入。二维码与群内仍显示历史名称「StreamPet 体验交流群」。</p>
+            <a class="inline-link" href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">通过 GitHub 反馈问题 ↗</a>
           </div>
           <figure class="community-qr">
             <a href="./assets/images/community-qq.jpg" target="_blank" rel="noreferrer" aria-label="打开 QQ 体验交流群二维码原图，群号 1029360240">
               <img src="./assets/images/community-qq.jpg" alt="QQ 群 1029360240 的原始入群二维码，图中群名为 StreamPet 体验交流群" width="1280" height="2282" loading="lazy">
             </a>
-            <figcaption>二维码与群内仍显示历史名称<br>「StreamPet 体验交流群」</figcaption>
           </figure>
         </div>
       </section>
     </main>
     <footer class="site-footer page-width">
       <div>
-        <a class="wordmark" href="#">NearMate<span class="wordmark-dot">.</span></a>
-        <p>
-          离你正在做的事，再近一点。
-        </p>
+        <a class="wordmark" href="#"><img src="./assets/images/nearmate.png" width="28" height="28" alt=""><span>NearMate</span></a>
+        <p>喊一声，她就动手。</p>
       </div>
       <div class="footer-links">
-        <a href="./guide/">使用手册</a><a href="#community">体验交流</a><a href="https://github.com/RoversCode/NearMate/releases" target="_blank" rel="noreferrer">版本记录</a><a href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">问题反馈</a>
+        <a href="./guide/">使用手册</a><a href="#community">交流群</a><a href="https://github.com/RoversCode/NearMate/releases" target="_blank" rel="noreferrer">版本记录</a><a href="https://github.com/RoversCode/NearMate/issues" target="_blank" rel="noreferrer">问题反馈</a>
       </div>
-      <p class="footer-credit">
-        © <span data-year>2026</span> NearMate · RoversCode
-      </p>
+      <p class="footer-credit">© <span data-year>2026</span> NearMate · RoversCode</p>
     </footer>
   </body>
 </html>
