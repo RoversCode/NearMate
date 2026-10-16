@@ -10,7 +10,7 @@
     "dev:test": "node --test scripts/dev.test.mjs scripts/dev-port-check.test.mjs scripts/independent-dev.test.mjs scripts/backend-core-dev.test.mjs scripts/livekit-dev.test.mjs scripts/livekit-log-filter.test.mjs",
     "knip": "knip",
     "check": "pnpm run typecheck && pnpm run knip && pnpm run test && pnpm run build",
-    "python:venv": "uv venv .venv --python 3.12",
+    "python:venv": "uv venv .venv --python 3.12.13 --managed-python",
     "python:install": "uv sync --locked --extra dev --extra windows-cuda",
     "python:install:universal": "uv sync --locked --extra dev --extra windows-universal",
     "desktop:dev": "node scripts/independent-dev.mjs desktop -- pnpm --filter companion-desktop run dev",
