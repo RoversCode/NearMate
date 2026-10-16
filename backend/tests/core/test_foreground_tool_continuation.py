@@ -37,7 +37,7 @@ from backend.tests.foreground_processor_factory import (
 
 
 CARDS_DIR = Path(__file__).parents[2] / "data" / "character-cards"
-CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("huohua")
 
 
 def _execution_context() -> ForegroundExecutionContext:

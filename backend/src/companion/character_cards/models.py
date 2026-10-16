@@ -241,7 +241,7 @@ class WakewordSection(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    keywords: list[str] = Field(default_factory=lambda: ["小练"])  # 当前角色可响应的唤醒词列表。
+    keywords: list[str] = Field(default_factory=lambda: ["你好火花"])  # 当前角色可响应的唤醒词列表。
 
     @field_validator("keywords")
     @classmethod
@@ -263,7 +263,7 @@ class WakewordSection(BaseModel):
                 continue
             normalized_values.append(normalized_item)
             seen_values.add(normalized_item)
-        return normalized_values or ["小练"]
+        return normalized_values or ["你好火花"]
 
 
 class VoiceCaptionTimingSection(BaseModel):
@@ -314,7 +314,7 @@ class VoiceBindingSection(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     streamvox_model: str = "qwen3-tts-clone-0.6b-gguf"  # 角色期望使用的 StreamVox 模型。
-    role_name: str = "xiaolian"  # 角色在对应 StreamVox 模型下的音色名。
+    role_name: str = "huohua"  # 角色在对应 StreamVox 模型下的音色名。
     reference_audio_path: str | None = "voice/reference.wav"  # 后端管理的卡内音色参考音频路径。
     prompt_text: str = ""  # 参考音频对应文本，直接随角色卡保存。
     seed: int | None = 42  # 角色期望的 StreamVox 推理随机种子。

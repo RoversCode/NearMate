@@ -14,7 +14,7 @@ from companion.materials.foreground_images import load_foreground_visual_input
 from companion.prompt.builder import PromptBuildInput, PromptBuilder
 
 
-CARD = CharacterCardStore(Path(__file__).parents[2] / "data" / "character-cards").load_card("xiaolian")
+CARD = CharacterCardStore(Path(__file__).parents[2] / "data" / "character-cards").load_card("huohua")
 
 
 def _visual_input(tmp_path: Path):

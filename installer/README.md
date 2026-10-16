@@ -6,7 +6,7 @@
 
 `build_profile.ps1` 同时调用 `prepare_livekit_runtime.ps1`，把官方 LiveKit Server 1.12.0 Windows x64 程序与 `LICENSE` 放入 `runtime/tools/livekit`。构建缓存位于 `.artifacts/runtime-tools/livekit-1.12.0`，缺少 ZIP 时才从固定 GitHub Release 地址下载；缓存、下载结果和提取后的 EXE 都经过固定 SHA256 校验。ZIP 摘要为 `b2cb4f5648ffb61f8b73e9c529bec3e6ed3456915b7774a341a3250e620cfb77`，EXE 摘要为 `35894ab530ac4d8113a1b791e01d2ad6fc2c3f740be46741f9e6d468035e8705`。应用运行时不下载此组件。
 
-安装版默认由 Desktop 启动和关闭随包 LiveKit，每次启动生成随机凭据和端口；完整的外部 `LIVEKIT_URL`、`LIVEKIT_API_KEY`、`LIVEKIT_API_SECRET` 配置仍可覆盖本机模式。信令与管理接口只监听 `127.0.0.1`，RTC 音频通过本机网卡候选建立加密连接，不需要云端媒体服务器。不能把媒体也强制为 `127.0.0.1`：随包原生 SDK 不生成环回网卡候选，这会出现健康检查通过、真实入房一直失败。运行职责见 ADR 0097。
+安装版默认由 Desktop 启动和关闭随包 LiveKit，每次启动生成随机凭据和端口；完整的外部 `LIVEKIT_URL`、`LIVEKIT_API_KEY`、`LIVEKIT_API_SECRET` 配置仍可覆盖本机模式。信令与管理接口只监听 `127.0.0.1`，RTC 音频通过本机网卡候选建立加密连接，不需要云端媒体服务器。不能把媒体也强制为 `127.0.0.1`：随包原生 SDK 不生成环回网卡候选，这会出现健康检查通过、真实入房一直失败。
 
 生成 runtime 清单前，脚本只清理 staging 中的 `.gitkeep` 占位文件，避免 Electron 过滤它们后出现清单与封装资源不一致；源码占位文件保留。
 

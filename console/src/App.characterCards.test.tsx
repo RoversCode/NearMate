@@ -22,10 +22,10 @@ describe("console app character cards", () => {
 
     fireEvent.click(await screen.findByText("角色卡"));
 
-    expect(await screen.findByRole("button", { name: /小练/ })).toBeTruthy();
+    expect(await screen.findByRole("button", { name: /火花/ })).toBeTruthy();
     expect(screen.getByRole("button", { name: /八重神子/ })).toBeTruthy();
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+      fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     });
     fireEvent.click(screen.getByRole("button", { name: "模型示例" }));
     const expectedToolSelect = screen.getByLabelText("预期工具 1") as HTMLSelectElement;
@@ -84,7 +84,7 @@ describe("console app character cards", () => {
       render(<App />);
 
       fireEvent.click(await screen.findByText("角色卡"));
-      fireEvent.click(await screen.findByRole("button", { name: /小练/ }));
+      fireEvent.click(await screen.findByRole("button", { name: /火花/ }));
       fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
 
       const audioFile = new File(["audio"], "reference.wav", { type: "audio/wav" });
@@ -122,7 +122,7 @@ describe("console app character cards", () => {
         );
       });
       expect(screen.getByRole("heading", { name: "八重神子" })).toBeTruthy();
-      expect(screen.queryByRole("heading", { name: "小练" })).toBeNull();
+      expect(screen.queryByRole("heading", { name: "火花" })).toBeNull();
     });
 
   it("激活语音未匹配角色卡时会询问是否同步应用 StreamVox 语音", async () => {
@@ -131,7 +131,7 @@ describe("console app character cards", () => {
         streamVoxRuntime: {
           ...createStreamVoxRuntimePayload(),
           role_name: "demo_role",
-          roles: ["demo_role", "xiaolian"]
+          roles: ["demo_role", "huohua"]
         }
       });
       vi.stubGlobal("fetch", fetchMock);
@@ -139,7 +139,7 @@ describe("console app character cards", () => {
       render(<App />);
 
       fireEvent.click(await screen.findByText("角色卡"));
-      fireEvent.click(await screen.findByRole("button", { name: /小练/ }));
+      fireEvent.click(await screen.findByRole("button", { name: /火花/ }));
       fireEvent.click(await screen.findByRole("button", { name: "激活卡" }));
 
       await waitFor(() => {
@@ -166,7 +166,7 @@ describe("console app character cards", () => {
       render(<App />);
 
       fireEvent.click(await screen.findByText("角色卡"));
-      fireEvent.click(await screen.findByRole("button", { name: /小练/ }));
+      fireEvent.click(await screen.findByRole("button", { name: /火花/ }));
       fireEvent.click(await screen.findByRole("button", { name: "激活卡" }));
 
       await waitFor(() => {

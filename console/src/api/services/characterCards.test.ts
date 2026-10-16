@@ -53,7 +53,7 @@ describe("character card api", () => {
     await cloneCharacterCard("http://127.0.0.1:8765", {
       source_card_id: "card-1",
       card_id: "card-2",
-      name: "小练",
+      name: "火花",
       title: "克隆卡"
     });
 
@@ -61,7 +61,7 @@ describe("character card api", () => {
     if (activeCardPayload.card === null) {
       throw new Error("active card should be present");
     }
-    expect(activeCardPayload.card.meta.name).toBe("小练");
+    expect(activeCardPayload.card.meta.name).toBe("火花");
     expect(activeCardPayload.card.meta.avatar_path).toBeNull();
     expect(fetchMock).toHaveBeenNthCalledWith(1, "http://127.0.0.1:8765/api/character-cards");
     expect(fetchMock).toHaveBeenNthCalledWith(2, "http://127.0.0.1:8765/api/character-cards/active");
@@ -91,7 +91,7 @@ describe("character card api", () => {
         },
         body: JSON.stringify({
           card_id: "card-2",
-          name: "小练",
+          name: "火花",
           title: "克隆卡"
         })
       }

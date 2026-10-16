@@ -25,7 +25,7 @@ describe("ChatMessageList taskResult card", () => {
             references: [{ displayName: "选中文本.txt", text: "被引用的完整短文本" }]
           }],
           draftAssistantText: "",
-          companionName: "小练"
+          companionName: "火花"
         }}
         companionAvatarUrl="companion.png"
         userAvatarUrl="user.png"
@@ -44,14 +44,14 @@ describe("ChatMessageList taskResult card", () => {
     });
     const state: ChatState = {
       ...emptyTurnSubmissionState,
-      companionName: "小练",
+      companionName: "火花",
       draftAssistantText: "",
       messages: [
         {
           id: "taskResult-1",
           role: "assistant",
           kind: "task_result",
-          senderName: "小练",
+          senderName: "火花",
           text: "",
           createdAt: 10,
           taskResult: {
@@ -83,14 +83,14 @@ describe("ChatMessageList taskResult card", () => {
   it("无材料创作结果不渲染来源区域", () => {
     const state: ChatState = {
       ...emptyTurnSubmissionState,
-      companionName: "小练",
+      companionName: "火花",
       draftAssistantText: "",
       messages: [
         {
           id: "taskResult-poem",
           role: "assistant",
           kind: "task_result",
-          senderName: "小练",
+          senderName: "火花",
           text: "月照花间露，风来竹外声。",
           createdAt: 10,
           taskResult: {
@@ -123,13 +123,13 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "taskResult-file",
             role: "assistant",
             kind: "task_result",
-            senderName: "小练",
+            senderName: "火花",
             text: "已生成文件。",
             createdAt: 10,
             taskResult: {
@@ -169,13 +169,13 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "agent-interaction-permission-a",
             role: "assistant",
             kind: "agent_interaction",
-            senderName: "小练",
+            senderName: "火花",
             text: "",
             createdAt: 10,
             agentInteraction: interaction
@@ -202,13 +202,13 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "agent-interaction-permission-a",
             role: "assistant",
             kind: "agent_interaction",
-            senderName: "小练",
+            senderName: "火花",
             text: "",
             createdAt: 10,
             agentInteraction: { ...interaction, status: "resolved", outcome: "allowed" }
@@ -228,13 +228,13 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "agent-interaction-question-a",
             role: "assistant",
             kind: "agent_interaction",
-            senderName: "小练",
+            senderName: "火花",
             text: "",
             createdAt: 10,
             agentInteraction: {
@@ -286,7 +286,7 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "user-url",
@@ -329,7 +329,7 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: "user-url-brackets",
@@ -360,7 +360,7 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: `turn-submission-${submissionId}`,
@@ -403,7 +403,7 @@ describe("ChatMessageList taskResult card", () => {
       <ChatMessageList
         state={{
           ...emptyTurnSubmissionState,
-          companionName: "小练",
+          companionName: "火花",
           draftAssistantText: "",
           messages: [{
             id: `turn-submission-${submissionId}`,

@@ -19,7 +19,7 @@ CARDS_DIR = Path(__file__).parents[2] / "data" / "character-cards"
 def test_example_generation_limits_deliverable_scene_to_independent_creation() -> None:
     """角色示例只示范无材料成果接单，不携带运行时材料状态。"""
 
-    card = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+    card = CharacterCardStore(CARDS_DIR).load_card("huohua")
     messages = build_example_generation_messages(card=card, target_model="generic")
     system_prompt = messages[0]["content"]
 
@@ -33,7 +33,7 @@ def test_example_generation_limits_deliverable_scene_to_independent_creation() -
     assert "恰好生成 7 条" in system_prompt
 
 
-@pytest.mark.parametrize("card_id", ["xiaolian", "yae-miko", "huohua"])
+@pytest.mark.parametrize("card_id", ["yae-miko", "huohua"])
 def test_builtin_example_sets_do_not_encode_material_routing(card_id: str) -> None:
     """内置角色卡示范动作交接与独立创作接单，不固化正式材料的动态路由。"""
 

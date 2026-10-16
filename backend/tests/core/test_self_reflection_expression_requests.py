@@ -24,7 +24,7 @@ from companion.session.context import SessionContext
 
 CHARACTER_CARD = CharacterCardStore(
     Path(__file__).resolve().parents[2] / "data" / "character-cards"
-).load_card("xiaolian")
+).load_card("huohua")
 
 
 class RecordingRecoveryClient:

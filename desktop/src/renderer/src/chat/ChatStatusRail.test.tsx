@@ -120,8 +120,8 @@ describe("ChatVoiceOrb", () => {
     ["responding", "正在回复"],
     ["error", "暂时无法回复"]
   ] as const)("呈现 %s 语音状态且不承担点击控制", (state, label) => {
-    const { container } = render(<ChatVoiceOrb state={state} companionName="小练" />);
-    expect(screen.getByText("小练")).toBeTruthy();
+    const { container } = render(<ChatVoiceOrb state={state} companionName="火花" />);
+    expect(screen.getByText("火花")).toBeTruthy();
     expect(screen.getByText(label)).toBeTruthy();
     expect(container.querySelector(`.chat-voice-orb--${state === "ready" ? "syncing" : state}`)).toBeTruthy();
     expect(container.querySelector("button")).toBeNull();
@@ -130,10 +130,10 @@ describe("ChatVoiceOrb", () => {
 
 describe("ChatStatusRail", () => {
   it("常驻角色状态并展示活动任务、提醒和已启用 Skill", () => {
-    render(<ChatStatusRail companionName="小练" voiceState="ready" workspace={workspace()} llmAccountStatus={accountStatus} />);
+    render(<ChatStatusRail companionName="火花" voiceState="ready" workspace={workspace()} llmAccountStatus={accountStatus} />);
 
     expect(screen.getByRole("complementary", { name: "当前状态" })).toBeTruthy();
-    expect(screen.getByText("小练")).toBeTruthy();
+    expect(screen.getByText("火花")).toBeTruthy();
     expect(screen.getByText("整理本周会议纪要")).toBeTruthy();
     expect(screen.getByText("下午三点开会")).toBeTruthy();
     expect(screen.getByText("喝水")).toBeTruthy();
@@ -142,7 +142,7 @@ describe("ChatStatusRail", () => {
   });
 
   it("显示当前对话厂商和账户余额", () => {
-    render(<ChatStatusRail companionName="小练" voiceState="ready" workspace={workspace()} llmAccountStatus={accountStatus} />);
+    render(<ChatStatusRail companionName="火花" voiceState="ready" workspace={workspace()} llmAccountStatus={accountStatus} />);
 
     expect(screen.getByText("模型账户余额")).toBeTruthy();
     expect(screen.getByText("DeepSeek")).toBeTruthy();
@@ -151,7 +151,7 @@ describe("ChatStatusRail", () => {
   });
 
   it("尚未收到余额时显示加载态，不把未知账户数显示成零", () => {
-    render(<ChatStatusRail companionName="小练" voiceState="ready" workspace={workspace()} />);
+    render(<ChatStatusRail companionName="火花" voiceState="ready" workspace={workspace()} />);
 
     const group = screen.getByText("模型账户余额").closest("section")!;
     expect(within(group).getByText("正在读取余额…")).toBeTruthy();
@@ -162,7 +162,7 @@ describe("ChatStatusRail", () => {
   it("余额读取失败时显示错误并允许重试", () => {
     const refresh = vi.fn(async () => undefined);
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="ready"
       workspace={workspace({
         llmAccountStatusError: "余额读取失败，请重试",
@@ -186,7 +186,7 @@ describe("ChatStatusRail", () => {
       message: "余额服务暂时不可用"
     };
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="ready"
       workspace={workspace({ refreshLlmAccountStatus: refresh })}
       llmAccountStatus={{ providers: [
@@ -208,7 +208,7 @@ describe("ChatStatusRail", () => {
     "厂商状态为 %s 时不显示错误重试入口",
     status => {
       render(<ChatStatusRail
-        companionName="小练"
+        companionName="火花"
         voiceState="ready"
         workspace={workspace({ refreshLlmAccountStatus: vi.fn(async () => undefined) })}
         llmAccountStatus={{ providers: [{ ...accountStatus.providers[0], status }] }}
@@ -220,7 +220,7 @@ describe("ChatStatusRail", () => {
 
   it("成功读到空账户列表后才展示未配置提示", () => {
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="ready"
       workspace={workspace()}
       llmAccountStatus={{ providers: [] }}
@@ -234,7 +234,7 @@ describe("ChatStatusRail", () => {
     const cancel = vi.fn(async () => undefined);
     const detail = vi.fn();
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="thinking"
       workspace={workspace({ requestCancelActivity: cancel, openActivityDetail: detail })}
     />);
@@ -249,7 +249,7 @@ describe("ChatStatusRail", () => {
   it("提醒知道了会把当前响铃批次作为整体提交", () => {
     const dismiss = vi.fn(async () => undefined);
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="listening"
       workspace={workspace({ requestDismissReminders: dismiss })}
     />);
@@ -262,7 +262,7 @@ describe("ChatStatusRail", () => {
     const update = vi.fn(async () => undefined);
     const cancel = vi.fn(async () => undefined);
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="ready"
       workspace={workspace({ requestUpdateReminder: update, requestCancelReminder: cancel })}
     />);
@@ -285,7 +285,7 @@ describe("ChatStatusRail", () => {
 
   it("没有动态数据时保留空态和角色状态区", () => {
     render(<ChatStatusRail
-      companionName="小练"
+      companionName="火花"
       voiceState="error"
       workspace={workspace({
         activitySnapshot: { revision: 0, runtime_id: runtimeId, active: [], recent: [] },

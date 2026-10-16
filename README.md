@@ -89,7 +89,7 @@ pnpm dev
 
 非 NVIDIA 设备使用 `pnpm python:install:universal` 安装 Python 依赖。首次启动按控制台提示连接模型服务、准备角色语音。依赖来自公开固定发行物，无需申请产品激活码。
 
-详细说明见 [开发与调试](docs/development.md)、[系统架构](ARCHITECTURE.md) 和 [安装包构建](installer/README.md)。官网源码位于 `website/`，在该目录运行 `npm test`、`npm run check` 和 `npm run build`。
+安装包构建见 [安装包构建](installer/README.md)。官网源码位于 `website/`，在该目录运行 `npm test`、`npm run check` 和 `npm run build`。
 
 ## 一起体验 NearMate
 

@@ -41,7 +41,7 @@ describe("CharacterCardPage", () => {
   ])("编辑%s的%s时保留焦点，可以连续输入", (section, label) => {
     render(<CharacterCardPage activeCard={createCharacterCardPayload()} cardsPayload={createCharacterCardsPayload()}
       isLoading={false} onActivate={vi.fn()} onClone={vi.fn()} onSave={vi.fn()} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: section }));
 
     const field = screen.getByLabelText(label) as HTMLInputElement | HTMLTextAreaElement;
@@ -56,7 +56,7 @@ describe("CharacterCardPage", () => {
     const select = vi.fn(async () => undefined);
     render(<CharacterCardPage activeCard={createCharacterCardPayload()} cardsPayload={createCharacterCardsPayloadWithYaeMiko()}
       isLoading={false} onActivate={vi.fn()} onClone={vi.fn()} onSave={vi.fn()} onSelectCard={select} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("角色称呼"), { target: { value: "新的称呼" } });
     expect((screen.getByRole("button", { name: "激活卡" }) as HTMLButtonElement).disabled).toBe(true);
     fireEvent.click(screen.getByRole("button", { name: "返回角色库" }));
@@ -73,7 +73,7 @@ describe("CharacterCardPage", () => {
     const props = { activeCard: payload, cardsPayload: createCharacterCardsPayload(), isLoading: false,
       onActivate: vi.fn(), onClone: vi.fn(), onSave };
     const { rerender } = render(<CharacterCardPage {...props} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("角色称呼"), { target: { value: "还没保存的新名字" } });
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
     fireEvent.change(screen.getByLabelText("Prompt 文本"), { target: { value: "还没保存的语音文本" } });
@@ -94,14 +94,14 @@ describe("CharacterCardPage", () => {
     }) })));
   });
 
-  it.each(["保存期间继续输入的名字", "小练"])("保存返回后保留请求期间改成的%s，同时接纳已提交字段的规范化结果", async laterName => {
+  it.each(["保存期间继续输入的名字", "火花"])("保存返回后保留请求期间改成的%s，同时接纳已提交字段的规范化结果", async laterName => {
     const payload = createCharacterCardPayload();
     let finishSave!: (value: CharacterCardPayload) => void;
     const onSave = vi.fn(() => new Promise<CharacterCardPayload>(resolve => { finishSave = resolve; }));
     const props = { activeCard: payload, cardsPayload: createCharacterCardsPayload(), isLoading: false,
       onActivate: vi.fn(), onClone: vi.fn(), onSave };
     const { rerender } = render(<CharacterCardPage {...props} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("角色称呼"), { target: { value: "提交时的名字" } });
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
     fireEvent.change(screen.getByLabelText("Prompt 文本"), { target: { value: "  新语音文本  " } });
@@ -131,7 +131,7 @@ describe("CharacterCardPage", () => {
     render(<CharacterCardPage activeCard={createCharacterCardPayload()} cardsPayload={createCharacterCardsPayload()}
       isLoading={false} onActivate={vi.fn()} onClone={vi.fn()} onSave={vi.fn()}
       onCalibrateVoiceCaption={vi.fn(async () => calibratedPayload)} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("角色称呼"), { target: { value: "尚未提交的称呼" } });
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
     fireEvent.click(screen.getByRole("button", { name: "测算字幕语速" }));
@@ -147,7 +147,7 @@ describe("CharacterCardPage", () => {
     render(<CharacterCardPage activeCard={createCharacterCardPayload()} cardsPayload={createCharacterCardsPayloadWithYaeMiko()}
       isLoading={false} onActivate={vi.fn()} onClone={vi.fn()} onSave={onSave}
       onGenerateStreamVoxExamples={onGenerateStreamVoxExamples} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "模型示例" }));
     fireEvent.click(screen.getByRole("button", { name: "生成模型示例" }));
     fireEvent.click(screen.getByRole("button", { name: "返回角色库" }));
@@ -165,7 +165,7 @@ describe("CharacterCardPage", () => {
     render(<CharacterCardPage activeCard={createCharacterCardPayload()} cardsPayload={createCharacterCardsPayloadWithYaeMiko()}
       isLoading={false} onActivate={vi.fn()} onClone={vi.fn()} onSave={onSave}
       onUploadVoiceReference={onUploadVoiceReference} />);
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
     fireEvent.change(screen.getByLabelText("上传参考音频"), { target: { files: [new File(["audio"], "old-card.wav", { type: "audio/wav" })] } });
     fireEvent.click(screen.getByRole("button", { name: "返回角色库" }));
@@ -248,12 +248,12 @@ describe("CharacterCardPage", () => {
     );
 
     expect(screen.getByRole("heading", { name: "角色卡图库" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: /小练/ })).toBeTruthy();
+    expect(screen.getByRole("button", { name: /火花/ })).toBeTruthy();
     expect(screen.getByText("温柔而直接的伴侣")).toBeTruthy();
     expect(screen.getByText("当前激活")).toBeTruthy();
     expect(screen.queryByLabelText("角色称呼")).toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
 
     expect(screen.getByRole("button", { name: "基础档案" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "灵魂内核" })).toBeTruthy();
@@ -280,7 +280,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     expect(screen.getByLabelText("角色称呼")).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "返回角色库" }));
@@ -310,11 +310,11 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    const galleryImage = screen.getByRole("img", { name: "小练封面" });
+    const galleryImage = screen.getByRole("img", { name: "火花封面" });
     expect(galleryImage.getAttribute("src")).toBe("/api/character-cards/card-1/asset/assets/icon.png");
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
-    expect(screen.getByRole("img", { name: "小练形象照片" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
+    expect(screen.getByRole("img", { name: "火花形象照片" })).toBeTruthy();
 
     const uploadButton = screen.getByRole("button", { name: "上传形象照片" });
     const fileInput = screen.getByLabelText("上传形象照片") as HTMLInputElement;
@@ -359,7 +359,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("上传形象照片"), {
       target: {
         files: [new File(["gif"], "cover.gif", { type: "image/gif" })]
@@ -394,7 +394,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.change(screen.getByLabelText("卡片标题 / 人物画像"), {
       target: {
         value: "普通的现实女孩"
@@ -432,7 +432,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "背景解释" }));
     fireEvent.change(screen.getByLabelText("术语名称 1"), {
       target: {
@@ -482,7 +482,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "社交与羁绊" }));
     fireEvent.change(screen.getByLabelText("主控羁绊类型"), {
       target: {
@@ -550,7 +550,7 @@ describe("CharacterCardPage", () => {
     if (payload.card === null) {
       throw new Error("测试角色卡不应为空");
     }
-    payload.card.meta.wakeword.keywords = ["小练", "小练同学"];
+    payload.card.meta.wakeword.keywords = ["火花", "火花同学"];
 
     render(
       <CharacterCardPage
@@ -563,14 +563,14 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "唤醒入口" }));
 
-    expect((screen.getByLabelText("唤醒词 1") as HTMLInputElement).value).toBe("小练");
-    expect((screen.getByLabelText("唤醒词 2") as HTMLInputElement).value).toBe("小练同学");
+    expect((screen.getByLabelText("唤醒词 1") as HTMLInputElement).value).toBe("火花");
+    expect((screen.getByLabelText("唤醒词 2") as HTMLInputElement).value).toBe("火花同学");
 
     fireEvent.change(screen.getByLabelText("唤醒词 1"), {
-      target: { value: "小练练" }
+      target: { value: "小火花" }
     });
     fireEvent.click(screen.getByRole("button", { name: "新增唤醒词" }));
     fireEvent.change(screen.getByLabelText("唤醒词 3"), {
@@ -584,7 +584,7 @@ describe("CharacterCardPage", () => {
         expect.objectContaining({
           meta: expect.objectContaining({
             wakeword: {
-              keywords: ["小练练"]
+              keywords: ["小火花"]
             }
           })
         })
@@ -611,7 +611,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     expect((screen.getByLabelText("主人称呼") as HTMLInputElement).value).toBe("哥哥");
 
     fireEvent.change(screen.getByLabelText("主人称呼"), {
@@ -665,7 +665,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "唤醒入口" }));
     fireEvent.click(screen.getByRole("button", { name: "删除" }));
 
@@ -699,7 +699,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
 
     expect(screen.queryByLabelText("参考音频路径")).toBeNull();
@@ -774,7 +774,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "语音绑定" }));
     fireEvent.click(screen.getByRole("button", { name: "测算字幕语速" }));
 
@@ -816,7 +816,7 @@ describe("CharacterCardPage", () => {
     );
 
     expect(screen.getByRole("heading", { name: "八重神子" })).toBeTruthy();
-    expect(screen.queryByRole("heading", { name: "小练" })).toBeNull();
+    expect(screen.queryByRole("heading", { name: "火花" })).toBeNull();
   });
 
   it("保存时会忽略只填写一侧的高光对白打样", async () => {
@@ -846,7 +846,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "声纹与台词" }));
     fireEvent.change(screen.getByLabelText("示例用户 1"), {
       target: {
@@ -897,7 +897,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "模型示例" }));
     fireEvent.change(screen.getByLabelText("示例目标模型"), {
       target: { value: "s2-pro-4b-gguf" }
@@ -965,7 +965,7 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     expect(screen.getByText("shared world canon")).toBeTruthy();
     expect(screen.queryByText("需要确认迁移")).toBeNull();
     expect(screen.queryByLabelText("共享世界观")).toBeNull();
@@ -985,14 +985,14 @@ describe("CharacterCardPage", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /小练/ }));
+    fireEvent.click(screen.getByRole("button", { name: /火花/ }));
     fireEvent.click(screen.getByRole("button", { name: "复制当前卡" }));
 
     await waitFor(() => {
       expect(onClone).toHaveBeenCalledWith({
         source_card_id: "card-1",
         card_id: "card-1_copy",
-        name: "小练",
+        name: "火花",
         title: "温柔而直接的伴侣"
       });
     });

@@ -108,7 +108,7 @@ def test_streamvox_example_generation_closes_client_when_generation_fails(
     """
 
     client = FailingCharacterAuthoringClient()
-    card = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+    card = CharacterCardStore(CARDS_DIR).load_card("huohua")
     service = object.__new__(StreamVoxExampleConsoleService)
     service.hub = SimpleNamespace(
         character_cards=SimpleNamespace(load_card=lambda _card_id: card),

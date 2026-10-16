@@ -38,7 +38,7 @@ export function WakewordKeywordListField({ keywords, onChange }: WakewordKeyword
 
   return (
     <CharacterField
-      description="可添加多个叫法，例如小练、小练同学。激活角色卡后，实时语音入口会使用这里的词。"
+      description="可添加多个叫法，例如火花、火花同学。激活角色卡后，实时语音入口会使用这里的词。"
       title="角色唤醒词"
     >
       <div className="space-y-2">

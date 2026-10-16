@@ -1841,7 +1841,7 @@ def _build_prompt(
     """
 
     prompt_builder = builder or PromptBuilder()
-    card = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+    card = CharacterCardStore(CARDS_DIR).load_card("huohua")
     messages = prompt_builder.build(
         PromptBuildInput(
             current_user_text=current_user_text,

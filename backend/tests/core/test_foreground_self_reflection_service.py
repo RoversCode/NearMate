@@ -51,7 +51,7 @@ from companion.materials.turn_context import TurnMaterialContextService
 
 
 CARDS_DIR = Path(__file__).resolve().parents[2] / "data" / "character-cards"
-CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("huohua")
 
 
 class _RequestSnapshots:

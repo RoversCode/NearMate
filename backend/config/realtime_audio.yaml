@@ -27,7 +27,7 @@ asr:
   session:
     hotwords:
       - 稻妻
-      - 小练
+      - 火花
     # partial 用于实时中间转写，优先降低首字延迟和重算成本。
     partial:
       # 每次 partial 识别时送入模型的分块时长（秒）。

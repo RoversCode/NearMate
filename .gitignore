@@ -36,6 +36,12 @@ backend/ckpt/LocationList/*
 .env
 backend/.env
 /logs/
+# 协作助手手册、领域上下文和宣传片工程只留在开发仓。
+/AGENTS.md
+/ARCHITECTURE.md
+/CONTEXT.md
+/docs/
+/marketing/
 ref_code
 .worktrees/
 exec
@@ -50,7 +56,6 @@ dist/
 neartmate_release_github
 nearmate-film
 website/dist/
-marketing/nearmate-film/out/
 # 官网工作流属于公开源码，需要与站点一起跟踪。
 !.github/
 !.github/**

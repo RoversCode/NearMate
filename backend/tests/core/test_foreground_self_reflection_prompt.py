@@ -22,7 +22,7 @@ from pathlib import Path
 
 CHARACTER_CARD = CharacterCardStore(
     Path(__file__).resolve().parents[2] / "data" / "character-cards"
-).load_card("xiaolian")
+).load_card("huohua")
 
 
 def facts() -> RecoveryPromptFacts:

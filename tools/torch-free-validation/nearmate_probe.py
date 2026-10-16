@@ -145,7 +145,7 @@ def run(args) -> None:
             encoder=wake_dir / ENCODER_MODEL_NAME,
             decoder=wake_dir / DECODER_MODEL_NAME,
             joiner=wake_dir / JOINER_MODEL_NAME,
-            keywords=("你好小练",),
+            keywords=("你好火花",),
             provider="cpu",
         )
         token_text = keywords_to_tokens(wake_config.keywords, wake_config)

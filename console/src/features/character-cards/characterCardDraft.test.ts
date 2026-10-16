@@ -99,6 +99,6 @@ describe("character card draft helpers", () => {
     const cardsPayload = createCharacterCardsPayload();
 
     expect(buildCloneCardId("yae-miko", cardsPayload.cards)).toBe("yae-miko_copy");
-    expect(buildCloneCardId("xiaolian", cardsPayload.cards)).toBe("xiaolian_copy");
+    expect(buildCloneCardId("huohua", cardsPayload.cards)).toBe("huohua_copy");
   });
 });

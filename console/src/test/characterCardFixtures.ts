@@ -5,16 +5,16 @@ export function createCharacterCardPayload(): CharacterCardPayload {
     card: {
       meta: {
         card_id: "card-1",
-        name: "小练",
+        name: "火花",
         title: "温柔而直接的伴侣",
         user_call_name: "哥哥",
         avatar_path: null,
         wakeword: {
-          keywords: ["小练"]
+          keywords: ["火花"]
         },
         voice_binding: {
           streamvox_model: "qwen3-tts-clone-0.6b-gguf",
-          role_name: "xiaolian",
+          role_name: "huohua",
           reference_audio_path: "voice/reference.wav",
           prompt_text: "这是一段参考音频文本。",
           seed: 42,
@@ -98,8 +98,8 @@ export function createCharacterCardPayload(): CharacterCardPayload {
         }
       },
       model_constraints: {
-        persona_forbidden_rules: "你是小练，不是 AI 助手。",
-        response_execution_rules: "你是小练。直接回应最后一句用户输入。"
+        persona_forbidden_rules: "你是火花，不是 AI 助手。",
+        response_execution_rules: "你是火花。直接回应最后一句用户输入。"
       }
     },
     active_card_id: "card-1",

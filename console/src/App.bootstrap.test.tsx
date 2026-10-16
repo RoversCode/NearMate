@@ -442,7 +442,7 @@ describe("console app bootstrap", () => {
       });
       expect(await screen.findByRole("region", { name: "初始化完成" })).toBeTruthy();
       fireEvent.click(screen.getByRole("button", { name: "进入控制台" }));
-      expect(await screen.findByRole("button", { name: /小练/ })).toBeTruthy();
+      expect(await screen.findByRole("button", { name: /火花/ })).toBeTruthy();
       expect(cardsRequestCount).toBe(2);
       expect(activeCardRequestCount).toBe(2);
 
@@ -465,7 +465,7 @@ describe("console app bootstrap", () => {
       });
 
       expect(screen.queryByText("迟到旧角色")).toBeNull();
-      expect(screen.getByRole("button", { name: /小练/ })).toBeTruthy();
+      expect(screen.getByRole("button", { name: /火花/ })).toBeTruthy();
     });
 
   it("首屏接口失败后可点击重试重新加载", async () => {

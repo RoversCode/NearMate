@@ -32,7 +32,7 @@ from companion.session.context import SessionMessage
 
 
 CARDS_DIR = Path(__file__).parents[2] / "data" / "character-cards"
-CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("xiaolian")
+CHARACTER_CARD = CharacterCardStore(CARDS_DIR).load_card("huohua")
 FROZEN_CURRENT_TIME = "2026-09-05 13:25:00 UTC+08:00"
 
 

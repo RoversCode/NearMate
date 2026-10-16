@@ -81,7 +81,7 @@ describe("ChatApp", () => {
 
     expect(container.textContent).toContain("还没有聊天记录");
     expect(container.textContent).toContain("NearMate");
-    expect(container.textContent).toContain("小练");
+    expect(container.textContent).toContain("火花");
     expect(container.textContent).toContain("你的桌面陪伴");
     expect(container.textContent).toContain("等待唤醒");
   });
@@ -148,7 +148,7 @@ describe("ChatApp", () => {
         messages: [{
           id: `agent-interaction-${requestId}`,
           role: "assistant",
-          senderName: "小练",
+          senderName: "火花",
           text: "",
           createdAt: 1710000000000,
           kind: "agent_interaction",
@@ -165,7 +165,7 @@ describe("ChatApp", () => {
           }
         }],
         draftAssistantText: "",
-        companionName: "小练"
+        companionName: "火花"
       }
     }, { expand: false });
 
@@ -211,13 +211,13 @@ describe("ChatApp", () => {
           {
             id: "assistant-1",
             role: "assistant",
-            senderName: "小练",
+            senderName: "火花",
             text: "我在。",
             createdAt: 1710000001000
           }
         ],
         draftAssistantText: "",
-        companionName: "小练"
+        companionName: "火花"
       }
     });
 
@@ -230,7 +230,7 @@ describe("ChatApp", () => {
     expect(userMessage?.querySelector("img")?.parentElement).toBe(
       userMessage?.querySelector(".chat-message-content")?.parentElement
     );
-    expect(assistantMessage?.textContent).toContain("小练");
+    expect(assistantMessage?.textContent).toContain("火花");
     expect(assistantMessage?.textContent).toContain("我在。");
     expect(assistantMessage?.querySelector("img")?.getAttribute("src")).toContain("icon");
   });
@@ -250,13 +250,13 @@ describe("ChatApp", () => {
           {
             id: "assistant-1",
             role: "assistant",
-            senderName: "小练",
+            senderName: "火花",
             text: "第二条",
             createdAt: 1710000001000
           }
         ],
         draftAssistantText: "",
-        companionName: "小练"
+        companionName: "火花"
       }
     });
 
@@ -281,7 +281,7 @@ describe("ChatApp", () => {
           {
             id: "assistant-1",
             role: "assistant",
-            senderName: "小练",
+            senderName: "火花",
             text: "第二条",
             createdAt: 1710000001000
           },
@@ -294,7 +294,7 @@ describe("ChatApp", () => {
           }
         ],
         draftAssistantText: "",
-        companionName: "小练"
+        companionName: "火花"
       }
     });
 
@@ -642,7 +642,7 @@ describe("ChatApp", () => {
       state: {
         messages: [],
         draftAssistantText: "",
-        companionName: "小练",
+        companionName: "火花",
         turnSubmissionsRevision: -1,
         finalizedSubmissionIds: new Set<string>()
       },
