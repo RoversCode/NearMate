@@ -1,0 +1,84 @@
+{
+  "buckets": {
+    "morning": [
+      {
+        "id": "d807158e-c576-40e3-bee6-b56d9c903641",
+        "text": "呵呵，起得挺早么。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_morning_d807158e-c576-40e3-bee6-b56d9c903641.wav",
+        "synthesized_at": 1782275000.4502141
+      },
+      {
+        "id": "141a7b08-498f-4adf-a02d-bf3f3345101f",
+        "text": "早上好，今日有何趣事。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_morning_141a7b08-498f-4adf-a02d-bf3f3345101f.wav",
+        "synthesized_at": 1782274906.6945727
+      },
+      {
+        "id": "fc3a5a3e-892c-4043-9e14-81af63849112",
+        "text": "小家伙，早啊。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_morning_fc3a5a3e-892c-4043-9e14-81af63849112.wav",
+        "synthesized_at": 1782274908.5878751
+      }
+    ],
+    "afternoon": [
+      {
+        "id": "73df523e-d3cd-4055-ba33-906edddba6ed",
+        "text": "妾身在呢。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_afternoon_73df523e-d3cd-4055-ba33-906edddba6ed.wav",
+        "synthesized_at": 1782274910.002971
+      },
+      {
+        "id": "3314105f-d473-4e6f-8739-9e215af85578",
+        "text": "哎呀，有事吗？",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_afternoon_3314105f-d473-4e6f-8739-9e215af85578.wav",
+        "synthesized_at": 1782274911.7742424
+      },
+      {
+        "id": "7f26af2e-3288-4c73-bf22-7e7098a863a4",
+        "text": "下午好，哥哥。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_afternoon_7f26af2e-3288-4c73-bf22-7e7098a863a4.wav",
+        "synthesized_at": 1782274913.259299
+      }
+    ],
+    "evening": [
+      {
+        "id": "2ab17d7b-8bac-40f9-9ae7-212baa8b5715",
+        "text": "晚上好啊，小家伙。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_evening_2ab17d7b-8bac-40f9-9ae7-212baa8b5715.wav",
+        "synthesized_at": 1782274915.076523
+      },
+      {
+        "id": "c294948a-8faf-4d3f-aacc-d2a5b37e8799",
+        "text": "呵呵，想妾身了？",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_evening_c294948a-8faf-4d3f-aacc-d2a5b37e8799.wav",
+        "synthesized_at": 1782274916.8980787
+      }
+    ],
+    "night": [
+      {
+        "id": "7d2a3940-0c1d-4ade-ba19-9f9bc2116779",
+        "text": "小家伙，还不睡？",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_night_7d2a3940-0c1d-4ade-ba19-9f9bc2116779.wav",
+        "synthesized_at": 1782270937.9360158
+      },
+      {
+        "id": "d43f9beb-95af-4e4d-a680-f76421f23846",
+        "text": "我在呢，轻声些，别吵到梦。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_night_d43f9beb-95af-4e4d-a680-f76421f23846.wav",
+        "synthesized_at": 1782270954.3879
+      },
+      {
+        "id": "eb9a2bdb-ed2b-4ba7-9d8d-eb79d141b2d4",
+        "text": "小声些，妾身在。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_night_eb9a2bdb-ed2b-4ba7-9d8d-eb79d141b2d4.wav",
+        "synthesized_at": 1782274918.8253598
+      },
+      {
+        "id": "45d726a7-3a85-49ff-9569-066496f12aa5",
+        "text": "还没歇息吗，该歇了哦。",
+        "audio_path": "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\character-cards\\yae-miko\\wake-response\\audio\\wake_night_45d726a7-3a85-49ff-9569-066496f12aa5.wav",
+        "synthesized_at": 1782274920.6834056
+      }
+    ]
+  }
+}

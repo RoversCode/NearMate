@@ -1,0 +1,110 @@
+.model-picker-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: min(100%, 360px);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(113, 168, 165, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 250, 244, 0.82) 100%);
+  box-shadow: var(--shadow);
+  animation: panel-in 280ms ease-out both;
+}
+
+.model-picker-header h2 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.model-picker-header,
+.model-picker-error,
+.model-picker-empty {
+  flex-shrink: 0;
+}
+
+.model-picker-header p {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.model-picker-list {
+  display: grid;
+  align-content: start;
+  min-height: 0;
+  overflow-y: auto;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.model-picker-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(23, 48, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink-strong);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    background 150ms ease,
+    border-color 150ms ease,
+    opacity 150ms ease;
+}
+
+.model-picker-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(23, 48, 66, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.model-picker-item:focus-visible {
+  outline: 2px solid rgba(113, 168, 165, 0.8);
+  outline-offset: 3px;
+}
+
+.model-picker-item[data-selected="true"] {
+  border-color: rgba(113, 168, 165, 0.42);
+  background: rgba(113, 168, 165, 0.14);
+}
+
+.model-picker-item strong {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #376c69;
+}
+
+.model-picker-item[data-pending="true"] strong {
+  color: #8a6022;
+}
+
+.model-picker-item:disabled {
+  opacity: 0.72;
+  cursor: wait;
+  transform: none;
+}
+
+.model-picker-empty,
+.model-picker-error {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.model-picker-empty {
+  color: var(--ink-soft);
+}
+
+.model-picker-error {
+  color: #95513a;
+}

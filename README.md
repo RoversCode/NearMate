@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/images/nearmate.png" width="180" alt="NearMate 品牌形象">
+  <img src="./website/assets/images/nearmate.png" width="180" alt="NearMate 品牌形象">
   <h1>NearMate</h1>
   <p><strong>工作在手边，搭子在身边。</strong></p>
   <p>常驻 Windows 桌面的 AI 工作搭子，让你喜欢的角色陪你交流，也帮你推进手头的事。</p>
@@ -7,11 +7,10 @@
     <a href="https://roverscode.github.io/NearMate/">官方网站</a> ·
     <a href="https://roverscode.github.io/NearMate/guide/">使用手册</a> ·
     <a href="https://github.com/RoversCode/NearMate/releases/latest">下载 Windows 版</a> ·
-    <a href="https://catfk.com/item/6wwzyw">购买授权 Key</a> ·
     <a href="https://roverscode.github.io/NearMate/#community">加入体验交流</a> ·
     <a href="https://github.com/RoversCode/NearMate/issues">问题反馈</a>
   </p>
-  <p>Windows x64 · CUDA / Universal 双版本 · 应用内可申请 24 小时试用</p>
+  <p>Windows x64 · CUDA / Universal 双版本 · Apache-2.0 · 免费开源</p>
 </div>
 
 ## 让你的桌面，多一个帮手
@@ -25,7 +24,7 @@ NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟�
 ## 它在桌面上是什么样
 
 <div align="center">
-  <a href="./assets/images/desktop-demo.jpg"><img src="./assets/images/desktop-demo.jpg" width="1000" alt="NearMate 实机画面：聊天窗口展示音频转换结果与交付文件，右侧是用户配置的桌面虚拟形象"></a>
+  <a href="./website/assets/images/desktop-demo.jpg"><img src="./website/assets/images/desktop-demo.jpg" width="1000" alt="NearMate 实机画面：聊天窗口展示音频转换结果与交付文件，右侧是用户配置的桌面虚拟形象"></a>
 </div>
 
 实机演示：把音频转成 MP3，在聊天窗口查看结果卡与交付文件。右侧为用户配置的虚拟形象。点击图片可以查看大图。
@@ -38,7 +37,7 @@ NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟�
 
 https://github.com/user-attachments/assets/3078d9aa-16fd-4076-ab83-0d248d20b0bf
 
-**播放后请开启声音。** [在官网观看完整宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.1.0-rebuild.6/NearMate-Product-Film-1080p.mp4)
+**播放后请开启声音。** [在官网观看完整宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-Product-Film-1080p.mp4)
 
 ## 下载与安装
 
@@ -59,26 +58,38 @@ https://github.com/user-attachments/assets/3078d9aa-16fd-4076-ab83-0d248d20b0bf
 
 ## 第一次见面
 
-从安装到第一次聊天，请按 [使用手册](https://roverscode.github.io/NearMate/guide/) 操作。首次向导分为六步：激活 NearMate、连接 DeepSeek、连接 Qwen、检查电脑、准备语音、试听并开始。两家模型凭据在 Qwen 步骤统一验证并保存。
+从安装到第一次聊天，请按 [使用手册](https://roverscode.github.io/NearMate/guide/) 操作。首次向导分为五步：连接 DeepSeek、连接 Qwen、检查电脑、准备语音、试听并开始。两家模型凭据在 Qwen 步骤统一验证并保存。
 
-1. **取得产品授权。** 在应用内申请 24 小时试用，或填写已有的 NearMate Key。
-2. **连接模型 API。** 准备支持的模型服务 API Key，并按向导配置。产品授权与模型 API 是两项独立配置。
-3. **准备语音与角色。** 按向导检查设备、下载所需语音模型、完成试听，再选择角色卡与虚拟形象。
-4. **开始一件小事。** 试着说「帮我解释一下这张图」，或提交一份材料，请搭子整理思路。
+1. **连接模型 API。** 准备支持的模型服务 API Key，并按向导配置。软件免费使用，模型服务需自行准备。
+2. **准备语音与角色。** 按向导检查设备、下载所需语音模型、完成试听，再选择角色卡与虚拟形象。
+3. **开始一件小事。** 试着说「帮我解释一下这张图」，或提交一份材料，请搭子整理思路。
 
 需要后台工作时，在控制台的「后台工作」设置中另行配置相应服务、模型与凭据，再选择合适的权限。
 
-### 试用与费用
+### 免费与服务费用
 
-**24 小时试用无需先填写 NearMate Key。** 领取成功后连续计时 24 小时，领取结果受服务开放时间、每日名额与设备资格限制，以应用内显示为准。首次准备和试用的每次新启动会话都需要联网。
-
-试用提供 NearMate 的产品使用资格，**不包含模型 API 额度**。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作所接入的服务也可能产生费用。需要正式产品授权时，可直接[购买授权 Key](https://catfk.com/item/6wwzyw)，收到后在产品授权页面填写 NearMate 激活码。
+NearMate 自有代码采用 Apache-2.0，软件及内置语音免费使用。模型 API 需要自行准备，费用由对应厂商单独收取；后台工作所接入的服务也可能产生费用。第三方模型、运行库和素材适用各自许可。
 
 ### 数据与记忆
 
-桌面界面和部分语音能力在本机运行；模型推理、授权和后台工作可能访问外部服务。对话及选用的屏幕、材料内容会按功能需要发送给已配置的服务，请结合厂商的数据政策选择使用内容。
+桌面界面和部分语音能力在本机运行；模型推理和后台工作可能访问外部服务。对话及选用的屏幕、材料内容会按功能需要发送给已配置的服务，请结合厂商的数据政策选择使用内容。
 
 近期对话和任务上下文在后台进程运行期间保留，退出后台进程后不继续保留。角色卡与设置单独保存。
+
+## 从源码开发
+
+支持 Windows x64，使用 Python 3.12、uv、Node.js 和 pnpm 9。所有命令在仓库根目录执行：
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm python:venv
+pnpm python:install
+pnpm dev
+```
+
+非 NVIDIA 设备使用 `pnpm python:install:universal` 安装 Python 依赖。首次启动按控制台提示连接模型服务、准备角色语音。依赖来自公开固定发行物，无需申请产品激活码。
+
+详细说明见 [开发与调试](docs/development.md)、[系统架构](ARCHITECTURE.md) 和 [安装包构建](installer/README.md)。官网源码位于 `website/`，在该目录运行 `npm test`、`npm run check` 和 `npm run build`。
 
 ## 一起体验 NearMate
 
@@ -87,7 +98,7 @@ https://github.com/user-attachments/assets/3078d9aa-16fd-4076-ab83-0d248d20b0bf
 **QQ 体验交流群：1029360240**。用手机 QQ 扫描下方二维码，也可以搜索群号加入。
 
 <div align="center">
-  <a href="./assets/images/community-qq.jpg"><img src="./assets/images/community-qq.jpg" width="300" alt="QQ 体验交流群二维码，群号 1029360240；图中群名为 StreamPet 体验交流群"></a>
+  <a href="./website/assets/images/community-qq.jpg"><img src="./website/assets/images/community-qq.jpg" width="300" alt="QQ 体验交流群二维码，群号 1029360240；图中群名为 StreamPet 体验交流群"></a>
 </div>
 
 二维码与群内名称仍显示历史名称「StreamPet 体验交流群」，即本产品的体验群。
@@ -96,4 +107,18 @@ https://github.com/user-attachments/assets/3078d9aa-16fd-4076-ab83-0d248d20b0bf
 
 请通过 [GitHub Issues](https://github.com/RoversCode/NearMate/issues) 提交问题，说明 NearMate 版本、CUDA / Universal、Windows 版本、硬件概况、复现步骤和错误提示；也欢迎在体验群里交流。
 
-公开提交截图或日志前，请移除 API Key、NearMate Key、个人文件路径及私密聊天内容。
+公开提交截图或日志前，请移除 API Key、个人文件路径及私密聊天内容。
+
+## 开源许可
+
+NearMate 自有代码采用 [Apache-2.0](LICENSE)。第三方依赖、Live2D 运行库与模型、语音模型和参考素材分别适用原有许可，详见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+
+## 支持项目
+
+如果 NearMate 对你有用，欢迎给项目点一个 **Star ⭐**，也欢迎分享给需要桌面 AI 搭子的朋友。
+
+想请作者喝杯咖啡，可以使用微信扫描下方二维码。**Star 和赞赏完全自愿，不影响任何功能。**
+
+<div align="center">
+  <img src="./website/assets/images/wechat-support.png" width="260" alt="微信自愿赞赏二维码：请作者喝杯咖啡">
+</div>

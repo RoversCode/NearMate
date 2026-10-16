@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NearMate 使用手册：从 Windows 安装、首次初始化，到聊天、语音和选配服务。">
+    <title>使用手册 · NearMate</title>
+    <link rel="icon" href="../assets/images/nearmate.png">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/guide.css">
+    <link rel="canonical" href="https://roverscode.github.io/NearMate/guide/">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="guide-header">
+      <div class="guide-header-inner">
+        <a class="guide-brand" href="../index.html"><img src="../assets/images/nearmate.png" width="36" height="36" alt="">NearMate</a>
+        <nav aria-label="官网导航">
+          <a href="../index.html">返回官网</a><a href="../index.html#download">下载软件</a><a href="https://github.com/RoversCode/NearMate/issues">反馈问题</a>
+        </nav>
+      </div>
+    </header>
+    <div class="guide-layout">
+      <aside class="guide-sidebar">
+        <p>使用手册</p>
+        <nav aria-label="手册章节">
+          <a href="./index.html" aria-current="page">开始之前</a><a href="./first-run.html">首次初始化</a><a href="./chat-and-voice.html">聊天与语音</a><a href="./optional-services.html">选配功能</a><a href="./troubleshooting.html">遇到问题</a>
+        </nav>
+      </aside>
+      <main class="guide-content" id="main" tabindex="-1">
+        <header>
+          <p class="guide-kicker">从第一次打开开始</p>
+          <h1>让桌面搭子开始陪你工作</h1>
+          <p class="guide-intro">先跟着向导完成设置，再从一条消息开始。这里按你实际会做的事说明，不需要编程基础。</p>
+        </header>
+        <div class="guide-note">
+          <p><strong>适用界面：</strong>本文六步流程对应新版首次引导。如果你的版本显示“连接 AI”，请在同一页填写 DeepSeek 和 Qwen，再统一验证并保存；后续检查电脑、准备语音和试听流程一致。请以实际安装界面为准。</p>
+        </div>
+        <div class="guide-card-grid">
+          <article class="guide-card">
+            <h2><a href="./first-run.html">第一次打开</a></h2>
+            <p>准备 DeepSeek 与 Qwen 凭据，下载并试听角色语音。</p>
+          </article>
+          <article class="guide-card">
+            <h2><a href="./chat-and-voice.html">先聊一句</a></h2>
+            <p>打开聊天窗口、打字、说话，也把当前屏幕和材料带进讨论。</p>
+          </article>
+          <article class="guide-card">
+            <h2><a href="./optional-services.html">需要时再配置</a></h2>
+            <p>后台工作、天气查询和角色设置，可以在开始使用以后逐项调整。</p>
+          </article>
+          <article class="guide-card">
+            <h2><a href="./troubleshooting.html">卡在哪一步</a></h2>
+            <p>按界面提示找原因，处理连接、下载、声音和启动问题。</p>
+          </article>
+        </div>
+        <section id="before-install">
+          <h2>下载适合这台电脑的版本</h2>
+          <p>当前支持 Windows x64。配备兼容 NVIDIA 显卡的电脑可选择 CUDA 版；AMD、Intel 等设备可查看 Universal 通用版。安装后还会检查这台电脑的实际运行能力。</p>
+          <ol>
+            <li>打开<a href="../index.html#download">官网下载区</a>，选中一个版本。</li>
+            <li>逐个下载这个版本的 <strong>.exe 安装程序和全部 .bin 分卷</strong>。</li>
+            <li>将它们放在同一文件夹，保留文件名，然后双击 .exe 安装。</li>
+            <li>从桌面或开始菜单打开 NearMate，进入首次初始化。</li>
+          </ol>
+          <div class="guide-note">
+            <p>不同版本或不同发行的分卷不能混用。不要只下载 .exe；缺少任意分卷都无法完成安装。软件自带必要运行组件，不需要另外安装 Python、Torch 或 CUDA Toolkit。</p>
+          </div>
+        </section>
+        <section id="prepare">
+          <h2>开始前准备什么</h2>
+          <ul>
+            <li><strong>可用网络。</strong>首次配置要访问模型服务，并下载选定的语音模型。</li>
+            <li><strong>两家模型服务的凭据。</strong>DeepSeek 用于日常对话；Qwen（阿里云百炼）用于检索和深入理解任务。可以在向导对应步骤按指引取得。</li>
+            <li><strong>足够的磁盘空间。</strong>语音模型较大，向导会显示所选模型的下载大小，也可以选择其它磁盘保存。</li>
+            <li><strong>声音设备。</strong>打字不需要麦克风；使用语音时，需要可用的麦克风和扬声器或耳机。</li>
+          </ul>
+        </section>
+        <section id="cost">
+          <h2>免费软件与模型服务费用</h2>
+          <p>NearMate 免费开源，软件与内置语音没有产品付费门槛或使用期限。</p>
+          <p>DeepSeek、Qwen 和选配后台工作的模型 API 由用户自行准备，费用由对应厂商收取。请在厂商平台检查服务开通状态、余额和调用限制。第三方模型与素材继续适用各自许可。</p>
+        </section>
+        <section id="where">
+          <h2>桌面角色、聊天窗口、控制台各做什么</h2>
+          <ul>
+            <li><strong>桌面角色</strong>是平时最方便的入口。鼠标移到角色附近，可以打开聊天、人物模型和控制台。</li>
+            <li><strong>聊天窗口</strong>用来打字、提交材料、查看回答、处理任务提问和查看结果。</li>
+            <li><strong>控制台</strong>用来完成首次初始化，以及管理角色卡、声音、模型服务和偏好设置。</li>
+          </ul>
+          <p>角色卡定义当前角色的身份、语气和声音；虚拟形象是桌面上的视觉载体。二者可以分别调整。</p>
+        </section>
+        <section id="data">
+          <h2>使用时记住这两件事</h2>
+          <p>对话以及选用的屏幕和材料内容，会按功能需要发送给已配置的模型服务。模型厂商的数据政策和费用需要由你自己确认。</p>
+          <p>近期对话与任务上下文保留在当前运行期间；退出后台进程后不继续保留。设置与角色卡单独保存。需要长期保存的成果，请及时保存交付文件。</p>
+        </section>
+        <nav class="guide-pagination" aria-label="继续阅读">
+          <a href="../index.html">← 返回官网</a><a href="./first-run.html">下一页：首次初始化 →</a>
+        </nav>
+      </main>
+    </div>
+    <footer class="guide-footer">
+      NearMate Windows 使用手册 · 页面按当前首次向导编写。需要帮助时，可<a href="../index.html#community">加入体验交流</a>。
+    </footer>
+  </body>
+</html>

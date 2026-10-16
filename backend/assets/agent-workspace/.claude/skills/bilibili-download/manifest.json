@@ -1,0 +1,26 @@
+{
+  "id": "bilibili-download",
+  "name": "B 站视频下载",
+  "summary": "使用 BBDown 下载 B 站视频或音频，支持清晰度、分P、弹幕与纯音频选择。",
+  "category": "媒体处理",
+  "version": "1.0.0",
+  "default_enabled": true,
+  "trigger_scenarios": [
+    "用户给出 B 站链接（BV 号、b23 短链、番剧链接）要求下载或保存",
+    "用户要求把 B 站视频保存为指定清晰度或只取音频",
+    "用户要求批量下载多分P 视频或番剧"
+  ],
+  "inputs": [
+    "B 站视频地址或 BV/av/ep/ss 号",
+    "可选的清晰度、分P、弹幕、cookie 要求"
+  ],
+  "outputs": [
+    "写入当前任务交付目录的视频/音频文件（可选弹幕、字幕、封面）"
+  ],
+  "dependencies": [
+    {
+      "kind": "executable",
+      "name": "ffmpeg"
+    }
+  ]
+}

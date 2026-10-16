@@ -1,0 +1,26 @@
+{
+  "id": "media-transcribe",
+  "name": "音视频语音转写",
+  "summary": "把本地音频或视频文件离线转写成带时间戳的文字，产出 SRT/JSON/TXT。",
+  "category": "媒体处理",
+  "version": "1.0.0",
+  "default_enabled": true,
+  "trigger_scenarios": [
+    "用户要求把音频或视频文件转写为文字",
+    "用户要求为视频生成字幕文件",
+    "用户需要音视频内容的分段时间戳文本用于后续分析"
+  ],
+  "inputs": [
+    "一个可读取的本地音频或视频文件",
+    "可选的识别语言与输出格式要求"
+  ],
+  "outputs": [
+    "写入当前任务交付目录的 SRT 字幕、JSON 分段和纯文本转写结果"
+  ],
+  "dependencies": [
+    {
+      "kind": "executable",
+      "name": "ffmpeg"
+    }
+  ]
+}

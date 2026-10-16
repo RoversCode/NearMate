@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * 设计令牌层：全部视觉决策（颜色、圆角）集中在此，
+ * 组件只引用令牌类（bg-card、text-muted-foreground 等），不写死色值。
+ * 品牌主色沿用旧版控制台的品牌青 #0b8ea8（hsl 190 88% 35%）。
+ */
+@layer base {
+  :root {
+    --background: 195 40% 96%;
+    --foreground: 204 30% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 204 30% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 204 30% 13%;
+
+    --primary: 190 88% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 30% 93%;
+    --secondary-foreground: 190 60% 24%;
+
+    --muted: 195 24% 93%;
+    --muted-foreground: 204 12% 44%;
+
+    --accent: 190 45% 92%;
+    --accent-foreground: 190 70% 26%;
+
+    --destructive: 350 65% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 162 62% 30%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 36 85% 36%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 195 20% 87%;
+    --input: 195 18% 82%;
+    --ring: 190 88% 35%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 206 32% 8%;
+    --foreground: 195 20% 92%;
+
+    --card: 206 26% 11%;
+    --card-foreground: 195 20% 92%;
+
+    --popover: 206 26% 10%;
+    --popover-foreground: 195 20% 92%;
+
+    --primary: 187 72% 46%;
+    --primary-foreground: 204 70% 8%;
+
+    --secondary: 206 20% 16%;
+    --secondary-foreground: 190 45% 78%;
+
+    --muted: 206 18% 15%;
+    --muted-foreground: 200 12% 62%;
+
+    --accent: 206 22% 18%;
+    --accent-foreground: 187 65% 66%;
+
+    --destructive: 350 62% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 162 55% 45%;
+    --success-foreground: 204 70% 8%;
+
+    --warning: 38 88% 56%;
+    --warning-foreground: 204 70% 8%;
+
+    --border: 206 16% 20%;
+    --input: 206 15% 26%;
+    --ring: 187 72% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply h-full bg-background font-sans text-foreground antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  /* 分区保持挂载以保留草稿；hidden 的语义必须优先于布局样式。 */
+  [hidden] {
+    display: none !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .settings-tabs {
+    @apply flex gap-1 overflow-x-auto border-b;
+  }
+
+  .settings-tab {
+    @apply relative flex shrink-0 items-center gap-2 border-b-2 border-transparent px-4 pb-3 pt-2 text-sm text-muted-foreground transition-colors hover:text-foreground;
+  }
+
+  .settings-tab-active {
+    @apply border-primary font-medium text-primary;
+  }
+
+  .settings-panel {
+    @apply space-y-5 outline-none;
+  }
+
+  .shortcut-setting-row {
+    @apply grid items-center gap-x-6 gap-y-3 py-4 first:pt-1 last:pb-1 sm:grid-cols-[minmax(0,1fr)_auto];
+  }
+
+  .shortcut-key {
+    @apply inline-flex min-w-6 items-center justify-center rounded border bg-background px-1.5 py-0.5 font-mono text-xs text-foreground;
+    box-shadow: 0 1px 0 hsl(var(--border));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

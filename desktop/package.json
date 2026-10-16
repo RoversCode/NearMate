@@ -1,0 +1,43 @@
+{
+  "name": "companion-desktop",
+  "version": "0.2.0",
+  "description": "NearMate desktop shell",
+  "author": "RoversCode",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main/index.js",
+  "scripts": {
+    "dev": "set ELECTRON_RUN_AS_NODE=&& chcp 65001>nul && electron-vite dev",
+    "build": "electron-vite build",
+    "package:unpacked": "electron-builder --dir --config electron-builder.yml",
+    "preview": "electron-vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "koffi": "^3.1.1",
+    "livekit-client": "^2.5.7",
+    "lucide-react": "^1.24.0",
+    "parse5": "^7.2.1",
+    "pixi.js": "^8.2.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.35.3",
+    "undici": "^6.27.0",
+    "untitled-pixi-live2d-engine": "^1.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "electron": "33.4.11",
+    "electron-vite": "^2.3.0",
+    "electron-builder": "^25.1.8",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  }
+}

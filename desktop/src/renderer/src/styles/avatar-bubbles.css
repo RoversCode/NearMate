@@ -1,0 +1,178 @@
+.avatar-speech-bubble,
+.avatar-bootstrap-bubble {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 92px;
+  z-index: 4;
+  width: min(300px, calc(100% - 36px));
+  margin: 0 auto;
+  border: 1px solid rgba(255, 250, 244, 0.36);
+  border-radius: 22px;
+  color: rgba(255, 250, 244, 0.96);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(20, 49, 63, 0.24);
+  animation: avatar-bubble-in 180ms ease-out both;
+}
+
+.avatar-assistant-bubble {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  padding: calc(14px * var(--avatar-assistant-bubble-scale, 1))
+    calc(17px * var(--avatar-assistant-bubble-scale, 1));
+  border: 1px solid rgba(23, 48, 66, 0.12);
+  border-radius: calc(18px * var(--avatar-assistant-bubble-scale, 1));
+  background:
+    radial-gradient(circle at top left, rgba(227, 180, 92, 0.18), transparent 46%),
+    rgba(255, 250, 244, 0.94);
+  color: var(--ink-strong);
+  box-shadow: 0 18px 42px rgba(20, 49, 63, 0.18);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  /* 引导线 SVG 从气泡底边向下延伸到头部锚点，必须允许溢出气泡盒。 */
+  overflow: visible;
+  animation: avatar-bubble-in 180ms ease-out both;
+}
+
+.avatar-timed-reminder-bubble {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: calc(9px * var(--avatar-timed-reminder-bubble-scale, 1));
+  padding: calc(14px * var(--avatar-timed-reminder-bubble-scale, 1));
+  border: 1px solid rgba(132, 39, 32, 0.32);
+  border-radius: calc(16px * var(--avatar-timed-reminder-bubble-scale, 1));
+  background: rgba(255, 249, 241, 0.98);
+  color: #311d1b;
+  box-shadow: 0 20px 46px rgba(56, 25, 19, 0.24);
+  backdrop-filter: blur(14px);
+  pointer-events: auto;
+  overflow: hidden;
+  animation: avatar-bubble-in 180ms ease-out both;
+}
+
+.avatar-timed-reminder-bubble header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8a2d25;
+}
+
+.avatar-timed-reminder-bubble header strong {
+  font-size: calc(14px * var(--avatar-timed-reminder-bubble-scale, 1));
+}
+
+.avatar-timed-reminder-bubble ul {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.avatar-timed-reminder-bubble li {
+  padding: calc(7px * var(--avatar-timed-reminder-bubble-scale, 1)) 0;
+  border-top: 1px solid rgba(49, 29, 27, 0.1);
+  font-size: calc(13px * var(--avatar-timed-reminder-bubble-scale, 1));
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.avatar-timed-reminder-error {
+  margin: 0;
+  color: #9b2720;
+  font-size: calc(12px * var(--avatar-timed-reminder-bubble-scale, 1));
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.avatar-timed-reminder-bubble button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: calc(34px * var(--avatar-timed-reminder-bubble-scale, 1));
+  border: 1px solid rgba(138, 45, 37, 0.28);
+  border-radius: 7px;
+  background: #8a2d25;
+  color: #fffaf4;
+  font: inherit;
+  font-size: calc(12px * var(--avatar-timed-reminder-bubble-scale, 1));
+  cursor: pointer;
+}
+
+.avatar-timed-reminder-bubble button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.avatar-timed-reminder-bubble button:focus-visible {
+  outline: 2px solid rgba(138, 45, 37, 0.48);
+  outline-offset: 2px;
+}
+
+.avatar-assistant-bubble p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: calc(13px * var(--avatar-assistant-bubble-scale, 1));
+  line-height: 1.55;
+  max-height: calc(13px * var(--avatar-assistant-bubble-scale, 1) * 1.55 * 3);
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.avatar-assistant-bubble-leader {
+  /* top/left 由组件按引导线包围盒内联设置，这里只固定层级与溢出行为。 */
+  position: absolute;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.avatar-assistant-bubble-leader-line {
+  stroke: rgba(255, 250, 244, 0.96);
+  stroke-width: calc(2px * var(--avatar-assistant-bubble-scale, 1));
+  stroke-linecap: round;
+}
+
+.avatar-assistant-bubble-leader-dot {
+  fill: rgba(255, 250, 244, 0.96);
+}
+
+.avatar-speech-bubble {
+  padding: 13px 16px;
+  background:
+    radial-gradient(circle at top left, rgba(227, 180, 92, 0.22), transparent 46%),
+    rgba(20, 49, 63, 0.66);
+  font-size: 13px;
+  line-height: 1.55;
+  pointer-events: none;
+}
+
+.avatar-speech-bubble[data-avatar-interactive="true"] {
+  appearance: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.avatar-speech-bubble[data-avatar-interactive="true"]:focus-visible {
+  outline: 2px solid rgba(255, 250, 244, 0.92);
+  outline-offset: 3px;
+}
+
+@keyframes avatar-bubble-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}

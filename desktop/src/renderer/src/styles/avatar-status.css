@@ -1,0 +1,139 @@
+.avatar-status-indicator {
+  --avatar-status-color: #7e91aa;
+  position: absolute;
+  /* 对话与提醒气泡在 4/5 层；图案留在下层，气泡被屏幕钳制时也不会盖住正文。 */
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  color: var(--avatar-status-color);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  isolation: isolate;
+}
+
+.avatar-status-indicator[data-avatar-status="available"],
+.avatar-status-indicator[data-avatar-status="listening"] {
+  --avatar-status-color: #48b99d;
+}
+
+.avatar-status-indicator[data-avatar-status="thinking"] {
+  --avatar-status-color: #a38ae4;
+}
+
+.avatar-status-indicator[data-avatar-status="responding"] {
+  --avatar-status-color: #55bdcc;
+}
+
+.avatar-status-indicator[data-avatar-status="working"] {
+  --avatar-status-color: #729fe0;
+}
+
+.avatar-status-indicator[data-avatar-status="waiting_user"] {
+  --avatar-status-color: #d5a96c;
+}
+
+.avatar-status-indicator[data-avatar-status="error"] {
+  --avatar-status-color: #dd8e87;
+}
+
+.avatar-status-core {
+  position: absolute;
+  inset: 3px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 66%);
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgb(255 255 255 / 94%), rgb(244 248 253 / 82%));
+  box-shadow: 0 2px 8px rgb(31 43 63 / 12%), inset 0 0 7px rgb(255 255 255 / 65%);
+  backdrop-filter: blur(7px);
+}
+
+.avatar-status-halo {
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--avatar-status-color) 28%, transparent);
+  transition: color 260ms ease, opacity 260ms ease;
+}
+
+.avatar-status-wake-dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid rgb(255 255 255 / 94%);
+  border-radius: 50%;
+  background: #8793a8;
+  box-shadow: 0 1px 3px rgb(31 43 63 / 16%);
+}
+
+.avatar-status-indicator[data-avatar-wake-mode="followup"] .avatar-status-wake-dot {
+  background: #48b99d;
+  box-shadow: 0 0 5px rgb(72 185 157 / 48%);
+}
+
+.avatar-status-indicator[data-avatar-wake-mode="unknown"] .avatar-status-wake-dot {
+  opacity: 0.45;
+}
+
+.avatar-status-indicator[data-avatar-status="available"] .avatar-status-halo {
+  animation: avatar-status-breathe 3200ms ease-in-out infinite;
+}
+.avatar-status-indicator[data-avatar-status="listening"] .avatar-status-halo {
+  animation: avatar-status-listen 1450ms ease-out infinite;
+}
+.avatar-status-indicator[data-avatar-status="thinking"] .avatar-status-halo {
+  border-style: dashed;
+  animation: avatar-status-spin 4000ms linear infinite;
+}
+.avatar-status-indicator[data-avatar-status="working"] .avatar-status-halo {
+  border-style: dotted;
+  animation: avatar-status-spin 2800ms linear infinite;
+}
+.avatar-status-indicator[data-avatar-status="responding"] .avatar-status-halo {
+  animation: avatar-status-breathe 1050ms ease-in-out infinite;
+}
+
+.avatar-status-indicator[data-avatar-status="syncing"] .avatar-status-core svg {
+  animation: avatar-status-spin 2600ms linear infinite;
+}
+
+.avatar-status-indicator.avatar-status-indicator--emphasized .avatar-status-halo {
+  animation: avatar-status-confirm 650ms ease-out 3;
+}
+
+@keyframes avatar-status-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.09); opacity: 0.85; }
+}
+
+@keyframes avatar-status-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes avatar-status-listen {
+  0% { transform: scale(0.98); opacity: 0.8; }
+  80%, 100% { transform: scale(1.22); opacity: 0.15; }
+}
+
+@keyframes avatar-status-confirm {
+  0% { transform: scale(1); opacity: 0.9; }
+  70% { transform: scale(1.2); opacity: 0.45; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-status-indicator[data-avatar-status] .avatar-status-halo,
+  .avatar-status-indicator[data-avatar-status] .avatar-status-core svg {
+    animation: none;
+    transition: none;
+  }
+
+  .avatar-status-indicator--emphasized .avatar-status-halo {
+    opacity: 1;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--avatar-status-color) 55%, transparent);
+  }
+}

@@ -1,0 +1,22 @@
+Microsoft Visual C++ 2015-2022 Runtime, Windows x64, version 14.42.34433.0
+Copyright Microsoft Corporation. All rights reserved.
+
+The unmodified DLLs are sourced from Visual Studio 2022 Build Tools:
+VC\Redist\MSVC\14.42.34433\x64\Microsoft.VC143.CRT
+The exact file list and SHA256 values are recorded in msvc-runtime.json.
+
+Microsoft's Visual Studio 2022 redistribution list permits distribution of
+the files under [VisualStudioFolder]\VC\redist, subject to the applicable
+Visual Studio license terms and the exceptions listed on that page:
+https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution
+No Microsoft DLL has been modified.
+
+The accompanying English and Simplified Chinese runtime license files are
+preserved unchanged from the signed Microsoft vc_redist.x64.exe 14.42.34433.0:
+SHA256 1821577409c35b2b9505ac833e246376cc68a8262972100444010b57226f0940
+The end-user runtime licenses do not themselves replace the developer's
+applicable Visual Studio redistribution terms.
+
+NearMate carries these application-local DLLs beside its Python executables.
+Installation does not modify Windows system directories or install a global
+Visual C++ Redistributable package.

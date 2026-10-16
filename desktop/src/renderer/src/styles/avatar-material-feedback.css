@@ -1,0 +1,39 @@
+.avatar-material-feedback-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  z-index: 21;
+  transform: translateX(-50%);
+  max-width: min(260px, calc(100vw - 32px));
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #24313a;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  pointer-events: none;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-material-feedback-toast-success {
+  color: #156447;
+}
+
+.avatar-material-feedback-toast-progress {
+  color: #276979;
+}
+
+.avatar-material-feedback-toast-warning {
+  color: #9a542f;
+}
+
+.avatar-material-feedback-toast-error {
+  color: #9a3e26;
+}
+
+.avatar-material-feedback-toast-positioned {
+  transform: none;
+  max-width: none;
+}

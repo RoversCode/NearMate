@@ -1,0 +1,52 @@
+.avatar-listening-indicator {
+  position: absolute;
+  z-index: 31;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 30px;
+  height: 22px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 5px rgb(17 24 39 / 28%));
+}
+
+.avatar-listening-indicator span {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: #2ec4b6;
+  animation: avatar-listening-wave 720ms ease-in-out infinite;
+}
+
+.avatar-listening-indicator span:nth-child(2) {
+  height: 15px;
+  background: #ffffff;
+  animation-delay: 120ms;
+}
+
+.avatar-listening-indicator span:nth-child(3) {
+  height: 11px;
+  background: #ffbf69;
+  animation-delay: 240ms;
+}
+
+@keyframes avatar-listening-wave {
+  0%,
+  100% {
+    transform: scaleY(0.62);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scaleY(1.18);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-listening-indicator span {
+    animation: none;
+  }
+}

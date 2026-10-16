@@ -1,0 +1,26 @@
+appId: com.nearmate.desktop
+productName: NearMate
+asar: true
+beforePack: ./scripts/prepareBrandIcon.cjs
+directories:
+  output: dist-package/${env.NEARMATE_OUTPUT_DIR}
+files:
+  - dist-electron/**
+  - dist/renderer/**
+  - package.json
+extraResources:
+  - from: dist-brand/icon.ico
+    to: icon.ico
+  - from: ../installer/staging/${env.NEARMATE_RUNTIME_PROFILE}/runtime
+    to: runtime
+    filter:
+      - "**/*"
+win:
+  icon: dist-brand/icon.ico
+  # 即使没有代码签名证书，也必须编辑 EXE 资源，Windows 快捷方式才会取得品牌图标。
+  signAndEditExecutable: true
+  target:
+    - target: dir
+      arch:
+        - x64
+  artifactName: NearMate-${env.NEARMATE_RUNTIME_PROFILE}-unpacked

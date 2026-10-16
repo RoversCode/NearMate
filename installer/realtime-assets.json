@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "path": "wakeword/encoder-epoch-13-avg-2-chunk-16-left-64.onnx",
+      "size_bytes": 11976272,
+      "sha256": "540ff509ed89bd22afe04bf7049a54bb1c95c6d8a18742ea9691910cdb5f859e",
+      "urls": [],
+      "license": "Apache-2.0",
+      "source": "https://github.com/k2-fsa/sherpa-onnx",
+      "archive": {
+        "filename": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6",
+        "size_bytes": 32885699,
+        "member": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/encoder-epoch-13-avg-2-chunk-16-left-64.onnx"
+      }
+    },
+    {
+      "path": "wakeword/decoder-epoch-13-avg-2-chunk-16-left-64.onnx",
+      "size_bytes": 759829,
+      "sha256": "63a22dd60f40fff082ac3e09afa507f6787da36df76ded2fbe145fa233e22c21",
+      "urls": [],
+      "license": "Apache-2.0",
+      "source": "https://github.com/k2-fsa/sherpa-onnx",
+      "archive": {
+        "filename": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6",
+        "size_bytes": 32885699,
+        "member": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/decoder-epoch-13-avg-2-chunk-16-left-64.onnx"
+      }
+    },
+    {
+      "path": "wakeword/joiner-epoch-13-avg-2-chunk-16-left-64.onnx",
+      "size_bytes": 338154,
+      "sha256": "76f7a24ed0c08633af14b2ee377f747af880d3b65eeba2cd3f31f3380fb73e8d",
+      "urls": [],
+      "license": "Apache-2.0",
+      "source": "https://github.com/k2-fsa/sherpa-onnx",
+      "archive": {
+        "filename": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6",
+        "size_bytes": 32885699,
+        "member": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/joiner-epoch-13-avg-2-chunk-16-left-64.onnx"
+      }
+    },
+    {
+      "path": "wakeword/tokens.txt",
+      "size_bytes": 1928,
+      "sha256": "2d3f32311f9b692b964da3c90e830258d3e78e013cb0c992dbfb15cd5a1a71b0",
+      "urls": [],
+      "license": "Apache-2.0",
+      "source": "https://github.com/k2-fsa/sherpa-onnx",
+      "archive": {
+        "filename": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6",
+        "size_bytes": 32885699,
+        "member": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/tokens.txt"
+      }
+    },
+    {
+      "path": "wakeword/keywords.txt",
+      "size_bytes": 284,
+      "sha256": "4878b5c2cddd6605d228877a196137e2412f0fcda1af44a524d7265a1547835c",
+      "urls": [],
+      "license": "Apache-2.0",
+      "source": "https://github.com/k2-fsa/sherpa-onnx",
+      "archive": {
+        "filename": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+        "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6",
+        "size_bytes": 32885699,
+        "member": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/test_wavs/keywords.txt"
+      }
+    },
+    {
+      "path": "3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx",
+      "size_bytes": 28281138,
+      "sha256": "f682b514c05d947ee3fa91cd6ec6c5c7543479a128373fa29b1faedccd21fd11",
+      "urls": [
+        "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://github.com/modelscope/3D-Speaker"
+    },
+    {
+      "path": "smart-turn-v3.2-gpu.onnx",
+      "size_bytes": 32411198,
+      "sha256": "ab8dc64b88713f90b571c15b714bd1330e6c883cad8763dacf65c9376dc539be",
+      "urls": [
+        "https://huggingface.co/pipecat-ai/smart-turn-v3/resolve/f766f81d3cfdf7737ac64aad813d91bbfd56bf93/smart-turn-v3.2-gpu.onnx",
+        "https://hf-mirror.com/pipecat-ai/smart-turn-v3/resolve/f766f81d3cfdf7737ac64aad813d91bbfd56bf93/smart-turn-v3.2-gpu.onnx"
+      ],
+      "license": "BSD-2-Clause",
+      "source": "https://huggingface.co/pipecat-ai/smart-turn-v3"
+    },
+    {
+      "path": "qwen_asr/silero_vad.onnx",
+      "size_bytes": 2327524,
+      "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+      "urls": [
+        "https://raw.githubusercontent.com/snakers4/silero-vad/bfdc0193023f121ea5b3cc7b176dbed570a68a59/src/silero_vad/data/silero_vad.onnx"
+      ],
+      "license": "MIT",
+      "source": "https://github.com/snakers4/silero-vad"
+    },
+    {
+      "path": "qwen_asr/qwen3_asr_encoder_frontend.fp16.onnx",
+      "size_bytes": 22094593,
+      "sha256": "1af3fe7e8d69975fa2beaf5cdc7b14d591720c49e7e0424abe6491a0be0aa95d",
+      "urls": [
+        "https://github.com/RoversCode/NearMate/releases/download/runtime-assets-v0.2.0/qwen3_asr_encoder_frontend.fp16.onnx"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B",
+      "conversion_source": "https://github.com/HaujetZhao/Qwen3-ASR-GGUF"
+    },
+    {
+      "path": "qwen_asr/qwen3_asr_encoder_backend.fp16.onnx",
+      "size_bytes": 350933121,
+      "sha256": "6bee792118366d9ce568befc1c6bb0e5439648be173e68259166dac700e856d9",
+      "urls": [
+        "https://github.com/RoversCode/NearMate/releases/download/runtime-assets-v0.2.0/qwen3_asr_encoder_backend.fp16.onnx"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B",
+      "conversion_source": "https://github.com/HaujetZhao/Qwen3-ASR-GGUF"
+    },
+    {
+      "path": "qwen_asr/qwen3_asr_llm.f16.gguf",
+      "size_bytes": 1509342784,
+      "sha256": "0531a17686be99f97bb37f8f05e1c0b425c39bf0b300aa9481a42210a4212c9d",
+      "urls": [
+        "https://github.com/RoversCode/NearMate/releases/download/runtime-assets-v0.2.0/qwen3_asr_llm.f16.gguf"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B",
+      "conversion_source": "https://github.com/HaujetZhao/Qwen3-ASR-GGUF"
+    },
+    {
+      "path": "turn_detector/chinese_best_model_q8.onnx",
+      "size_bytes": 178152957,
+      "sha256": "e0738b2d2f8cf17ee75fc8ac8a36f2b0a9dcb29f288387df4ab7554f0c3f6317",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/chinese_best_model_q8.onnx",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/chinese_best_model_q8.onnx"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/multilingual_best_model_q8.onnx",
+      "size_bytes": 178152959,
+      "sha256": "285cafedb0263b065d83964ecc728b795bb281688b0d6525f6c7ca6cb1f756df",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/multilingual_best_model_q8.onnx",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/multilingual_best_model_q8.onnx"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/tokenizer/config.json",
+      "size_bytes": 844,
+      "sha256": "a8ecea4db687cce851674916271ce65d54982763afedbbef347b7a95913882db",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/config.json",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/config.json"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/tokenizer/special_tokens_map.json",
+      "size_bytes": 125,
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/special_tokens_map.json",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/special_tokens_map.json"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/tokenizer/tokenizer.json",
+      "size_bytes": 2919362,
+      "sha256": "bf1b59b7b11c95f194f51708d918eea378e09d05f84c0e1656dc5180e8117088",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/tokenizer.json",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/tokenizer.json"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/tokenizer/tokenizer_config.json",
+      "size_bytes": 1191,
+      "sha256": "214f78f6c5d034a8b405632d301ee3710eb6f075b3f5faf8241a273a13908746",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/tokenizer_config.json",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/tokenizer_config.json"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    },
+    {
+      "path": "turn_detector/tokenizer/vocab.txt",
+      "size_bytes": 995526,
+      "sha256": "fe0fda7c425b48c516fc8f160d594c8022a0808447475c1a7c6d6479763f310c",
+      "urls": [
+        "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/vocab.txt",
+        "https://hf-mirror.com/FireRedTeam/FireRedChat-turn-detector/resolve/1a53b2145cdac39f247a8d55922630635aadfaef/tokenizer/vocab.txt"
+      ],
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/FireRedTeam/FireRedChat-turn-detector"
+    }
+  ]
+}

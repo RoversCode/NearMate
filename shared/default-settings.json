@@ -1,0 +1,31 @@
+{
+  "show_speech_bubbles": true,
+  "followup_toggle_shortcut_enabled": true,
+  "followup_toggle_shortcut": "CommandOrControl+Alt+Space",
+  "avatar_visibility_shortcut_enabled": true,
+  "avatar_visibility_shortcut": "CommandOrControl+Alt+P",
+  "selection_capture_shortcut_enabled": true,
+  "selection_capture_shortcut": "CommandOrControl+Alt+C",
+  "selected_live2d_model_id": "Haru",
+  "user_self_intro": "",
+  "user_extra_notes": "",
+  "llm": {
+    "schema_version": 2,
+    "credentials": {
+      "deepseek": {
+        "base_url": "https://api.deepseek.com/v1",
+        "api_key": ""
+      },
+      "qwen": {
+        "base_url": "",
+        "api_key": ""
+      }
+    },
+    "role_bindings": {
+      "foreground": "deepseek:deepseek-flash:chat",
+      "summary": "deepseek:deepseek-flash:chat",
+      "cognitive": "qwen:qwen3.6-plus:chat",
+      "character_authoring": "deepseek:deepseek-flash:chat"
+    }
+  }
+}

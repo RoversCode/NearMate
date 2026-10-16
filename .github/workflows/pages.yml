@@ -19,7 +19,7 @@ jobs:
       pages: read
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout website
+      - name: Checkout NearMate
         uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -27,14 +27,14 @@ jobs:
           node-version: '22'
       - name: Validate and build public website
         run: |
-          npm test
-          npm run build
+          npm --prefix website test
+          npm --prefix website run build
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: website/dist
 
   deploy:
     environment:

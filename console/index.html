@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NearMate Console</title>
+    <script>
+      // 首帧前恢复主题选择，避免暗色用户看到浅色闪烁；与 src/lib/theme.ts 的存储键保持一致。
+      (function () {
+        try {
+          var theme = window.localStorage.getItem("vc-console-theme") || "system";
+          var dark =
+            theme === "dark" ||
+            (theme === "system" &&
+              typeof window.matchMedia === "function" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (error) {
+          // localStorage 不可用时按浅色渲染，不影响功能。
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

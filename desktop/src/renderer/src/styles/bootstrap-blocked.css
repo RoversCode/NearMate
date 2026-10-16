@@ -1,0 +1,67 @@
+.bootstrap-blocked-panel {
+  width: min(100%, 360px);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(180deg, var(--card-strong) 0%, var(--card) 100%);
+  box-shadow: var(--shadow);
+}
+
+.bootstrap-blocked-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.bootstrap-blocked-eyebrow {
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.bootstrap-blocked-header h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.bootstrap-blocked-card {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(23, 48, 66, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.bootstrap-blocked-pill {
+  width: fit-content;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(223, 125, 87, 0.16);
+  color: #95513a;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.bootstrap-blocked-summary {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.bootstrap-blocked-action {
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 13px;
+  background: rgba(23, 48, 66, 0.08);
+  color: var(--ink-strong);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}

@@ -1,0 +1,87 @@
+:root {
+  --bg-sand: #f5e8d7;
+  --bg-mist: #dce7e8;
+  --bg-deep: #14313f;
+  --ink-strong: #173042;
+  --ink-soft: #4f6571;
+  --card: rgba(255, 250, 244, 0.86);
+  --card-strong: rgba(255, 248, 240, 0.95);
+  --line: rgba(23, 48, 66, 0.1);
+  --accent-coral: #df7d57;
+  --accent-gold: #e3b45c;
+  --accent-sea: #71a8a5;
+  --shadow: 0 24px 60px rgba(20, 49, 63, 0.12);
+  color: var(--ink-strong);
+  background:
+    radial-gradient(circle at top left, rgba(227, 180, 92, 0.24), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(113, 168, 165, 0.24), transparent 38%),
+    linear-gradient(140deg, var(--bg-sand) 0%, #f3f0ea 48%, var(--bg-mist) 100%);
+  font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html[data-window="avatar"],
+html[data-window="avatar"] body,
+html[data-window="avatar"] #root {
+  background: transparent;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+body[data-window="avatar"] {
+  background: transparent;
+  overflow: hidden;
+}
+
+body[data-window="chat"] {
+  background: #f2f2f2;
+  overflow: hidden;
+}
+
+body[data-window="chat"] #root {
+  height: 100%;
+  min-height: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 95%);
+}
+
+body[data-window="avatar"]::before {
+  display: none;
+}
+
+body[data-window="chat"]::before {
+  display: none;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

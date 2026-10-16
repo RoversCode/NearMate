@@ -1,0 +1,29 @@
+/* 只变换绘制层，不移动窗口、模型坐标或拖拽热区；气泡按钮仍可正常点击。 */
+.avatar-shell--reminder-feedback .avatar-canvas-pet canvas {
+  animation: avatar-reminder-shake 500ms ease-out;
+}
+
+/* 保留同名入场动画，结束抖动时才不会把气泡的入场动画重新播放一遍。 */
+.avatar-timed-reminder-bubble--feedback {
+  animation: avatar-bubble-in 180ms ease-out both, avatar-reminder-shake 500ms ease-out;
+}
+
+@keyframes avatar-reminder-shake {
+  0%, 100% { translate: 0 0; }
+  15% { translate: -4px 0; }
+  30% { translate: 4px -1px; }
+  45% { translate: -3px 0; }
+  60% { translate: 3px 1px; }
+  75% { translate: -2px 0; }
+  90% { translate: 1px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-shell--reminder-feedback .avatar-canvas-pet canvas {
+    animation: none;
+  }
+
+  .avatar-timed-reminder-bubble--feedback {
+    animation: avatar-bubble-in 180ms ease-out both;
+  }
+}

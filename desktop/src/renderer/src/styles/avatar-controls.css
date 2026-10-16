@@ -1,0 +1,210 @@
+.avatar-drag-surface {
+  position: absolute;
+  z-index: 2;
+  background: transparent;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.avatar-drag-surface:active {
+  cursor: grabbing;
+}
+
+.avatar-resize-frame {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.avatar-resize-frame[data-visible="true"] {
+  opacity: 1;
+}
+
+.avatar-resize-handle {
+  position: absolute;
+  background: transparent;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.avatar-resize-frame[data-visible="true"] .avatar-resize-handle {
+  pointer-events: auto;
+}
+
+.avatar-resize-frame[data-visible="true"] .avatar-resize-handle-ne::after,
+.avatar-resize-frame[data-visible="true"] .avatar-resize-handle-nw::after,
+.avatar-resize-frame[data-visible="true"] .avatar-resize-handle-se::after,
+.avatar-resize-frame[data-visible="true"] .avatar-resize-handle-sw::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: rgba(255, 250, 244, 0.76);
+  border-style: solid;
+}
+
+.avatar-resize-handle-n,
+.avatar-resize-handle-s {
+  left: 12px;
+  right: 12px;
+  height: 12px;
+}
+
+.avatar-resize-handle-e,
+.avatar-resize-handle-w {
+  top: 12px;
+  bottom: 12px;
+  width: 12px;
+}
+
+.avatar-resize-handle-n {
+  top: 0;
+  cursor: ns-resize;
+}
+
+.avatar-resize-handle-s {
+  bottom: 0;
+  cursor: ns-resize;
+}
+
+.avatar-resize-handle-e {
+  right: 0;
+  cursor: ew-resize;
+}
+
+.avatar-resize-handle-w {
+  left: 0;
+  cursor: ew-resize;
+}
+
+.avatar-resize-handle-ne,
+.avatar-resize-handle-nw,
+.avatar-resize-handle-se,
+.avatar-resize-handle-sw {
+  width: 18px;
+  height: 18px;
+}
+
+.avatar-resize-handle-ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.avatar-resize-handle-ne::after {
+  top: 2px;
+  right: 2px;
+  border-width: 1px 1px 0 0;
+}
+
+.avatar-resize-handle-nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.avatar-resize-handle-nw::after {
+  top: 2px;
+  left: 2px;
+  border-width: 1px 0 0 1px;
+}
+
+.avatar-resize-handle-se {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+}
+
+.avatar-resize-handle-se::after {
+  right: 2px;
+  bottom: 2px;
+  border-width: 0 1px 1px 0;
+}
+
+.avatar-resize-handle-sw {
+  left: 0;
+  bottom: 0;
+  cursor: nesw-resize;
+}
+
+.avatar-resize-handle-sw::after {
+  bottom: 2px;
+  left: 2px;
+  border-width: 0 0 1px 1px;
+}
+
+.avatar-action-rail {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  gap: 10px;
+  width: 44px;
+  min-height: 164px;
+  place-items: center;
+  padding: 6px 0;
+  animation: avatar-action-rail-in 120ms ease-out both;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-action-button {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 250, 244, 0.34);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.34), transparent 42%),
+    rgba(255, 250, 244, 0.12);
+  box-shadow: 0 10px 24px rgba(20, 49, 63, 0.1);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: opacity 180ms ease, transform 150ms ease, background 150ms ease, border-color 150ms ease;
+  -webkit-app-region: no-drag;
+  display: grid;
+  place-items: center;
+  color: rgba(23, 48, 66, 0.58);
+}
+
+.avatar-action-badge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #d96f4b;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(64, 30, 20, 0.24);
+}
+
+.avatar-action-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 250, 244, 0.56);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.42), transparent 42%),
+    rgba(255, 250, 244, 0.2);
+}
+
+.avatar-action-button:focus-visible {
+  outline: 2px solid rgba(223, 125, 87, 0.72);
+  outline-offset: 3px;
+}
+
+@keyframes avatar-action-rail-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}

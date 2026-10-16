@@ -1,0 +1,99 @@
+.material-shelf {
+  display: grid;
+  gap: 7px;
+  flex: 0 0 auto;
+  margin: 0 18px 10px;
+  border-top: 1px solid rgba(44, 69, 80, 0.1);
+  padding-top: 9px;
+  color: #27343b;
+  overflow: hidden;
+}
+
+.material-shelf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.material-shelf-header strong {
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.material-shelf-header span {
+  color: #6c787f;
+  font-size: 11px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.material-shelf-strip {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  list-style: none;
+  scrollbar-color: rgba(65, 89, 100, 0.28) transparent;
+  scrollbar-width: thin;
+  white-space: nowrap;
+}
+
+.material-shelf-thumb {
+  position: relative;
+  flex: 0 0 62px;
+  width: 62px;
+  overflow: visible;
+}
+
+.material-shelf-thumb img,
+.material-shelf-fallback {
+  display: grid;
+  width: 62px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(45, 71, 82, 0.14);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #627078;
+  font-size: 13px;
+  object-fit: cover;
+}
+
+.material-shelf-thumb span {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #43515a;
+  font-size: 10px;
+  line-height: 1.25;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.material-shelf-thumb button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: #c95142;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.material-shelf-thumb:hover button,
+.material-shelf-thumb button:focus-visible {
+  opacity: 1;
+}

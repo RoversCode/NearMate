@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "product": "Microsoft Visual C++ 2015-2022 Runtime",
+  "platform": "windows-x64",
+  "version": "14.42.34433.0",
+  "redist_directory_version": "14.42.34433",
+  "redistribution_url": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+  "files": [
+    { "name": "concrt140.dll", "sha256": "e2e4609c569c69f7b1686f6d0e81ce62187ac5df05e0247954500053b3c3de3f" },
+    { "name": "msvcp140.dll", "sha256": "9057d39b36b6c7d054865ee2bf9cde7a490fe3b01ec4e82514687e24f576269f" },
+    { "name": "msvcp140_1.dll", "sha256": "a65249861238e1c18b84ae5d112617c438d83a76b67eddc170ad82dbc2338665" },
+    { "name": "msvcp140_2.dll", "sha256": "89e2e9a163165e20c540f9adea081e927ddfe4a556547b0f45f11586d4cce165" },
+    { "name": "msvcp140_atomic_wait.dll", "sha256": "fbf41e4b53f51bbf73fee37b6120103fea6b7d5ae29916f8ef50c50cfdedeead" },
+    { "name": "msvcp140_codecvt_ids.dll", "sha256": "0e1d3d76e899a89fb3893fb13abae232ff62ad4f573214dd2f02b8398166bcc6" },
+    { "name": "vccorlib140.dll", "sha256": "8903b5d88968791d2a93648a54a1ac3d1c708c579a72311ffe194f6d66903043" },
+    { "name": "vcruntime140.dll", "sha256": "da72e6677bd1bcd01c453c1998aaa19aeaf6659f4774cf6848409da8232a95b2" },
+    { "name": "vcruntime140_1.dll", "sha256": "26e470b29bed3d873e0c328186e53f95e9edbfe0b0fd0cda44743a0b1a04a828" },
+    { "name": "vcruntime140_threads.dll", "sha256": "326110c8c5cac836cfed1643304cb6bdc4a8737a7a535d6b1eff4d63878aef9d" }
+  ],
+  "licenses": [
+    { "name": "microsoft-vc-redist-license-en.rtf", "sha256": "8099dc3cf9502c335da829e5c755948a12e3e6de490eb492a99deb673d883d8b" },
+    { "name": "microsoft-vc-redist-license-zh-CN.rtf", "sha256": "a808b4933ce3b3e0893504dbef43ebf90b8b567f94bd6481b6315ed9141e1b11" }
+  ]
+}

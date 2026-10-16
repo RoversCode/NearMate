@@ -1,2 +1,2 @@
-* text=auto eol=lf
-*.png binary
+# 官方许可使用固定摘要；作为二进制保留原始字节，避免换行转换改变发行材料。
+installer/licenses/msvc-runtime/*.rtf binary

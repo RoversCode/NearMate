@@ -1,0 +1,94 @@
+[project]
+name = "virtual-companion"
+version = "0.2.0"
+description = "桌面虚拟伴侣统一 Python 开发项目"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "streamvox==2.0.0",
+    "audiotsm==0.1.2",
+    "cn2an==0.5.23",
+    "cryptography>=45.0.0,<46.0.0",
+    "fastapi>=0.115,<1.0",
+    "httpx>=0.27,<1.0",
+    "gguf==0.18.0",
+    "hyperpyyaml>=1.2.3",
+    "inflect==7.5.0",
+    "langdetect==1.0.9",
+    "librosa==0.11.0",
+    "modelscope==1.30.0",
+    "munch==4.0.0",
+    "numpy>=2.2.0,<3.0.0",
+    "onnxruntime==1.21.1; sys_platform != 'win32'",
+    "openai>=1.0,<3.0",
+    "pillow>=11.0,<13.0",
+    "pydantic>=2.7,<3.0",
+    "pydantic-settings>=2.2,<3.0",
+    "pymupdf>=1.24,<2.0",
+    "pyyaml>=6.0,<7.0",
+    "soundcard>=0.4.3,<0.5",
+    "sounddevice>=0.5.0,<0.6",
+    "soundfile==0.13.1",
+    "soxr>=1.1.0,<2.0",
+    "srt==3.5.3",
+    "tokenizers>=0.22.2",
+    "uvicorn[standard]>=0.30,<1.0",
+    "livekit==1.0.23",
+    "pypinyin>=0.55.0",
+    "pywin32==312; sys_platform == 'win32'",
+    "winrt-Windows.Devices.Enumeration==3.2.1; sys_platform == 'win32'",
+    "winrt-Windows.Foundation==3.2.1; sys_platform == 'win32'",
+    "winrt-Windows.Foundation.Collections==3.2.1; sys_platform == 'win32'",
+    "winrt-Windows.Media.Capture==3.2.1; sys_platform == 'win32'",
+    "winrt-Windows.Media.MediaProperties==3.2.1; sys_platform == 'win32'",
+    "winrt-Windows.Storage==3.2.1; sys_platform == 'win32'",
+    "python-multipart>=0.0.20,<1.0",
+    "transformers==4.57.2",
+    "claude-agent-sdk>=0.2.128",
+    "cua-driver==0.22.1",
+    "sentencepiece>=0.2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9.0",
+    "pytest-asyncio>=0.23,<1.0",
+]
+windows-cuda = [
+    "streamvox[llama-cuda,onnx-cuda]==2.0.0; sys_platform == 'win32'",
+    "sherpa-onnx==1.12.20; sys_platform == 'win32'",
+    "sherpa-onnx-core==1.12.20; sys_platform == 'win32'",
+]
+windows-universal = [
+    "streamvox[directml]==2.0.0; sys_platform == 'win32'",
+    "sherpa-onnx==1.12.20; sys_platform == 'win32'",
+    "sherpa-onnx-core==1.12.20; sys_platform == 'win32'",
+]
+
+[project.scripts]
+companion-core = "companion.core.main:run"
+audio-aec-poc = "audio_aec_poc.main:main"
+
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["backend/src", "tools/audio-aec-poc/src"]
+namespaces = true
+
+[tool.pytest.ini_options]
+pythonpath = ["backend/src", "tools/audio-aec-poc/src"]
+testpaths = ["backend/tests", "tools/audio-aec-poc/tests"]
+asyncio_mode = "auto"
+
+[tool.uv.sources]
+# 两个 profile 的唤醒和声纹都使用 CPU。固定同源 Windows 主包和原生包，避免跨平台索引元数据漏掉 core。
+sherpa-onnx = { url = "https://hf-mirror.com/csukuangfj/sherpa-onnx-wheels/resolve/main/cpu/1.12.20/sherpa_onnx-1.12.20-cp312-cp312-win_amd64.whl" }
+sherpa-onnx-core = { url = "https://hf-mirror.com/csukuangfj/sherpa-onnx-wheels/resolve/main/cpu/1.12.20/sherpa_onnx_core-1.12.20-py3-none-win_amd64.whl" }
+streamvox = { url = "https://github.com/RoversCode/StreamVox/releases/download/v2.0.0/streamvox-2.0.0-cp312-none-win_amd64.whl" }
+
+[tool.uv]
+conflicts = [[{ extra = "windows-cuda" }, { extra = "windows-universal" }]]
+constraint-dependencies = [
+    "numpy==2.4.6", "scipy==1.17.1", "numba==0.65.1", "llvmlite==0.47.0", "tokenizers==0.22.2",
+]

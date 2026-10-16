@@ -1,0 +1,112 @@
+realtime_input_only_mode: false
+
+wakeword:
+  provider: cpu
+  device: 0
+  num_threads: 2
+
+wake_response:
+  # 唤醒命中后，等待多少毫秒再播放唤醒回复音频；0 表示立即播放。
+  playback_delay_ms: 100
+
+vad:
+  provider: CPUExecutionProvider
+  # 连续命中多少个 32ms 语音窗口后，才确认用户正式开口，降低单帧误判引发的 turn 抖动。
+  speech_start_window_count: 6
+
+asr:
+  # engine 只放“怎么跑模型”的底层执行参数，例如 ONNX 用什么 provider、LLM 是否上 GPU。
+  engine:
+    # 是否打印 Qwen ASR 内部日志；排查推理链路问题时可打开，日常运行嫌吵可关闭。
+    # 发行启动器会按 NEARMATE_RUNTIME_PROFILE 覆盖为 cuda/dml 与 cuda/vulkan；
+    # auto 只作为源码开发环境的可读默认值。
+    onnx_provider: auto
+    llm_backend: auto
+    verbose: false
+  # session 只放“这次识别怎么做”的业务参数，例如热词和 partial/final 的解码策略。
+  session:
+    hotwords:
+      - 稻妻
+      - 小练
+    # partial 用于实时中间转写，优先降低首字延迟和重算成本。
+    partial:
+      # 每次 partial 识别时送入模型的分块时长（秒）。
+      chunk_size_sec: 8.0
+      # partial 识别时保留多少个历史 chunk 作为上下文记忆。
+      memory_chunks: 1
+      # partial 只截取最近多少秒音频参与识别，避免长句反复重算整段历史。
+      window_sec: 12.0
+    # final 用于 turn 结束后的最终转写，优先保证文本稳定性。
+    final:
+      # 每次 final 识别时送入模型的分块时长（秒）。
+      chunk_size_sec: 12.0
+      # final 识别时保留多少个历史 chunk 作为上下文记忆。
+      memory_chunks: 1
+
+speaker_verification:
+  # sherpa-onnx 说话人嵌入 extractor 的执行 provider。
+  provider: cpu
+  # 说话人嵌入 extractor 的线程数，CPU 推理时可按机器能力调优。
+  num_threads: 1
+  # 单次或 final 检测分数达到该值时，当前 turn 直接放行。
+  high_similarity: 0.28
+  # 非 final 单次检测分数低于该值时，先累计低分连续次数；连续两次才拒绝当前 turn。
+  low_similarity: 0.2
+  # 多次检测落在灰区时，final 阶段使用本轮均值与该阈值比较决定是否放行。
+  mean_similarity: 0.28
+
+worker:
+  # 累计静音达到该时长后，才触发 Smart Turn 结束判定。
+  turn_silence_timeout_ms: 200
+  # 两次 partial ASR 之间至少新增多少毫秒音频，内部会换算成 16kHz PCM16 字节数。
+  partial_asr_min_new_audio_ms: 500
+  # 两次 partial ASR 之间的最小触发时间间隔。
+  partial_asr_min_interval_ms: 400
+  # final ASR 与说话人确认要求的最短有效人声音频时长，内部会换算成 16kHz PCM16 字节数。
+  min_final_asr_audio_ms: 600
+
+smart_turn:
+  provider: CPUExecutionProvider  # CPUExecutionProvider DmlExecutionProvider
+  # 模型判断“可能说完”后，额外给用户保留的短暂补说宽限窗口。
+  final_grace_ms: 200
+  # 低于该结束概率时进入灰区等待，避免一次模型低置信误判直接截断。
+  ambiguous_probability: 0.5
+  # 灰区等待持续到该时长后，才向前端展示“继续说话中”的提示。
+  hint_delay_ms: 2000
+  # 灰区下累计静音达到该时长后，允许按“说完了”收束当前 turn。
+  ambiguous_silence_timeout_ms: 1000
+  # 无论模型概率如何，静音达到该时长都强制结束当前 turn。
+  absolute_silence_timeout_ms: 4500
+
+text_eou:
+  # 基于 final ASR 文本辅助判断用户是否说完；关闭后完全回退原始 Smart Turn 时序。
+  enabled: true
+  # FireRedChat turn detector 模型目录；生产运行只读取 backend/ckpt，不依赖 ref_code。
+  model_dir: ckpt/turn_detector
+  # chinese 使用中文模型，multilingual 使用多语言模型。
+  lang: chinese
+  # 文本 EOU ONNX Runtime provider。
+  # 两个发行 profile 都固定使用 CPU；ASR 和 StreamVox 仍按 profile 使用 CUDA 或 DirectML。
+  provider: CPUExecutionProvider
+  # 高于该概率时，即使 Smart Turn 低置信，也按“已说完”进入 final grace。
+  high_finish_probability: 0.95
+  # 低于该概率时，认为用户明显没说完，延长低置信静音等待。
+  unlikely_probability: 0.08
+  # 明显没说完时，absolute_silence_timeout_ms 的延长倍率。
+  low_confidence_timeout_multiplier: 2.0
+
+debug_audio:
+  enabled: false
+  output_dir: debug-audio
+  max_session_files: 200
+
+aec_sidecar_debug_audio:
+  enabled: false
+  output_dir: debug-audio/aec-sidecar
+  max_runs: 3
+
+latency:
+  # 是否记录实时延迟 marker；关闭时不创建记录器，热路径零开销。
+  enabled: false
+  # JSONL 落盘路径，相对仓库根目录解析。
+  output_path: latency-traces/realtime-latency.jsonl

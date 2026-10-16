@@ -1,0 +1,322 @@
+.avatar-shell {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.stage-column {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 20px;
+  min-height: 0;
+}
+
+.avatar-stage {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+.avatar-stage {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(227, 180, 92, 0.26), transparent 28%),
+    linear-gradient(180deg, rgba(255, 253, 249, 0.92) 0%, rgba(241, 247, 247, 0.92) 100%);
+}
+
+.avatar-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto auto 18px 22px;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(223, 125, 87, 0.16), transparent 66%);
+  filter: blur(18px);
+}
+
+.avatar-shell .avatar-stage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.avatar-shell .avatar-stage::after {
+  display: none;
+}
+
+.avatar-stage-button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.avatar-stage-button:focus-visible {
+  outline: 2px solid rgba(223, 125, 87, 0.8);
+  outline-offset: 3px;
+}
+
+.stage-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.stage-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.avatar-shell .stage-title {
+  font-size: 20px;
+}
+
+.stage-subtitle {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.avatar-shell .stage-subtitle {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.stage-status-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink-soft);
+  font-size: 12px;
+  box-shadow: 0 12px 24px rgba(20, 49, 63, 0.08);
+}
+
+.status-chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent-sea);
+}
+
+.avatar-canvas-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 540px;
+  margin-top: 20px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(227, 180, 92, 0.34), transparent 32%),
+    linear-gradient(180deg, rgba(20, 49, 63, 0.86) 0%, rgba(21, 42, 55, 0.98) 100%);
+}
+
+.avatar-canvas-shell::before,
+.avatar-canvas-shell::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.65;
+  animation: slow-float 9s ease-in-out infinite;
+}
+
+.avatar-canvas-shell::before {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(223, 125, 87, 0.28), transparent 72%);
+  top: 32px;
+  left: 80px;
+}
+
+.avatar-canvas-shell::after {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(113, 168, 165, 0.3), transparent 72%);
+  bottom: 36px;
+  right: 90px;
+  animation-delay: -4s;
+}
+
+.avatar-shell .avatar-canvas-shell {
+  min-height: 300px;
+  margin-top: 14px;
+}
+
+.avatar-shell .avatar-canvas-shell::before {
+  width: 180px;
+  height: 180px;
+  top: 16px;
+  left: 20px;
+}
+
+.avatar-shell .avatar-canvas-shell::after {
+  width: 140px;
+  height: 140px;
+  bottom: 18px;
+  right: 18px;
+}
+
+.avatar-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.avatar-stage-fallback {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+  width: min(420px, calc(100% - 48px));
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(255, 251, 246, 0.14);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 249, 240, 0.94);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 244, 0.16);
+}
+
+.avatar-shell .avatar-stage-fallback {
+  width: min(240px, calc(100% - 28px));
+  padding: 18px;
+  gap: 10px;
+}
+
+.avatar-shell .avatar-stage-fallback strong {
+  font-size: 16px;
+}
+
+.avatar-shell .fallback-pills {
+  gap: 8px;
+}
+
+.avatar-stage-fallback strong {
+  font-size: 22px;
+}
+
+.avatar-stage-fallback p {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(255, 247, 236, 0.82);
+}
+
+.fallback-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fallback-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 12px;
+}
+
+.avatar-stage-pet {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.avatar-stage-content-pet {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+}
+
+.avatar-canvas-pet {
+  position: absolute;
+  inset: 0;
+}
+
+.avatar-stage-fallback-pet {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: min(220px, calc(100vw - 24px));
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(20, 49, 63, 0.62);
+  color: rgba(255, 250, 244, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 24px rgba(20, 49, 63, 0.18);
+}
+
+.avatar-stage-fallback-pet strong {
+  display: block;
+  font-size: 14px;
+}
+
+.avatar-stage-fallback-pet p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+  font-size: 12px;
+  color: rgba(255, 250, 244, 0.88);
+}
+
+@keyframes slow-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 1260px) {
+  .stage-column {
+    grid-template-rows: minmax(0, 1fr) 240px;
+  }
+}
+
+@media (max-width: 780px) {
+  .stage-meta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .avatar-canvas-shell {
+    min-height: 420px;
+  }
+
+  .avatar-shell .avatar-canvas-shell {
+    min-height: 260px;
+  }
+}

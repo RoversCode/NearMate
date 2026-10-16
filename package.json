@@ -1,13 +1,45 @@
 {
-  "name": "nearmate-release-site",
-  "version": "0.1.0",
+  "name": "desktop-virtual-companion",
   "private": true,
-  "type": "module",
-  "description": "NearMate 官方下载网站与公开发行支持文件",
+  "packageManager": "pnpm@9.12.2",
   "scripts": {
-    "check": "node scripts/check.mjs",
-    "test": "node --test scripts/check.test.mjs",
-    "build": "node scripts/build.mjs"
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "pnpm run console:typecheck && pnpm run desktop:typecheck",
+    "test": "pnpm run dev:test && pnpm run console:test && pnpm run desktop:test",
+    "build": "pnpm run console:build && pnpm run desktop:build",
+    "dev:test": "node --test scripts/dev.test.mjs scripts/dev-port-check.test.mjs scripts/independent-dev.test.mjs scripts/backend-core-dev.test.mjs scripts/livekit-dev.test.mjs scripts/livekit-log-filter.test.mjs",
+    "knip": "knip",
+    "check": "pnpm run typecheck && pnpm run knip && pnpm run test && pnpm run build",
+    "python:venv": "uv venv .venv --python 3.12",
+    "python:install": "uv sync --locked --extra dev --extra windows-cuda",
+    "python:install:universal": "uv sync --locked --extra dev --extra windows-universal",
+    "desktop:dev": "node scripts/independent-dev.mjs desktop -- pnpm --filter companion-desktop run dev",
+    "desktop:test": "pnpm --filter companion-desktop run test",
+    "desktop:typecheck": "pnpm --filter companion-desktop run typecheck",
+    "desktop:build": "pnpm --filter companion-desktop run build",
+    "installer:stage:cuda": "pwsh -NoProfile -File installer/build_profile.ps1 -Profile cuda",
+    "installer:stage:universal": "pwsh -NoProfile -File installer/build_profile.ps1 -Profile universal",
+    "installer:runtime:cuda": "pwsh -NoProfile -File installer/prepare_python_runtime.ps1 -Profile cuda",
+    "installer:runtime:universal": "pwsh -NoProfile -File installer/prepare_python_runtime.ps1 -Profile universal",
+    "installer:package:cuda": "set NEARMATE_RUNTIME_PROFILE=cuda&& set NEARMATE_OUTPUT_DIR=cuda-unpacked&& pnpm --filter companion-desktop run package:unpacked",
+    "installer:package:universal": "set NEARMATE_RUNTIME_PROFILE=universal&& set NEARMATE_OUTPUT_DIR=universal-unpacked&& pnpm --filter companion-desktop run package:unpacked",
+    "installer:setup:cuda": "pwsh -NoProfile -File installer/compile_setup.ps1 -Profile cuda",
+    "installer:setup:universal": "pwsh -NoProfile -File installer/compile_setup.ps1 -Profile universal",
+    "installer:test:release-cleanup": "pwsh -NoProfile -File installer/tests/release_cleanup_smoke.Tests.ps1",
+    "installer:build": "pwsh -NoProfile -File installer/build_all.ps1",
+    "installer:build:cuda": "pwsh -NoProfile -File installer/build_all.ps1 -Profile cuda",
+    "installer:build:universal": "pwsh -NoProfile -File installer/build_all.ps1 -Profile universal",
+    "console:dev": "node scripts/independent-dev.mjs console -- pnpm --filter virtual-companion-control-console run dev",
+    "console:test": "pnpm --filter virtual-companion-control-console run test",
+    "console:typecheck": "pnpm --filter virtual-companion-control-console run typecheck",
+    "console:build": "pnpm --filter virtual-companion-control-console run build",
+    "livekit:dev": "node scripts/livekit-dev.mjs",
+    "backend:test": ".venv\\Scripts\\python.exe -m pytest backend\\tests",
+    "backend:core": "node scripts/backend-core-dev.mjs"
   },
-  "engines": { "node": ">=22" }
+  "devDependencies": {
+    "knip": "^6.25.0"
+  },
+  "version": "0.2.0",
+  "license": "Apache-2.0"
 }

@@ -1,0 +1,27 @@
+{
+  "id": "cua-driver",
+  "name": "电脑与浏览器操作",
+  "summary": "使用官方 Cua Driver 在后台观察并操作 Windows 应用和 NearMate 专用浏览器。",
+  "category": "设备控制",
+  "version": "0.22.1",
+  "default_enabled": false,
+  "trigger_scenarios": [
+    "任务需要观察、点击、输入或滚动 Windows 桌面应用",
+    "任务需要恢复系统托盘中的已运行应用并继续操作",
+    "任务需要在 NearMate 专用 Chrome 或 Edge Profile 中完成网页操作"
+  ],
+  "inputs": [
+    "要操作的应用、窗口或网页",
+    "用户明确要求完成的界面动作"
+  ],
+  "outputs": [
+    "经过重新观察确认的桌面或网页操作结果"
+  ],
+  "dependencies": [
+    {
+      "kind": "executable",
+      "name": "cua-driver",
+      "minimum_version": "0.22.1"
+    }
+  ]
+}

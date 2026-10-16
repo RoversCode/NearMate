@@ -1,0 +1,70 @@
+.panel-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.panel-stack {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 16px;
+  height: 100%;
+  width: min(100%, 360px);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-header > button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(74, 55, 44, 0.08);
+  color: var(--ink-soft);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.panel-actions-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--accent-coral) 0%, #c8694a 100%);
+  color: white;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.panel-actions-button:hover {
+  transform: translateY(-1px);
+}
+
+.panel-actions-button:focus-visible {
+  outline: 2px solid rgba(223, 125, 87, 0.8);
+  outline-offset: 3px;
+}
+
+.panel-model-view {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  gap: 16px;
+}
+
+@media (max-width: 780px) {
+  .panel-shell {
+    padding: 16px;
+  }
+}

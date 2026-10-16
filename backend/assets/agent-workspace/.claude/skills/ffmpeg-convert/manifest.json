@@ -1,0 +1,26 @@
+{
+  "id": "ffmpeg-convert",
+  "name": "FFmpeg 格式转换",
+  "summary": "转换音频或视频的格式、编码、码率、分辨率和封装格式。",
+  "category": "媒体处理",
+  "version": "1.0.1",
+  "default_enabled": true,
+  "trigger_scenarios": [
+    "转换音频或视频的文件格式与封装格式",
+    "调整媒体编码、码率或视频分辨率",
+    "从视频中提取音频"
+  ],
+  "inputs": [
+    "一个可读取的音频或视频文件",
+    "目标格式，或明确的编码、码率、分辨率要求"
+  ],
+  "outputs": [
+    "写入当前任务交付目录的转换后媒体文件"
+  ],
+  "dependencies": [
+    {
+      "kind": "executable",
+      "name": "ffmpeg"
+    }
+  ]
+}

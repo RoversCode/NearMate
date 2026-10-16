@@ -1,0 +1,52 @@
+.avatar-bootstrap-bubble {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
+  background:
+    radial-gradient(circle at top right, rgba(227, 180, 92, 0.24), transparent 45%),
+    rgba(20, 49, 63, 0.82);
+  pointer-events: auto;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-bootstrap-bubble strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.avatar-bootstrap-bubble p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.avatar-bootstrap-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-bootstrap-action {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #d28f42 100%);
+  color: var(--ink-strong);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, opacity 150ms ease;
+  -webkit-app-region: no-drag;
+}
+
+.avatar-bootstrap-action:hover {
+  transform: translateY(-1px);
+}
+
+.avatar-bootstrap-action:focus-visible {
+  outline: 2px solid rgba(227, 180, 92, 0.82);
+  outline-offset: 3px;
+}

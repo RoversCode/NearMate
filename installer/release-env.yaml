@@ -1,0 +1,28 @@
+# 安装包默认配置只包含非敏感运行参数；LiveKit 凭据必须由受管运行环境注入。
+control_host: "127.0.0.1"
+control_port: 8765
+followup_timeout_s: 300.0
+livekit_url: ""
+livekit_api_key: ""
+livekit_api_secret: ""
+qweather_timeout_s: 5.0
+prompt_audit:
+  enabled: false
+background_agent_terminal_diagnostics_enabled: false
+realtime_input_only_mode: false
+wakeword:
+  provider: cpu
+  device: 0
+  num_threads: 2
+wake_response:
+  playback_delay_ms: 100
+vad:
+  provider: CPUExecutionProvider
+  speech_start_window_count: 6
+asr:
+  engine:
+    onnx_provider: auto
+    llm_backend: auto
+    verbose: false
+  session:
+    hotwords: []

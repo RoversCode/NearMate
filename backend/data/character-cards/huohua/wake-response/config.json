@@ -1,0 +1,47 @@
+{
+  "buckets": {
+    "morning": [
+      {
+        "id": "1dbfe5d0-bd1c-4aa9-86f2-d390b348bf02",
+        "text": "早上好，宝子。",
+        "audio_path": "wake_morning_cd4d200064c24bf7b57defcb4fa23338.wav",
+        "synthesized_at": 1789277833.3225024,
+        "voice_fingerprint": "35e0628980362d09b9d269b0e8fa92376c26aeac8dd7bec6aab57c651cc3eccc"
+      }
+    ],
+    "afternoon": [
+      {
+        "id": "1f6430c1-6c2d-4e6a-b1cc-c672a42523ad",
+        "text": "我在呢，宝子。",
+        "audio_path": "wake_afternoon_dc7f93ee9d434d20ba06a98a89c8bfe9.wav",
+        "synthesized_at": 1789277798.9658275,
+        "voice_fingerprint": "35e0628980362d09b9d269b0e8fa92376c26aeac8dd7bec6aab57c651cc3eccc"
+      }
+    ],
+    "evening": [
+      {
+        "id": "3c87732d-81ea-48eb-b303-20c085d5a708",
+        "text": "晚上好，宝子。",
+        "audio_path": "wake_evening_bbbd293d3c1a4783a3fba05c6712a52a.wav",
+        "synthesized_at": 1789277834.5119743,
+        "voice_fingerprint": "35e0628980362d09b9d269b0e8fa92376c26aeac8dd7bec6aab57c651cc3eccc"
+      }
+    ],
+    "night": [
+      {
+        "id": "ef01512a-88b8-4389-9a67-5e25c266bf5b",
+        "text": "我在呢，你怎么还没睡？",
+        "audio_path": "wake_night_f94a0088f97049f7b3bb04043266f32f.wav",
+        "synthesized_at": 1789277861.254471,
+        "voice_fingerprint": "35e0628980362d09b9d269b0e8fa92376c26aeac8dd7bec6aab57c651cc3eccc"
+      },
+      {
+        "id": "beef3fd3-9235-43ed-8e82-d826e9470bad",
+        "text": "宝子，我在呢。",
+        "audio_path": "wake_night_e65a08779e2a415aba27664ec50d7cb9.wav",
+        "synthesized_at": 1789277859.8368814,
+        "voice_fingerprint": "35e0628980362d09b9d269b0e8fa92376c26aeac8dd7bec6aab57c651cc3eccc"
+      }
+    ]
+  }
+}

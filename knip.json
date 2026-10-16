@@ -1,0 +1,37 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignore": [
+    ".artifacts/**",
+    "marketing/nearmate-promo/**",
+    "website/**"
+  ],
+  "ignoreBinaries": [
+    "chcp",
+    "powershell.exe",
+    "pwsh",
+    "taskkill",
+    "uv"
+  ],
+  "workspaces": {
+    "console": {
+      "entry": [
+        "src/**/*.test.{ts,tsx}"
+      ],
+      "project": [
+        "src/**/*.{ts,tsx}"
+      ]
+    },
+    "desktop": {
+      "entry": [
+        "electron.vite.config.ts",
+        "src/main/index.ts",
+        "src/preload/*.ts",
+        "src/renderer/src/*-main.tsx",
+        "src/**/*.test.{ts,tsx}"
+      ],
+      "project": [
+        "src/**/*.{ts,tsx}"
+      ]
+    }
+  }
+}

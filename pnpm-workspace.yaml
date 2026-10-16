@@ -1,0 +1,7 @@
+packages:
+  - "desktop"
+  - "console"
+
+allowBuilds:
+  electron: true
+  esbuild: true
