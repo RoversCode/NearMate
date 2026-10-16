@@ -33,7 +33,9 @@ NearMate 承载你选择的角色。上方人物是品牌形象，实际虚拟�
 
 影片保留真实演示中的角色声音，也带你认识默认角色「火花」：有网感、嘴硬护短，正事认真。再看看角色卡如何定义身份、语气、关系和声音，让你喜欢的角色陪你交流、推进手头的事。
 
-[![观看 NearMate 免费开源版宣传片](./website/assets/images/desktop-demo.jpg)](https://roverscode.github.io/NearMate/#film)
+<!-- 更新影片时请重新上传 GitHub 视频附件，并让附件地址单独成段；Releases 下载地址不会生成播放器。 -->
+
+https://github.com/user-attachments/assets/57d22044-e02c-4726-94b5-f83983805162
 
 **播放后请开启声音。** [在官网观看完整宣传片](https://roverscode.github.io/NearMate/#film) · [下载 1080p MP4](https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-Product-Film-1080p.mp4)
 
