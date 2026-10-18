@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+from http.client import HTTPException
 import os
 from pathlib import Path, PurePosixPath
 import re
@@ -142,14 +143,19 @@ def copy_stream(
         relative_name: 已校验的清单相对文件名。
 
     Returns:
-        无；取消或数据超长时抛出异常。
+        无；取消、数据超长或 HTTP 协议错误时抛出异常。
     """
     copied = 0
     # HTTPResponse.read 会等满指定字节；read1 每次只做一次底层读取，慢连接也能及时检查取消。
     read_chunk = getattr(source, "read1", source.read)
     while True:
         check_cancelled(is_cancelled)
-        chunk = read_chunk(min(CHUNK_SIZE, size_bytes - copied + 1))
+        try:
+            chunk = read_chunk(min(CHUNK_SIZE, size_bytes - copied + 1))
+        except HTTPException:
+            # 分块截断等协议错误不是 OSError；只转换底层读取，避免把进度回调异常当成断网。
+            check_cancelled(is_cancelled)
+            raise OSError("资源响应协议无效或读取中断") from None
         check_cancelled(is_cancelled)
         if not chunk:
             return
@@ -210,7 +216,7 @@ def download_fixed_asset(
         relative_name: 已验证的清单相对文件名；省略时使用缓存文件名。
 
     Returns:
-        通过固定大小与摘要核验的缓存文件路径。
+        通过固定大小与摘要核验的缓存文件路径；网络或协议失败时尝试下一地址。
     """
     from .locking import asset_lock
 
@@ -232,7 +238,13 @@ def download_fixed_asset(
             try:
                 request = Request(url, headers={"User-Agent": "NearMate-assets/0.2.0"})
                 # 单次阻塞读有上限；每块检查取消，退出 with 时立即关闭连接与临时文件。
-                with urlopen(request, timeout=5) as response, temporary.open("xb") as output:
+                try:
+                    response = urlopen(request, timeout=5)
+                except HTTPException:
+                    # 损坏响应头同样属于来源不可用，不能跳过其余固定来源直接终止准备。
+                    check_cancelled(is_cancelled)
+                    raise OSError("资源响应协议无效或读取中断") from None
+                with response, temporary.open("xb") as output:
                     copy_stream(response, output, size_bytes=size_bytes, is_cancelled=is_cancelled,
                                 reporter=reporter, relative_name=name)
                 verify_asset(temporary, size_bytes, sha256, is_cancelled=is_cancelled)

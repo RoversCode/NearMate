@@ -469,19 +469,42 @@ class RuntimeInitialization:
 
         Returns:
             无返回值；所有已启动资源任务交回后才能退出。
+        Raises:
+            asyncio.CancelledError: 关闭期间收到取消时，等待资源交回后再传播。
         """
         self._closing = True
         self.bootstrap.runtime_blocked = True
         self.container.hub.runtime_events_enabled = False
         self.invalidate_initialization()
-        if self._asset_preparation_task is not None:
-            await asyncio.gather(self._asset_preparation_task, return_exceptions=True)
-        if self._resume_task is not None:
-            await self._resume_task
-        async with self.transition_lock:
-            if self.cleanup_tasks:
-                await asyncio.gather(*self.cleanup_tasks.values(), return_exceptions=True)
-                self.cleanup_tasks.clear()
+
+        async def drain_resource_owners() -> None:
+            """按依赖顺序交回资源，始终由独立任务持有仍在工作的线程。"""
+            if self._asset_preparation_task is not None:
+                await asyncio.gather(self._asset_preparation_task, return_exceptions=True)
+            if self._resume_task is not None:
+                await self._resume_task
+            async with self.transition_lock:
+                if self.cleanup_tasks:
+                    await asyncio.gather(*self.cleanup_tasks.values(), return_exceptions=True)
+                    self.cleanup_tasks.clear()
+
+        draining = asyncio.create_task(drain_resource_owners(), name="nearmate-runtime-draining")
+        cancellation_requested = False
+        while True:
+            try:
+                # 外层退出可以反复取消，但不能把取消传进仍在交回文件和模型的资源任务。
+                await asyncio.shield(draining)
+                break
+            except asyncio.CancelledError:
+                if draining.cancelled():
+                    raise
+                cancellation_requested = True
+            except Exception:
+                if cancellation_requested:
+                    raise asyncio.CancelledError from None
+                raise
+        if cancellation_requested:
+            raise asyncio.CancelledError
 
     async def monitor(self) -> None:
         """只在有清理工作时重试资源关闭，不再检查外部产品资格。

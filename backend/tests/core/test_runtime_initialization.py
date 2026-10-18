@@ -205,6 +205,74 @@ async def test_shutdown_cancels_asset_download_before_loading_models(initializat
 
 
 @pytest.mark.asyncio
+async def test_cancelled_lifespan_waits_for_asset_worker_before_releasing_owners(initialization_container):
+    """退出再次取消也要等资源线程交回文件，再传播取消并关闭原生命周期。
+
+    Args:
+        initialization_container: 记录初始化状态和资源关闭顺序的测试容器。
+    Returns:
+        无；连续取消不能越过资源所有者的关闭边界。
+    """
+    from contextlib import asynccontextmanager
+
+    entered, cancelled, release, worker_finished = (threading.Event() for _ in range(4))
+    original_closed = asyncio.Event()
+
+    @asynccontextmanager
+    async def original(_app):
+        try:
+            yield
+        finally:
+            original_closed.set()
+
+    app = FastAPI(lifespan=original)
+    install_runtime_initialization(app, initialization_container)
+    runtime = app.state.runtime_initialization
+
+    def prepare(*, progress, is_cancelled):
+        entered.set()
+        # 精确等退出信号；文件句柄在 release 打开之前始终由工作线程持有。
+        assert runtime._asset_preparation_cancelled.wait(3)
+        assert is_cancelled()
+        cancelled.set()
+        assert release.wait(3)
+        worker_finished.set()
+
+    controller = resource_preparation_controller(initialization_container, runtime, prepare)
+    lifespan = app.router.lifespan_context(app)
+    await lifespan.__aenter__()
+    assert await asyncio.to_thread(entered.wait, 1)
+    asset_task = runtime._asset_preparation_task
+    assert asset_task is not None
+    closing = asyncio.create_task(lifespan.__aexit__(None, None, None))
+    assert await asyncio.to_thread(cancelled.wait, 1)
+    try:
+        for _ in range(3):
+            closing.cancel()
+            cancellation_processed = asyncio.Event()
+            asyncio.get_running_loop().call_soon(cancellation_processed.set)
+            await cancellation_processed.wait()
+            assert not asset_task.cancelling()
+            assert not asset_task.done()
+            assert runtime._asset_preparation_task is asset_task
+            assert not closing.done()
+            assert not original_closed.is_set()
+            assert not worker_finished.is_set()
+    finally:
+        release.set()
+        await asyncio.gather(closing, return_exceptions=True)
+        await asyncio.gather(runtime._resume_task, return_exceptions=True)
+        assert await asyncio.to_thread(worker_finished.wait, 1)
+
+    assert closing.cancelled()
+    assert original_closed.is_set()
+    assert runtime._asset_preparation_task is None
+    assert runtime.bootstrap.runtime_blocked is True
+    assert initialization_container.hub.runtime_events_enabled is False
+    controller._build_runtime_replacement.assert_not_called()
+
+
+@pytest.mark.asyncio
 async def test_configuration_asset_failure_uses_retryable_safe_snapshot(initialization_container, monkeypatch):
     """首次确认或配置替换的准备失败也结算同一安全失败状态。"""
     from companion.core.application.runtime_initialization import RuntimeAssetPreparationFailed

@@ -1,6 +1,7 @@
 """验证源码资源准备的取消、隔离、离线复用和跨进程互斥。"""
 
 import hashlib
+import http.client
 import io
 import json
 import os
@@ -47,6 +48,167 @@ def _manifest_with_archive(tmp_path: Path, archive_payload: bytes = b"fixed") ->
     payload["assets"][0]["archive"] = archive
     manifest.write_text(json.dumps(payload), encoding="utf-8")
     return manifest, package_bytes, archive
+
+
+@pytest.fixture
+def truncated_chunked_response():
+    """提供真正由标准库解析的截断响应，并核对每次尝试都关闭连接。"""
+    responses = []
+
+    def create_response(on_interrupted=None):
+        class WireStream(io.BytesIO):
+            def read1(self, size=-1):
+                chunk = super().read1(size)
+                if not chunk and on_interrupted is not None:
+                    on_interrupted()
+                return chunk
+
+        class ResponseSocket:
+            def makefile(self, *_args, **_kwargs):
+                # 声明五字节分块，只发送两字节就断开，让 HTTPResponse 自己抛协议错误。
+                return WireStream(b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n5\r\nfi")
+
+        response = http.client.HTTPResponse(ResponseSocket())
+        response.begin()
+        responses.append(response)
+        return response
+
+    yield create_response
+    assert all(response.closed for response in responses)
+
+
+@pytest.mark.parametrize("failure", ["chunked_read", "response_headers"])
+def test_protocol_failure_tries_the_next_direct_url(
+    tmp_path: Path, monkeypatch, truncated_chunked_response, failure: str,
+) -> None:
+    """响应头或分块协议损坏后，应尝试仍可用的直链，不留下半个缓存。"""
+    requests = []
+
+    def download(request, timeout):
+        requests.append(request.full_url)
+        if request.full_url.endswith("/second"):
+            return io.BytesIO(b"fixed")
+        if failure == "response_headers":
+            raise http.client.BadStatusLine("private response from first mirror")
+        return truncated_chunked_response()
+
+    monkeypatch.setattr(asset_io, "urlopen", download)
+    destination = tmp_path / "model.onnx"
+    asset_io.download_fixed_asset(
+        ["https://example.invalid/first", "https://example.invalid/second"],
+        destination, 5, hashlib.sha256(b"fixed").hexdigest(),
+    )
+
+    assert requests == ["https://example.invalid/first", "https://example.invalid/second"]
+    assert destination.read_bytes() == b"fixed"
+    assert not list(tmp_path.rglob("*.part"))
+
+
+@pytest.mark.parametrize("archive_cached", [False, True])
+def test_protocol_failures_fall_back_to_fixed_archive(
+    tmp_path: Path, monkeypatch, truncated_chunked_response, archive_cached: bool,
+) -> None:
+    """所有直链均截断时，继续使用清单登记的归档缓存或固定归档下载。"""
+    manifest, package_bytes, archive = _manifest_with_archive(tmp_path)
+    payload = json.loads(manifest.read_text(encoding="utf-8"))
+    payload["assets"][0]["urls"].append("https://second.example.invalid/model")
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+    cache_root = tmp_path / "cache"
+    if archive_cached:
+        cached = cache_root / archive["sha256"] / archive["filename"]
+        cached.parent.mkdir(parents=True)
+        cached.write_bytes(package_bytes)
+    requests = []
+
+    def download(request, timeout):
+        requests.append(request.full_url)
+        if request.full_url == archive["url"]:
+            return io.BytesIO(package_bytes)
+        return truncated_chunked_response()
+
+    monkeypatch.setattr(asset_io, "urlopen", download)
+    prepare_realtime_assets(manifest, tmp_path / "ckpt", cache_root)
+
+    expected_requests = payload["assets"][0]["urls"] + ([] if archive_cached else [archive["url"]])
+    assert requests == expected_requests
+    assert (tmp_path / "ckpt/voice/model.onnx").read_bytes() == b"fixed"
+    assert not list(tmp_path.rglob("*.part"))
+
+
+def test_protocol_interruption_keeps_cancellation_ahead_of_fallback(
+    tmp_path: Path, monkeypatch, truncated_chunked_response,
+) -> None:
+    """连接报告截断的同一刻收到取消时，应保留取消事实，不尝试任何备用来源。"""
+    manifest, _package_bytes, _archive = _manifest_with_archive(tmp_path)
+    requests = []
+    cancelled = False
+
+    def cancel():
+        nonlocal cancelled
+        cancelled = True
+
+    def download(request, timeout):
+        requests.append(request.full_url)
+        return truncated_chunked_response(cancel)
+
+    monkeypatch.setattr(asset_io, "urlopen", download)
+    with pytest.raises(AssetPreparationCancelled):
+        prepare_realtime_assets(
+            manifest, tmp_path / "ckpt", tmp_path / "cache", is_cancelled=lambda: cancelled,
+        )
+
+    assert requests == ["https://example.invalid/model?signature=private"]
+    assert not (tmp_path / "ckpt/voice/model.onnx").exists()
+    assert not list(tmp_path.rglob("*.part"))
+
+
+def test_exhausted_protocol_failures_keep_the_safe_download_error(
+    tmp_path: Path, monkeypatch, truncated_chunked_response,
+) -> None:
+    """没有可用来源时仍报告安全资源名，不能把底层协议错误暴露给调用方。"""
+    monkeypatch.setattr(asset_io, "urlopen", lambda *_a, **_k: truncated_chunked_response())
+    with pytest.raises(RuntimeError) as failure:
+        asset_io.download_fixed_asset(
+            ["https://example.invalid/model?signature=private"], tmp_path / "model.onnx", 5,
+            hashlib.sha256(b"fixed").hexdigest(), relative_name="voice/model.onnx",
+        )
+
+    assert type(failure.value) is RuntimeError
+    assert failure.value.args == ("公开构建资产下载失败：voice/model.onnx",)
+    assert not (tmp_path / "model.onnx").exists()
+    assert not list(tmp_path.rglob("*.part"))
+
+
+def test_protocol_exception_from_progress_callback_is_not_a_network_failure(tmp_path: Path, monkeypatch) -> None:
+    """回调即使抛出同类协议异常也属于调用方失败，不能被当成镜像故障重试。"""
+    clock_values = iter(range(100))
+    monkeypatch.setattr(control.time, "monotonic", lambda: next(clock_values))
+    callback_error = http.client.IncompleteRead(b"callback failure")
+    requests = []
+    responses = []
+
+    def progress(message):
+        if message.startswith("正在准备"):
+            raise callback_error
+
+    def download(request, timeout):
+        requests.append(request.full_url)
+        response = io.BytesIO(b"fixed")
+        responses.append(response)
+        return response
+
+    monkeypatch.setattr(asset_io, "urlopen", download)
+    with pytest.raises(http.client.IncompleteRead) as failure:
+        asset_io.download_fixed_asset(
+            ["https://example.invalid/first", "https://example.invalid/second"],
+            tmp_path / "model.onnx", 5, hashlib.sha256(b"fixed").hexdigest(), progress=progress,
+        )
+
+    assert failure.value is callback_error
+    assert requests == ["https://example.invalid/first"]
+    assert all(response.closed for response in responses)
+    assert not (tmp_path / "model.onnx").exists()
+    assert not list(tmp_path.rglob("*.part"))
 
 
 @pytest.mark.parametrize("archive_cached", [False, True])
