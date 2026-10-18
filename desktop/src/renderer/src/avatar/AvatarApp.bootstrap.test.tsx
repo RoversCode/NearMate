@@ -51,6 +51,15 @@ describe("AvatarApp bootstrap gate", () => {
   let container: HTMLDivElement;
   let root: ReturnType<typeof createRoot>;
 
+  it("输入资源准备时显示后端进度，并继续阻断桌宠业务", () => {
+    useBootstrapStatusMock.mockReturnValue({ status: "blocked", reason: "uninitialized",
+      message: "正在准备语音模型（12/18），70%", retry: vi.fn() });
+    act(() => root.render(<AvatarApp />));
+    expect(container.textContent).toContain("正在准备语音模型（12/18），70%");
+    expect(container.textContent).toContain("运行时初始化");
+    expect(useAvatarRuntimeMock).not.toHaveBeenCalled();
+  });
+
   it("初始化阻断期三个已注册快捷键仍有短音，回执不重播且不启动业务运行时", async () => {
     useBootstrapStatusMock.mockReturnValue({ status: "blocked", reason: "uninitialized", retry: vi.fn() });
     const cue = vi.spyOn(ShortcutSound.prototype, "play").mockResolvedValue(undefined);

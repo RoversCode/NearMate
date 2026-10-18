@@ -4,6 +4,7 @@ export type AvatarBootstrapBubbleMode = "loading" | "uninitialized" | "backend_u
 
 type AvatarBootstrapBubbleProps = {
   mode: AvatarBootstrapBubbleMode;
+  message?: string;
   onOpenConsole?(): void;
   onRetry?(): void;
   onHeightChange(height: number): void;
@@ -33,6 +34,7 @@ const AVATAR_BOOTSTRAP_COPY: Record<
  *
  * Args:
  *   mode: 当前初始化状态，用来选择说明和操作。
+ *   message: Backend 确认的运行时进度；没有进度时显示首次配置说明。
  *   onOpenConsole: 打开配置页面；未提供时不显示失效按钮。
  *   onRetry: 重新检查本地服务。
  *   onHeightChange: 内容或宽度变化后接收包含按钮的完整高度。
@@ -42,6 +44,7 @@ const AVATAR_BOOTSTRAP_COPY: Record<
  */
 export function AvatarBootstrapBubble({
   mode,
+  message,
   onOpenConsole,
   onRetry,
   onHeightChange,
@@ -62,7 +65,7 @@ export function AvatarBootstrapBubble({
     const observer = new ResizeObserver(measureHeight);
     observer.observe(bubble);
     return () => observer.disconnect();
-  }, [mode, onHeightChange]);
+  }, [mode, message, onHeightChange]);
   /**
    * 未初始化时必须把用户引导到 console；后端不可用时 console 不一定可达，因此只给重试。
    * loading 态没有立即可执行动作，保持纯状态提示，避免用户误以为需要手动处理。
@@ -80,8 +83,8 @@ export function AvatarBootstrapBubble({
       style={style}
     >
       <div>
-        <strong>{copy.title}</strong>
-        <p>{copy.description}</p>
+        <strong>{message ? "运行时初始化" : copy.title}</strong>
+        <p>{message || copy.description}</p>
       </div>
       {shouldShowOpenConsole || shouldShowRetry ? (
         <div className="avatar-bootstrap-actions">

@@ -77,6 +77,25 @@ describe("useBootstrapStatus", () => {
     });
   }
 
+  it("同一输入阶段持续显示资源进度，旧版本不能覆盖新提示", async () => {
+    fetchMock.mockResolvedValue({ ok: true, json: async () => ({ ...readyBootstrapEvent.payload, is_initialized: false }) });
+    act(() => root.render(createElement(Probe, { baseUrl: "http://127.0.0.1:8765", onStatus: value => { latest = value; } })));
+    await flush();
+    const emit = (payload: unknown) => sockets[0].onmessage?.({ data: JSON.stringify({ type: "runtime.initialization_changed", payload }) });
+    act(() => emit({ ...initializingRuntime, message: "正在准备语音模型（12/18），70%" }));
+    expect(latest?.message).toBe("正在准备语音模型（12/18），70%");
+    act(() => emit({ ...initializingRuntime, revision: 3, message: "正在准备语音模型（13/18），75%" }));
+    act(() => emit({ ...initializingRuntime, message: "旧下载进度" }));
+    expect(latest?.message).toBe("正在准备语音模型（13/18），75%");
+    expect(latest?.status).toBe("blocked");
+    await act(async () => window.dispatchEvent(new Event("focus")));
+    await flush();
+    expect(latest?.message).toBe("正在准备语音模型（13/18），75%");
+    act(() => sockets[0].onmessage?.({ data: JSON.stringify({ ...readyBootstrapEvent,
+      payload: { ...readyBootstrapEvent.payload, is_initialized: false } }) }));
+    expect(latest?.message).toBe("正在准备语音模型（13/18），75%");
+  });
+
   it("首次只读取一次 Bootstrap HTTP 状态", async () => {
     fetchMock.mockResolvedValue({ ok: true, json: async () => ({ ...readyBootstrapEvent.payload, is_initialized: true }) });
     act(() => root.render(createElement(Probe, { baseUrl: "http://127.0.0.1:8765", onStatus: value => { latest = value; } })));

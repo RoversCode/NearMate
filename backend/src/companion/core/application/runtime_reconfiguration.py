@@ -17,6 +17,10 @@ from companion.capabilities.weather.validation import (
 from companion.core.assistant_process_supervisor import AssistantProcessSupervisor
 from companion.core.application.errors import InvalidRequest, ServiceUnavailable, StateConflict
 from companion.core.application.runtime_replacement import RuntimeReplacementTransaction
+from companion.core.application.runtime_initialization import (
+    ASSET_PREPARATION_FAILURE_MESSAGE,
+    RuntimeAssetPreparationFailed,
+)
 from companion.core.broadcast import BroadcastHub
 from companion.core.realtime_input_runtime_owner import RealtimeInputRuntimeOwner
 from companion.core.settings import Settings
@@ -562,6 +566,8 @@ class RuntimeReconfigurationCoordinator:
         """
         async with self._configuration_mutation_lock:
             if not validate_llm_settings_ready(self.settings.llm).is_ready:
+                # 源码资源与厂商凭据无关；首配事务回滚后，初始化重试仍须能继续下载。
+                await self._prepare_input_runtime_assets()
                 return False
             bootstrap = await run_in_threadpool(self.hub.bootstrap.status_payload)
             if not bootstrap["voice"]["is_ready"] and os.environ.get("NEARMATE_PACKAGED") == "1":
@@ -610,14 +616,31 @@ class RuntimeReconfigurationCoordinator:
         try:
             # 配置事务仍持有变更锁；只有同步模型加载离开事件循环，避免控制面被模型构造冻结。
             return await self._load_runtime_replacement(include_realtime_input=include_realtime_input)
-        except BaseException:
+        except BaseException as error:
             token, self._configuration_initialization_token = self._configuration_initialization_token, None
             if observer is not None and token is not None:
-                await observer.finish_configuration_initialization(token, success=False)
+                await observer.finish_configuration_initialization(token, success=False,
+                    failure_message=(ASSET_PREPARATION_FAILURE_MESSAGE
+                        if isinstance(error, RuntimeAssetPreparationFailed) else None))
             raise
+
+    async def _prepare_input_runtime_assets(self) -> None:
+        """通过真实 Owner 准备资源，首次配置和凭据未齐备的启动共用同一取消边界。"""
+        owner = getattr(self, "realtime_input_runtime_owner", None)
+        prepare = getattr(owner, "prepare_source_assets", None)
+        # 只有真实 Owner 声明资源准备能力；外部 Runtime 和轻量测试替身不触发下载。
+        if not callable(prepare):
+            return
+        observer = getattr(self, "runtime_initialization", None)
+        if observer is not None:
+            await observer.prepare_input_runtime_assets(prepare)
+        else:
+            await run_in_threadpool(prepare)
 
     async def _load_runtime_replacement(self, *, include_realtime_input: bool) -> RuntimeReplacementTransaction:
         """请求取消时仍等同步加载交回候选，再关闭资源，不能把线程留成无主任务。"""
+        if include_realtime_input:
+            await self._prepare_input_runtime_assets()
         loading = asyncio.create_task(run_in_threadpool(self._build_runtime_replacement,
             include_realtime_input=include_realtime_input), name="nearmate-runtime-candidate-loading")
         try:

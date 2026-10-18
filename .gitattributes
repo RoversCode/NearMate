@@ -1,2 +1,4 @@
 # 官方许可使用固定摘要；作为二进制保留原始字节，避免换行转换改变发行材料。
 installer/licenses/msvc-runtime/*.rtf binary
+# 固定分词器按原始字节检出，避免换行转换改变清单里的 SHA256。
+backend/ckpt/tokenizer.json binary

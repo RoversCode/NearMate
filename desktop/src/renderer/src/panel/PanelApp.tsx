@@ -41,6 +41,7 @@ export function PanelApp() {
     return (
       <BootstrapBlockedView
         reason={bootstrapStatus.reason ?? "backend_unavailable"}
+        message={bootstrapStatus.message}
         windowLabel="控制面板"
         onRetry={bootstrapStatus.retry}
         onOpenConsole={

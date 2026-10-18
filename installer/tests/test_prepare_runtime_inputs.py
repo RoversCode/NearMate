@@ -53,14 +53,17 @@ def test_failed_download_never_becomes_a_reusable_asset(tmp_path: Path, monkeypa
     assert not list(destination.parent.glob("*.part"))
 
 
-def test_corrupt_existing_cache_fails_without_overwriting_it(tmp_path: Path, monkeypatch) -> None:
-    """损坏的既有缓存必须显式暴露，不能被网络结果悄悄覆盖。"""
+def test_corrupt_existing_cache_is_backed_up_before_repair(tmp_path: Path, monkeypatch) -> None:
+    """修复损坏缓存前先保留原文件，下载失败也不会丢失旧内容。"""
     destination = tmp_path / "model.onnx"
     destination.write_bytes(b"old")
-    monkeypatch.setattr(runtime_asset_io, "urlopen", lambda *_args, **_kwargs: pytest.fail("不应访问网络"))
-    with pytest.raises(ValueError, match="SHA256"):
-        runtime_asset_io.download_fixed_asset(["https://example.invalid/model"], destination, 3, "0" * 64)
-    assert destination.read_bytes() == b"old"
+    payload = b"new"
+    monkeypatch.setattr(runtime_asset_io, "urlopen", lambda *_args, **_kwargs: io.BytesIO(payload))
+    runtime_asset_io.download_fixed_asset(
+        ["https://example.invalid/model"], destination, len(payload), hashlib.sha256(payload).hexdigest(),
+    )
+    assert destination.read_bytes() == payload
+    assert [path.read_bytes() for path in tmp_path.glob("model.onnx.*.backup")] == [b"old"]
 
 
 def test_realtime_assets_reuse_only_matching_read_only_source(tmp_path: Path, monkeypatch) -> None:

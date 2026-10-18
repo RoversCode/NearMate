@@ -14,6 +14,305 @@ from companion.core.application.runtime_initialization import install_runtime_in
 from companion.core.application.runtime_initialization import RuntimeInitialization
 
 
+def resource_preparation_controller(container, runtime, prepare):
+    """让资源准备经过真实协调器入口，但不启动实际输入模型。
+
+    Args:
+        container: 记录状态与准入的测试容器。
+        runtime: 当前唯一初始化所有者。
+        prepare: 可用线程闩锁控制的同步资源准备端口。
+    Returns:
+        只替换实际模型构造的协调器。
+    """
+    from companion.core.application.runtime_reconfiguration import RuntimeReconfigurationCoordinator
+
+    controller = object.__new__(RuntimeReconfigurationCoordinator)
+    controller.realtime_input_runtime_owner = SimpleNamespace(prepare_source_assets=prepare)
+    controller.runtime_initialization = runtime
+    controller._build_runtime_replacement = Mock(return_value=SimpleNamespace(rollback=Mock()))
+
+    async def restore(*, report_phase):
+        async with container.hub.configuration_mutation_lock:
+            await report_phase("input_models")
+            await controller._load_runtime_replacement(include_realtime_input=True)
+            await report_phase("assistant")
+            return True
+
+    container.runtime_reconfiguration.restore_runtime.side_effect = restore
+    return controller
+
+
+@pytest.mark.asyncio
+async def test_asset_progress_keeps_http_available_and_retry_reuses_download(initialization_container):
+    """下载在线程等待时，状态 HTTP 与事件保持可用，重复重试共用下载。"""
+    container = initialization_container
+    entered, release = threading.Event(), threading.Event()
+    calls = []
+
+    def prepare(*, progress, is_cancelled):
+        calls.append(threading.get_ident())
+        progress("正在准备语音模型（12/18），70%")
+        entered.set()
+        assert release.wait(3)
+        assert not is_cancelled()
+
+    app = FastAPI()
+    app.get("/api/bootstrap/status")(lambda: container.hub.bootstrap.status_payload())
+    install_runtime_initialization(app, container)
+    runtime = app.state.runtime_initialization
+    controller = resource_preparation_controller(container, runtime, prepare)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://localhost") as api:
+        await api.post("/api/runtime/initialization/retry")
+        assert await asyncio.to_thread(entered.wait, 1)
+        try:
+            status = (await asyncio.wait_for(api.get("/api/runtime/initialization"), 1)).json()
+            assert status["message"] == "正在准备语音模型（12/18），70%"
+            assert status["phase"] == "input_models"
+            assert set(status) == {"runtime_id", "operation_id", "revision", "state", "phase", "message", "retryable"}
+            bootstrap = await asyncio.wait_for(api.get("/api/bootstrap/status"), 1)
+            assert bootstrap.status_code == 200
+            assert bootstrap.json()["is_initialized"] is False
+            retried = (await api.post("/api/runtime/initialization/retry")).json()
+            assert retried["operation_id"] == status["operation_id"]
+            assert len(calls) == 1
+            assert any(event["payload"]["message"] == status["message"] for event in container.events)
+            controller._build_runtime_replacement.assert_not_called()
+        finally:
+            release.set()
+        await wait_for_state(runtime, "ready")
+    controller._build_runtime_replacement.assert_called_once_with(include_realtime_input=True)
+
+
+@pytest.mark.asyncio
+async def test_cancelled_asset_preparation_waits_for_worker_to_release_files(initialization_container):
+    """请求重复取消后仍等待下载线程交回文件，不能遗留无主写入。"""
+    runtime = RuntimeInitialization(initialization_container)
+    await runtime.begin_configuration_initialization(include_realtime_input=True)
+    entered, cancelled, release = threading.Event(), threading.Event(), threading.Event()
+
+    def prepare(*, progress, is_cancelled):
+        entered.set()
+        while not is_cancelled():
+            cancelled.wait(0.005)
+        cancelled.set()
+        progress("取消后的迟到进度")
+        assert release.wait(3)
+
+    loading = asyncio.create_task(runtime.prepare_input_runtime_assets(prepare))
+    assert await asyncio.to_thread(entered.wait, 1)
+    message = runtime.snapshot.message
+    loading.cancel()
+    assert await asyncio.to_thread(cancelled.wait, 1)
+    loading.cancel()
+    await asyncio.sleep(0)
+    assert not loading.done()
+    assert runtime.snapshot.message == message
+    release.set()
+    with pytest.raises(asyncio.CancelledError):
+        await loading
+    assert runtime._asset_preparation_task is None
+
+
+@pytest.mark.asyncio
+async def test_superseded_asset_progress_cannot_change_new_configuration(initialization_container):
+    """新配置取消旧下载，旧进度和成功返回都不能改变新操作或解除阻断。"""
+    from companion.core.application.runtime_initialization import SupersededInitialization
+
+    runtime = RuntimeInitialization(initialization_container)
+    await runtime.begin_configuration_initialization(include_realtime_input=True)
+    entered, cancelled, release = threading.Event(), threading.Event(), threading.Event()
+
+    def prepare(*, progress, is_cancelled):
+        entered.set()
+        while not is_cancelled():
+            cancelled.wait(0.005)
+        cancelled.set()
+        progress("旧下载已经完成，99%")
+        assert release.wait(3)
+
+    loading = asyncio.create_task(runtime.prepare_input_runtime_assets(prepare))
+    assert await asyncio.to_thread(entered.wait, 1)
+    await runtime.begin_configuration_initialization(include_realtime_input=False)
+    current = runtime.status_payload()
+    assert await asyncio.to_thread(cancelled.wait, 1)
+    await asyncio.sleep(0)
+    assert runtime.status_payload() == current
+    release.set()
+    with pytest.raises(SupersededInitialization):
+        await loading
+    assert runtime.status_payload() == current
+    assert runtime.bootstrap.runtime_blocked is True
+
+
+@pytest.mark.asyncio
+async def test_asset_failure_is_safe_and_retry_starts_a_new_preparation(initialization_container):
+    """准备失败只展示安全提示，重试重新校验资源后才构造模型。"""
+    container = initialization_container
+    runtime = RuntimeInitialization(container)
+    calls = []
+
+    def prepare(*, progress, is_cancelled):
+        calls.append(1)
+        if len(calls) == 1:
+            raise OSError("https://private.invalid/model?signature=private-value")
+
+    controller = resource_preparation_controller(container, runtime, prepare)
+    first = await runtime.start_resume()
+    await wait_for_state(runtime, "failed")
+    assert runtime.snapshot.message == "运行资源准备失败，请检查网络连接后重新初始化。"
+    assert runtime.snapshot.retryable is True
+    assert container.hub.runtime_events_enabled is False
+    assert "private" not in str(container.events)
+    controller._build_runtime_replacement.assert_not_called()
+    second = await runtime.start_resume()
+    assert second["operation_id"] != first["operation_id"]
+    await wait_for_state(runtime, "ready")
+    assert len(calls) == 2
+    controller._build_runtime_replacement.assert_called_once()
+
+
+@pytest.mark.asyncio
+async def test_shutdown_cancels_asset_download_before_loading_models(initialization_container):
+    """进程退出主动通知下载停止，文件释放前等待，之后也不能重新加载模型。"""
+    container = initialization_container
+    runtime = RuntimeInitialization(container)
+    entered, cancelled, release = threading.Event(), threading.Event(), threading.Event()
+    callbacks = []
+
+    def prepare(*, progress, is_cancelled):
+        callbacks.append(progress)
+        entered.set()
+        while not is_cancelled():
+            cancelled.wait(0.005)
+        cancelled.set()
+        assert release.wait(3)
+
+    controller = resource_preparation_controller(container, runtime, prepare)
+    await runtime.start_resume()
+    assert await asyncio.to_thread(entered.wait, 1)
+    closing = asyncio.create_task(runtime.drain_cleanup())
+    assert await asyncio.to_thread(cancelled.wait, 1)
+    assert not closing.done()
+    release.set()
+    await asyncio.wait_for(closing, 1)
+    snapshot = runtime.status_payload()
+    callbacks[0]("已经退出后的下载进度")
+    await asyncio.sleep(0)
+    assert runtime.status_payload() == snapshot
+    controller._build_runtime_replacement.assert_not_called()
+    assert container.hub.bootstrap.runtime_blocked is True
+    assert container.hub.runtime_events_enabled is False
+
+
+@pytest.mark.asyncio
+async def test_configuration_asset_failure_uses_retryable_safe_snapshot(initialization_container, monkeypatch):
+    """首次确认或配置替换的准备失败也结算同一安全失败状态。"""
+    from companion.core.application.runtime_initialization import RuntimeAssetPreparationFailed
+
+    monkeypatch.delenv("NEARMATE_PACKAGED", raising=False)
+    container = initialization_container
+    runtime = RuntimeInitialization(container)
+    controller = resource_preparation_controller(container, runtime, Mock(side_effect=OSError("private path")))
+    controller.hub = container.hub
+    controller._configuration_initialization_token = None
+    with pytest.raises(RuntimeAssetPreparationFailed):
+        await controller._prepare_runtime_replacement(include_realtime_input=True)
+    assert runtime.snapshot.state == "failed"
+    assert runtime.snapshot.retryable is True
+    assert runtime.snapshot.message == "运行资源准备失败，请检查网络连接后重新初始化。"
+    assert controller._configuration_initialization_token is None
+    controller._build_runtime_replacement.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_assistant_only_replacement_does_not_prepare_input_assets(initialization_container):
+    """只改助手配置时复用已有输入模型，不重复检查或下载输入资源。"""
+    runtime = RuntimeInitialization(initialization_container)
+    prepare = Mock(side_effect=AssertionError("不应准备输入资源"))
+    controller = resource_preparation_controller(initialization_container, runtime, prepare)
+    await controller._load_runtime_replacement(include_realtime_input=False)
+    prepare.assert_not_called()
+    controller._build_runtime_replacement.assert_called_once_with(include_realtime_input=False)
+
+
+@pytest.mark.asyncio
+async def test_first_llm_asset_failure_retries_without_retaining_uncommitted_credentials(
+    initialization_container, tmp_path, monkeypatch,
+):
+    """首配失败回滚凭据后仍能重试下载，资源完成后继续首次配置事务。"""
+    from companion.bootstrap.service import BootstrapService
+    from companion.core.application.runtime_initialization import RuntimeAssetPreparationFailed
+    from companion.core.application.runtime_reconfiguration import RuntimeReconfigurationCoordinator
+    from companion.core.settings import Settings
+    from companion.llm.config import LlmSettings, ProviderCredential, validate_llm_settings_ready
+    from companion.records.bootstrap_secret_store import BootstrapSecretStore
+
+    monkeypatch.delenv("NEARMATE_PACKAGED", raising=False)
+    container = initialization_container
+    settings = Settings(bootstrap_db_path=str(tmp_path / "bootstrap.sqlite3"),
+                        user_settings_path=str(tmp_path / "settings.json"))
+    settings.llm = LlmSettings()
+    previous = settings.llm.model_copy(deep=True)
+    store = BootstrapSecretStore(settings.bootstrap_db_path)
+    store.initialize()
+    container.hub.bootstrap = BootstrapService(settings=settings, secret_store=store)
+    prepare = Mock(side_effect=[OSError("private download failure"), None, None])
+    owner = SimpleNamespace(runtime=None, prepare_source_assets=prepare)
+    controller = RuntimeReconfigurationCoordinator(settings=settings, hub=container.hub,
+        realtime_input_runtime_owner=owner, assistant_process_supervisor=container.assistant_process_supervisor,
+        activity_service=object(), background_agent_interactions=object(), interrupt_runtime_activities=lambda _: [],
+        release_runtime_memory_compaction=lambda _: False, restart_livekit_media_session=AsyncMock(),
+        provider_connectivity_checker=AsyncMock(), configuration_mutation_lock=container.hub.configuration_mutation_lock)
+    container.runtime_reconfiguration = controller
+    runtime = RuntimeInitialization(container)
+
+    class Transaction:
+        """只替换真实模型构造，配置验证、持久化与初始化生命周期全部走正式路径。"""
+        state = "prepared"
+
+        async def commit(self, *, report_phase):
+            await report_phase("assistant")
+            await report_phase("media")
+            self.state = "committed"
+
+        def rollback(self):
+            self.state = "rolled_back"
+
+    controller._build_runtime_replacement = Mock(return_value=Transaction())
+    candidate = {
+        "credentials": {
+            "deepseek": ProviderCredential(base_url="https://api.deepseek.com/v1", api_key="fixture-deepseek"),
+            "qwen": ProviderCredential(base_url="workspace", api_key="fixture-qwen"),
+        },
+        "role_bindings": {
+            "foreground": "deepseek:deepseek-flash:chat", "summary": "deepseek:deepseek-flash:chat",
+            "cognitive": "qwen:qwen3.6-plus:chat", "character_authoring": None,
+        },
+    }
+    with pytest.raises(RuntimeAssetPreparationFailed):
+        await controller.update_llm_config(**candidate)
+    assert runtime.snapshot.state == "failed"
+    assert runtime.snapshot.retryable is True
+    assert settings.llm == previous
+    assert store.get_bootstrap_secret("llm_config_json") is None
+    controller._build_runtime_replacement.assert_not_called()
+
+    await runtime.start_resume()
+    await wait_for_state(runtime, "idle")
+    assert prepare.call_count == 2
+    assert settings.llm == previous
+    assert store.get_bootstrap_secret("llm_config_json") is None
+    assert not validate_llm_settings_ready(settings.llm).is_ready
+    controller._build_runtime_replacement.assert_not_called()
+
+    await controller.update_llm_config(**candidate)
+    assert prepare.call_count == 3
+    assert runtime.snapshot.state == "ready"
+    assert validate_llm_settings_ready(settings.llm).is_ready
+    assert store.get_bootstrap_secret("llm_config_json") is not None
+    controller._build_runtime_replacement.assert_called_once_with(include_realtime_input=True)
+
+
 @pytest.fixture
 def initialization_container():
     """用阶段闩锁验证初始化生命周期，不启动真实模型。"""
@@ -280,6 +579,9 @@ async def test_voice_confirmation_reports_stages_without_blocking_event_loop(ini
     from companion.core.application.runtime_reconfiguration import RuntimeReconfigurationCoordinator
 
     container = initialization_container
+    preparation_order = []
+    container.realtime_input_runtime_owner.prepare_source_assets = Mock(
+        side_effect=lambda **_kwargs: preparation_order.append("assets"))
     monkeypatch.setattr(coordinator_module, "validate_llm_settings_ready", lambda _: SimpleNamespace(is_ready=True))
     controller = RuntimeReconfigurationCoordinator(settings=SimpleNamespace(llm=object()), hub=container.hub,
         realtime_input_runtime_owner=container.realtime_input_runtime_owner,
@@ -311,6 +613,8 @@ async def test_voice_confirmation_reports_stages_without_blocking_event_loop(ini
     def load_input_models(*, include_realtime_input):
         assert include_realtime_input is True
         assert threading.get_ident() != main_thread
+        preparation_order.append("models")
+        assert preparation_order == ["assets", "models"]
         loaded.set()
         assert release_loading.wait(2)
         return CandidateTransaction()
@@ -337,7 +641,8 @@ async def test_voice_confirmation_reports_stages_without_blocking_event_loop(ini
     assert response["is_initialized"] is True
     assert runtime.status_payload()["state"] == "ready"
     phases = [event["payload"]["phase"] for event in container.events if event["type"] == "runtime.initialization_changed"]
-    assert phases == ["input_models", "assistant", "media", "media", "ready"]
+    assert [phase for index, phase in enumerate(phases) if not index or phase != phases[index - 1]] == [
+        "input_models", "assistant", "media", "ready"]
 
 
 @pytest.mark.asyncio

@@ -89,7 +89,9 @@ pnpm dev
 
 非 NVIDIA 设备使用 `pnpm python:install:universal` 安装 Python 依赖。首次启动按控制台提示连接模型服务、准备角色语音。依赖来自公开固定发行物，无需申请产品激活码。
 
-后端测试需要文本分词器 `backend/ckpt/tokenizer.json`。该外部模型资产不随源码提交，准备时须使用 [模型资产清单](installer/model-catalog.json) 中 `qwen3-tts-clone-0.6b-gguf` 的 `ckpt/tokenizer.json`，并核对其固定版本、文件大小和 SHA256；已有缓存也须通过同样校验。准备完成后，在根目录运行 `pnpm backend:test`。正式测试位于各产品包中，个人试验脚本和本机数据不进入 Git。
+文本分词器 `backend/ckpt/tokenizer.json` 随源码提供，安装 Python 依赖后可直接运行 `pnpm backend:test`。分词器的来源与许可见 [第三方声明](THIRD_PARTY_NOTICES.md)。正式测试位于各产品包中，个人试验脚本和本机数据不进入 Git。
+
+源码启动会检查实时输入模型，缺失或损坏时自动从 [ModelScope NearMate](https://www.modelscope.cn/models/ChengHee/NearMate) 的固定版本下载；完整资源约 2.3 GB。控制台会显示准备进度，失败后可重试，尚未配置 LLM 时也能准备资源。已有模型通过大小和 SHA256 校验后直接复用，无需联网检查更新。模型来源、版本与摘要见 [实时资源清单](installer/realtime-assets.json)；原生 DLL 从已安装的固定 StreamVox wheel 准备。角色语音模型继续通过控制台的首次配置流程管理。
 
 安装包构建见 [安装包构建](installer/README.md)。官网源码位于 `website/`，在该目录运行 `npm test`、`npm run check` 和 `npm run build`。
 

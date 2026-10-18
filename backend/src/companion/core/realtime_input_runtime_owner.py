@@ -52,6 +52,17 @@ class RealtimeInputRuntimeOwner:
         runtime_identity_factory: RuntimeIdentityFactory | None = None,
         voice_status_provider: Callable[[], dict[str, object]] | None = None,
     ) -> None:
+        """登记输入资源所有权，控制面构造期间不加载模型。
+
+        Args:
+            settings: 后续模型构造使用的控制服务配置。
+            hub: 控制面广播与持久化中心。
+            runtime: 已由外部准备好的输入运行时；为空时等待受管初始化。
+            runtime_identity_factory: 为输入资源生成进程内唯一身份的端口。
+            voice_status_provider: 读取当前角色完整语音状态的内部端口。
+        Returns:
+            无；自有运行时仍为空，外部运行时立即绑定身份。
+        """
         self.settings = settings
         self.hub = hub
         # 唤醒缓存资格需要完整的内部语音状态；Bootstrap 的公开投影会主动移除 fingerprint。
@@ -62,33 +73,31 @@ class RealtimeInputRuntimeOwner:
         self._pending_shutdown_runtimes: dict[int, RealtimeInputRuntime] = {}
         self._next_input_runtime_epoch = 1
         self.owns_runtime = runtime is None
-        self.runtime = runtime or self._build_initial_runtime()
+        # 控制面先启动，所有自有模型都由受管初始化在线程中准备和构造。
+        self.runtime = runtime
         if self.runtime is not None:
             self._assign_runtime_identity(self.runtime)
         self._publish_interaction_state()
 
-    def _build_initial_runtime(self) -> RealtimeInputRuntime | None:
-        """按启动初始化状态构造首个自有实时输入运行时。
+    def prepare_source_assets(
+        self,
+        *,
+        progress: Callable[[str], None] | None = None,
+        is_cancelled: Callable[[], bool] | None = None,
+    ) -> None:
+        """在真实模型构造前补齐源码运行所需资源，外部输入运行时无需准备。
 
+        Args:
+            progress: 接收安全资源名称与下载进度的线程回调。
+            is_cancelled: 返回当前初始化是否已被取消。
         Returns:
-            已绑定唤醒回复依赖的运行时；尚未初始化时为空。
+            无；安装态直接复用随包资源，源码态校验或补齐本地缓存。
         """
+        if not self.owns_runtime:
+            return
+        from companion.runtime_assets.source import prepare_source_runtime_assets
 
-        # 首次启动尚无外部密钥时必须先开放控制台，不能创建半初始化的语音运行时。
-        if not self.hub.bootstrap.status_payload()["is_initialized"]:
-            return None
-        try:
-            candidate = self.attach_wake_response_runtime(
-                RealtimeInputRuntime.from_settings(
-                    self.settings,
-                    wakeword_keywords=self.active_wakeword_keywords(),
-                )
-            )
-            return candidate
-        except Exception as error:
-            # 控制面必须先启动，语音输入资源失败时让 Console 展示配置错误并支持重试。
-            logger.exception("实时输入运行时初始化失败，保留控制面以便修复：%s", error)
-            return None
+        prepare_source_runtime_assets(progress=progress, is_cancelled=is_cancelled)
 
     def _assign_runtime_identity(self, runtime: RealtimeInputRuntime) -> None:
         """为新建候选分配一次性 UUID 与单调 epoch。

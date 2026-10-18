@@ -4,6 +4,7 @@ import asyncio
 from collections.abc import Awaitable, Callable
 from inspect import isawaitable
 from functools import partial
+from threading import Event
 from uuid import uuid4
 
 from starlette.concurrency import run_in_threadpool
@@ -16,6 +17,13 @@ logger = get_backend_logger(__name__)
 
 class SupersededInitialization(RuntimeError):
     """旧初始化已被后来的配置或退出取代，不能再发布候选或状态。"""
+
+
+class RuntimeAssetPreparationFailed(RuntimeError):
+    """源码运行资源未准备完成，公开状态只使用固定安全提示。"""
+
+
+ASSET_PREPARATION_FAILURE_MESSAGE = "运行资源准备失败，请检查网络连接后重新初始化。"
 
 
 class RuntimeInitialization:
@@ -47,6 +55,8 @@ class RuntimeInitialization:
         self._resume_task: asyncio.Task | None = None
         self._closing = False
         self._retirement_required = False
+        self._asset_preparation_cancelled: Event | None = None
+        self._asset_preparation_task: asyncio.Task | None = None
         container.runtime_reconfiguration.runtime_initialization = self
 
     def status_payload(self) -> dict[str, object]:
@@ -104,10 +114,75 @@ class RuntimeInitialization:
         """使旧候选失效，不能让迟到加载发布到新的初始化世代。
 
         Returns:
-            无；正在运行的同步加载会自然结束并回滚，不能取消线程后丢失资源所有权。
+            无；下载收到取消通知，同步模型加载自然结束并回滚，不丢失线程中的资源所有权。
         """
         self._initialization_generation += 1
         self._requested_resume = None
+        if self._asset_preparation_cancelled is not None:
+            self._asset_preparation_cancelled.set()
+
+    async def prepare_input_runtime_assets(self, prepare: Callable) -> None:
+        """在线程准备输入资源，取消或换代时等待工作线程交回文件句柄。
+
+        Args:
+            prepare: 真实输入 Owner 提供的同步资源准备端口。
+        Returns:
+            无；资源完整后才允许继续构造模型，失败或换代时保持业务阻断。
+        """
+        token = (self._initialization_generation, self.snapshot.operation_id)
+        await self.report_initialization_phase(token, "input_models")
+        cancelled = Event()
+        loop = asyncio.get_running_loop()
+
+        def report_progress(message: str) -> None:
+            # 下载线程不能修改快照；回到事件循环后还要确认操作归属。
+            loop.call_soon_threadsafe(self._accept_asset_progress, token, message)
+
+        self._asset_preparation_cancelled = cancelled
+        loading = asyncio.create_task(run_in_threadpool(
+            prepare, progress=report_progress, is_cancelled=cancelled.is_set,
+        ), name="nearmate-runtime-assets")
+        self._asset_preparation_task = loading
+        try:
+            await asyncio.shield(loading)
+        except asyncio.CancelledError:
+            cancelled.set()
+            # 重复取消也不能遗失仍在写缓存文件的线程。
+            while not loading.done():
+                try:
+                    await asyncio.shield(loading)
+                except asyncio.CancelledError:
+                    continue
+                except Exception:
+                    break
+            if loading.done() and not loading.cancelled():
+                loading.exception()
+            raise
+        except Exception:
+            if cancelled.is_set():
+                raise SupersededInitialization("资源准备已被新操作取代") from None
+            raise RuntimeAssetPreparationFailed(ASSET_PREPARATION_FAILURE_MESSAGE) from None
+        finally:
+            if self._asset_preparation_task is loading:
+                self._asset_preparation_task = None
+                self._asset_preparation_cancelled = None
+        # 工作线程成功返回也不代表仍有发布资格，必须在构造模型前再次检查。
+        await self.report_initialization_phase(token, "input_models")
+
+    def _accept_asset_progress(self, token: tuple[int, str], message: str) -> None:
+        """只接纳当前输入准备阶段的安全进度，迟到回调不能覆盖新操作。"""
+        generation, operation_id = token
+        if (self._closing or generation != self._initialization_generation
+                or self._asset_preparation_task is None or self._asset_preparation_task.done()
+                or (self._asset_preparation_cancelled is not None and self._asset_preparation_cancelled.is_set())
+                or self.snapshot.operation_id != operation_id
+                or self.snapshot.state != "initializing" or self.snapshot.phase != "input_models"):
+            return
+        if not message or message == self.snapshot.message:
+            return
+        self.snapshot = self.snapshot.changed(state="initializing", phase="input_models",
+            operation_id=operation_id, message=message)
+        asyncio.create_task(self._publish_snapshot(), name="nearmate-runtime-assets-progress")
 
     async def start_resume(self, *, replace_current: bool = False) -> dict[str, object]:
         """登记唯一的后台初始化任务，重复点击重试不会重复加载模型。
@@ -152,7 +227,7 @@ class RuntimeInitialization:
                 if generation != self._initialization_generation:
                     continue
                 self.snapshot = self.snapshot.changed(state="idle", phase="idle", operation_id=operation_id)
-            except Exception:
+            except Exception as error:
                 if generation != self._initialization_generation or self._closing:
                     continue
                 cleanup_failed = bool(self.pending_cleanup)
@@ -160,7 +235,8 @@ class RuntimeInitialization:
                 self.container.hub.runtime_events_enabled = False
                 self.snapshot = self.snapshot.changed(state="failed", phase="failed",
                     operation_id=operation_id, retryable=True,
-                    message="旧运行时尚未关闭，请重试初始化。" if cleanup_failed else None)
+                    message=("旧运行时尚未关闭，请重试初始化。" if cleanup_failed else
+                        ASSET_PREPARATION_FAILURE_MESSAGE if isinstance(error, RuntimeAssetPreparationFailed) else None))
                 logger.error("运行时初始化失败 phase=%s", self.snapshot.phase)
             if generation == self._initialization_generation:
                 self._requested_resume = None
@@ -215,12 +291,13 @@ class RuntimeInitialization:
             raise SupersededInitialization("初始化已被新操作取代")
 
     async def finish_configuration_initialization(self, token: tuple[int, str],
-                                                  *, success: bool) -> None:
+                                                  *, success: bool, failure_message: str | None = None) -> None:
         """配置事务提交或回滚后结算阶段，旧事务不能解除新初始化阻断。
 
         Args:
             token: 构造候选前冻结的操作身份。
             success: 事务是否已经提交并完成 readiness。
+            failure_message: 可选的固定安全失败提示，不接受第三方原始异常。
         Returns:
             无；只结算仍属于当前操作的状态。
         """
@@ -230,7 +307,8 @@ class RuntimeInitialization:
         if success:
             await self.report_initialization_phase(token, "media")
         snapshot = self.snapshot.changed(state="ready" if success else "failed",
-            phase="ready" if success else "failed", operation_id=operation_id, retryable=not success)
+            phase="ready" if success else "failed", operation_id=operation_id, retryable=not success,
+            message=failure_message if not success else None)
         # 快照与业务门禁在同一事件循环提交段改变，慢状态连接不能制造提前派发窗口。
         self.snapshot = snapshot
         if success:
@@ -396,6 +474,8 @@ class RuntimeInitialization:
         self.bootstrap.runtime_blocked = True
         self.container.hub.runtime_events_enabled = False
         self.invalidate_initialization()
+        if self._asset_preparation_task is not None:
+            await asyncio.gather(self._asset_preparation_task, return_exceptions=True)
         if self._resume_task is not None:
             await self._resume_task
         async with self.transition_lock:

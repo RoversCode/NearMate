@@ -17,6 +17,19 @@ beforeEach(() => { sockets = installConsoleControlWebSocketMock(); });
 afterEach(resetConsoleAppTestEnvironment);
 
 describe("独立运行时初始化门禁", () => {
+  it("同一输入阶段持续展示下载进度，资源准备失败后提供重试", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => reply(initial)));
+    renderGate();
+    await screen.findByText(initial.message);
+    await act(async () => emit({ ...initial, revision: 2, message: "正在准备语音模型（12/18），70%" }));
+    expect(screen.getByText("正在准备语音模型（12/18），70%")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "控制台操作" })).toBeNull();
+    await act(async () => emit({ ...initial, revision: 3, state: "failed", phase: "failed", retryable: true,
+      message: "运行资源准备失败，请检查网络连接后重新初始化。" }));
+    expect(screen.getByText("运行资源准备失败，请检查网络连接后重新初始化。")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "重新初始化" })).toBeTruthy();
+  });
+
   it("显示真实阶段且不能关闭，完成后挂载业务页面", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => reply(initial)));
     renderGate();

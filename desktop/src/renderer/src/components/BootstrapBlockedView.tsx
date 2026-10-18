@@ -6,6 +6,8 @@ export type BootstrapBlockedViewProps = {
    * 输入由 useBootstrapStatus 收窄，输出用于选择阻断文案；边界异常是未知 reason 不应传入该组件。
    */
   reason: BootstrapBlockedReason;
+  /** Backend 已确认的运行时进度；没有进度时继续显示首次配置说明。 */
+  message?: string;
   /**
    * windowLabel 是当前窗口展示名。
    * 输入为调用方提供的短文案，输出显示在阻断页眉；边界异常是空字符串只会影响可读性，不改变业务状态。
@@ -38,11 +40,20 @@ const BOOTSTRAP_BLOCKED_COPY: Record<
 };
 
 /**
- * BootstrapBlockedView 展示桌面窗口在 bootstrap 未就绪时的硬阻断界面。
- * 核心入参是阻断原因、窗口标签与重试回调；预期输出是可读的阻断说明和重试按钮；边界异常是调用方必须传入已收窄的 reason。
+ * 显示初始化阻断原因和后端资源进度，配置完成前不挂载业务界面。
+ *
+ * Args:
+ *   reason: 已收窄的阻断原因。
+ *   message: Backend 确认的资源进度；缺失时显示首次配置说明。
+ *   windowLabel: 当前窗口展示名。
+ *   onRetry: 重新读取本地服务状态。
+ *   onOpenConsole: 可选的控制台入口。
+ * Returns:
+ *   带状态说明和可执行按钮的阻断界面。
  */
 export function BootstrapBlockedView({
   reason,
+  message,
   windowLabel,
   onRetry,
   onOpenConsole
@@ -60,12 +71,12 @@ export function BootstrapBlockedView({
         <div className="bootstrap-blocked-header">
           <div>
             <p className="bootstrap-blocked-eyebrow">{windowLabel}</p>
-            <h1>{copy.title}</h1>
+            <h1>{message ? "运行时初始化" : copy.title}</h1>
           </div>
         </div>
         <div className="bootstrap-blocked-card">
           <span className="bootstrap-blocked-pill">Bootstrap blocked</span>
-          <p className="bootstrap-blocked-summary">{copy.description}</p>
+          <p className="bootstrap-blocked-summary">{message || copy.description}</p>
           {shouldShowOpenConsole ? (
             <button className="bootstrap-blocked-action" type="button" onClick={onOpenConsole}>
               打开 console

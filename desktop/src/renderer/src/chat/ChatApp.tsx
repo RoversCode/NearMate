@@ -69,6 +69,7 @@ export function ChatApp() {
     return (
       <BootstrapBlockedView
         reason={bootstrapStatus.reason ?? "backend_unavailable"}
+        message={bootstrapStatus.message}
         windowLabel="聊天窗口"
         onRetry={bootstrapStatus.retry}
       />

@@ -29,7 +29,7 @@ class RuntimeInitializationSnapshot:
         revision: 同一进程内递增的快照版本。
         state: 未配置、初始化中、已就绪或失败。
         phase: 已经实际进入的业务阶段，不表示百分比。
-        message: 固定安全提示，不能包含第三方异常或内部秘密。
+        message: 固定阶段提示或受管资源进度，不能包含第三方异常、文件绝对路径或内部秘密。
         retryable: 当前失败是否允许重试。
     """
 
@@ -60,7 +60,7 @@ class RuntimeInitializationSnapshot:
             phase: 已进入的真实阶段。
             operation_id: 本次状态所属的操作编号。
             retryable: 失败时是否可以重试。
-            message: 可选的固定安全错误提示。
+            message: 可选的安全阶段、资源准备进度或固定错误提示。
         Returns:
             新的不可变快照；原快照保持原样。
         """

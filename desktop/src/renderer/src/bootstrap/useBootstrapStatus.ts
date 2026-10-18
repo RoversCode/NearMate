@@ -2,11 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseBackendEvent } from "../types/backendEvents";
 
 export type BootstrapBlockedReason = "uninitialized" | "backend_unavailable";
-export type BootstrapStatus =
+export type BootstrapStatus = (
   | { status: "loading"; reason: null; retry(): void }
   | { status: "ready"; reason: null; retry(): void }
-  | { status: "blocked"; reason: BootstrapBlockedReason; retry(): void };
-type BootstrapSnapshot = { status: "loading" | "ready" | "blocked"; reason: BootstrapBlockedReason | null };
+  | { status: "blocked"; reason: BootstrapBlockedReason; retry(): void }) & { message?: string };
+type BootstrapSnapshot = { status: "loading" | "ready" | "blocked"; reason: BootstrapBlockedReason | null; message?: string };
 
 function readInitialBootstrapSnapshot(httpBaseUrl?: string): BootstrapSnapshot {
   return httpBaseUrl ? { status: "loading", reason: null } : { status: "blocked", reason: "backend_unavailable" };
@@ -52,7 +52,7 @@ export function useBootstrapStatus(httpBaseUrl?: string): BootstrapStatus {
     const sequence = ++requestSequenceRef.current;
     const eventVersionAtStart = eventVersionRef.current;
     activeControllerRef.current?.abort();
-    if (showLoading) setSnapshot({ status: "loading", reason: null });
+    if (showLoading) setSnapshot(current => current.message ? current : { status: "loading", reason: null });
     const controller = new AbortController();
     activeControllerRef.current = controller;
     const timeoutId = window.setTimeout(() => controller.abort(), 5000);
@@ -61,7 +61,11 @@ export function useBootstrapStatus(httpBaseUrl?: string): BootstrapStatus {
       if (!response.ok) throw new Error("bootstrap status request failed");
       const next = bootstrapSnapshotFromPayload(await response.json());
       if (!next) throw new Error("malformed bootstrap status");
-      if (mountedRef.current && sequence === requestSequenceRef.current && eventVersionAtStart === eventVersionRef.current) setSnapshot(next);
+      if (mountedRef.current && sequence === requestSequenceRef.current && eventVersionAtStart === eventVersionRef.current) {
+        // Bootstrap 只有配置门禁；已有的资源进度仍以初始化状态源为准。
+        setSnapshot(current => next.status === "blocked" && current.reason === "uninitialized"
+          ? { ...next, message: current.message } : next);
+      }
     } catch {
       // WebSocket 已更新状态时，旧 HTTP 请求的失败或超时也不能覆盖它。
       if (mountedRef.current && sequence === requestSequenceRef.current && eventVersionAtStart === eventVersionRef.current) {
@@ -128,7 +132,8 @@ export function useBootstrapStatus(httpBaseUrl?: string): BootstrapStatus {
               const next = bootstrapSnapshotFromPayload(parsed.event.payload);
               if (!next) return;
               eventVersionRef.current += 1;
-              setSnapshot(next);
+              setSnapshot(current => next.status === "blocked" && current.reason === "uninitialized"
+                ? { ...next, message: current.message } : next);
             } else {
               const runtime = parsed.event.type === "runtime.initialization_changed" ? parsed.event.payload : undefined;
               // 同一 Backend 的较旧快照不能重新关闭已准备好的运行时；进度 ready 仍只记录版本。
@@ -141,7 +146,9 @@ export function useBootstrapStatus(httpBaseUrl?: string): BootstrapStatus {
               // 运行时需要清理旧资源和准备模型；进度 ready 不能代替完整 Bootstrap 放行。
               if (runtime?.state === "initializing" || runtime?.state === "failed") {
                 eventVersionRef.current += 1;
-                setSnapshot({ status: "blocked", reason: "uninitialized" });
+                setSnapshot({ status: "blocked", reason: "uninitialized", message: runtime.message });
+              } else if (runtime) {
+                setSnapshot(current => ({ ...current, message: undefined }));
               }
             }
           } catch {
@@ -189,6 +196,6 @@ export function useBootstrapStatus(httpBaseUrl?: string): BootstrapStatus {
   return useMemo<BootstrapStatus>(() => {
     if (snapshot.status === "ready") return { status: "ready", reason: null, retry };
     if (snapshot.status === "loading") return { status: "loading", reason: null, retry };
-    return { status: "blocked", reason: snapshot.reason ?? "backend_unavailable", retry };
+    return { status: "blocked", reason: snapshot.reason ?? "backend_unavailable", message: snapshot.message, retry };
   }, [retry, snapshot]);
 }

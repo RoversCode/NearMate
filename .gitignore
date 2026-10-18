@@ -39,6 +39,8 @@ backend/bin/*
 !backend/bin/.gitkeep
 backend/ckpt/*
 !backend/ckpt/.gitkeep
+# 文本分词规则是源码运行和测试的固定基础资源，随仓库提供。
+!backend/ckpt/tokenizer.json
 !backend/ckpt/LocationList/
 backend/ckpt/LocationList/*
 !backend/ckpt/LocationList/China-City-List-latest.csv

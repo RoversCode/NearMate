@@ -3,6 +3,8 @@ from __future__ import annotations
 from threading import RLock
 from types import SimpleNamespace
 from uuid import UUID
+from unittest.mock import Mock
+import sys
 
 import pytest
 
@@ -81,6 +83,31 @@ class RecordingHub:
         """记录一次正式身份广播。"""
 
         self.events.append(event)
+
+
+def test_owner_construction_defers_model_loading(monkeypatch: pytest.MonkeyPatch) -> None:
+    """即使启动配置已经齐备，构造 Owner 也不能抢先加载模型或下载资源。"""
+    load = Mock(side_effect=AssertionError("不能在控制面构造期间加载模型"))
+    monkeypatch.setattr(RealtimeInputRuntime, "from_settings", load)
+    owner = RealtimeInputRuntimeOwner(settings=SimpleNamespace(), hub=RecordingHub(), runtime=None)
+    assert owner.runtime is None
+    assert owner.owns_runtime is True
+    load.assert_not_called()
+
+
+def test_owner_prepares_source_assets_only_for_owned_runtime(monkeypatch: pytest.MonkeyPatch) -> None:
+    """真实自有 Owner 转发准备回调，外部注入的 Runtime 不下载模型。"""
+    prepare = Mock()
+    monkeypatch.setitem(sys.modules, "companion.runtime_assets.source",
+        SimpleNamespace(prepare_source_runtime_assets=prepare))
+    owner = RealtimeInputRuntimeOwner(settings=SimpleNamespace(), hub=RecordingHub(), runtime=None)
+    progress, is_cancelled = Mock(), Mock(return_value=False)
+    owner.prepare_source_assets(progress=progress, is_cancelled=is_cancelled)
+    prepare.assert_called_once_with(progress=progress, is_cancelled=is_cancelled)
+    prepare.reset_mock()
+    external = RealtimeInputRuntimeOwner(settings=SimpleNamespace(), hub=RecordingHub(), runtime=FakeInputRuntime())
+    external.prepare_source_assets(progress=progress, is_cancelled=is_cancelled)
+    prepare.assert_not_called()
 
 
 def build_owner(monkeypatch: pytest.MonkeyPatch) -> tuple[RealtimeInputRuntimeOwner, RecordingHub]:

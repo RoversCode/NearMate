@@ -30,17 +30,25 @@ type BootstrapAvatarBridge = Pick<
 type AvatarBootstrapShellProps = {
   avatarBridge?: BootstrapAvatarBridge;
   mode: AvatarBootstrapBubbleMode;
+  message?: string;
   onRetry(): void;
 };
 
 /**
- * AvatarBootstrapShell 渲染 bootstrap 未就绪时的“桌宠外壳”。
- * 核心入参是 avatar preload bridge、当前 bootstrap 模式与重试回调；预期输出是正常桌宠舞台、拖拽缩放能力和持久引导气泡。
- * 边界异常：该组件不会启动 control socket、麦克风或运行时能力，只允许展示资源、移动窗口和打开 console。
+ * 显示初始化期间的桌宠外壳与资源进度，只保留展示、移动和控制台入口。
+ *
+ * Args:
+ *   avatarBridge: 桌宠展示与窗口操作的 preload bridge。
+ *   mode: 当前初始化阻断模式。
+ *   message: Backend 确认的资源进度；缺失时显示配置引导。
+ *   onRetry: 重新读取本地服务状态。
+ * Returns:
+ *   桌宠舞台、拖拽缩放能力和持久气泡；不启动 control socket、麦克风或业务运行时。
  */
 export function AvatarBootstrapShell({
   avatarBridge,
   mode,
+  message,
   onRetry
 }: AvatarBootstrapShellProps) {
   const modelCatalog = avatarBridge?.runtime.live2d.catalog ?? [];
@@ -120,6 +128,7 @@ export function AvatarBootstrapShell({
       />
       <AvatarBootstrapBubble
         mode={mode}
+        message={message}
         onOpenConsole={
           avatarBridge?.openConsole
             ? () => avatarBridge.openConsole?.({ section: "settings" })

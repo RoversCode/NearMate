@@ -1,0 +1,10 @@
+This repository includes a derived version of the Qwen3 TTS model.
+Original Copyright © Alibaba Cloud (Qwen Team). All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License").
+You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0
+
+Modifications made by 小柳技术日志:
+- Converted original PyTorch weights to ONNX format for accelerated inference.
+- Converted original weights to GGUF format for cross-platform deployment.
+No modifications were made to the core architecture or training data.

@@ -72,6 +72,7 @@ export function AvatarApp() {
       <AvatarBootstrapShell
         avatarBridge={avatarBridge}
         mode={bootstrapStatus.reason ?? "loading"}
+        message={bootstrapStatus.message}
         onRetry={bootstrapStatus.retry}
       />
     );
