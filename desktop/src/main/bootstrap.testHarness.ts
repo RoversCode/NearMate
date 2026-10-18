@@ -261,10 +261,10 @@ export function createAppMock() {
     requestSingleInstanceLock: vi.fn(() => true),
     getPath: vi.fn((name: string) => {
       if (name === "userData") {
-        return "G:\\Workspace\\projects\\virtual_companion\\desktop\\test-user-data";
+        return "C:\\NearMate-fixtures\\desktop\\test-user-data";
       }
 
-      return "G:\\Workspace\\projects\\virtual_companion";
+      return "C:\\NearMate-fixtures";
     }),
     setAppUserModelId: vi.fn()
   };
@@ -366,7 +366,7 @@ function mockFollowupShortcutServices() {
 
   vi.doMock("./services/managedMaterialAssetStore", () => ({
     createManagedMaterialAssetStore: vi.fn(() => ({
-      rootDir: "G:\\Workspace\\projects\\virtual_companion\\desktop\\test-user-data\\runtime-material-assets",
+      rootDir: "C:\\NearMate-fixtures\\desktop\\test-user-data\\runtime-material-assets",
       prepareRuntime: vi.fn(async () => undefined),
       registerGeneratedAsset: vi.fn(() => "managed-asset-1"),
       release: vi.fn(async () => true),

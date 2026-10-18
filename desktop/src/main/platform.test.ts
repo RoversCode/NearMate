@@ -34,7 +34,7 @@ describe("platform bridge", () => {
     }));
 
     const { createPlatformBridge } = await import("./platform");
-    const bridge = createPlatformBridge({ appResourceRoot: "G:/Workspace/projects/virtual_companion/assets" });
+    const bridge = createPlatformBridge({ appResourceRoot: "C:/NearMate-fixtures/assets" });
 
     bridge.attachTray({
       toggleAvatarVisibility: vi.fn(),
@@ -42,7 +42,7 @@ describe("platform bridge", () => {
     });
 
     expect(observedIconPath.replaceAll("\\", "/")).toBe(
-      "G:/Workspace/projects/virtual_companion/assets/icon.png"
+      "C:/NearMate-fixtures/assets/icon.png"
     );
     expect(resize).toHaveBeenCalledWith({
       width: 16,
@@ -83,7 +83,7 @@ describe("platform bridge", () => {
     }));
 
     const { createPlatformBridge } = await import("./platform");
-    const bridge = createPlatformBridge({ appResourceRoot: "G:/Workspace/projects/virtual_companion/assets" });
+    const bridge = createPlatformBridge({ appResourceRoot: "C:/NearMate-fixtures/assets" });
 
     bridge.attachTray({
       toggleAvatarVisibility,

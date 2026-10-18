@@ -482,13 +482,13 @@ describe("AEC sidecar supervisor", () => {
   });
 
   it("start 会在 sidecar 调试录音开启时附带稳定参数启动 Python sidecar，并注入开发态 PYTHONPATH", async () => {
-    const repoRoot = "G:\\Workspace\\projects\\virtual_companion";
+    const repoRoot = "C:\\NearMate-fixtures";
     const previousPythonPath = "C:\\existing\\pythonpath";
     const originalPythonPath = process.env["PYTHONPATH"];
     const child = new FakeSidecarChild();
     const spawn = vi.fn(() => child);
     const supervisor = createAecSidecarSupervisor({
-      pythonExe: "G:\\Workspace\\projects\\virtual_companion\\.venv\\Scripts\\python.exe",
+      pythonExe: "C:\\NearMate-fixtures\\.venv\\Scripts\\python.exe",
       repoRoot,
       parentPid: 4242,
       spawn
@@ -515,7 +515,7 @@ describe("AEC sidecar supervisor", () => {
       );
 
       expect(spawn).toHaveBeenCalledWith(
-        "G:\\Workspace\\projects\\virtual_companion\\.venv\\Scripts\\python.exe",
+        "C:\\NearMate-fixtures\\.venv\\Scripts\\python.exe",
         [
           "-B",
           "-X",

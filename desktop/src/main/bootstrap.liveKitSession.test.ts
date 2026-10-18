@@ -21,7 +21,7 @@ describe("bootstrap LiveKit session", () => {
       aecSidecarDebugAudio: {
         enabled: false,
         outputDir:
-          "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+          "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
         maxRuns: 7
       },
       audioDeviceSelection: {
@@ -76,7 +76,7 @@ describe("bootstrap LiveKit session", () => {
       debugAudio: {
         enabled: false,
         outputDir:
-          "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+          "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
         maxRuns: 7
       },
       audioDeviceSelection: {
@@ -136,7 +136,7 @@ describe("bootstrap LiveKit session", () => {
       aecSidecarDebugAudio: {
         enabled: false,
         outputDir:
-          "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+          "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
         maxRuns: 7
       },
       audioDeviceSelection: {

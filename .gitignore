@@ -13,6 +13,8 @@ desktop/dist-electron/
 desktop/out/
 desktop/dist-package/
 desktop/dist-brand/
+# electron-vite 临时编译的配置含本机源码路径，不能当作产品源码提交。
+desktop/electron.vite.config.*.mjs
 installer/staging/
 installer/Output/
 backend/.coverage
@@ -20,9 +22,16 @@ backend/data/*
 # 本地完整 Prompt 审查记录，可能包含用户正文和材料内容。
 backend/data/prompt-audits/
 !backend/data/streamvox_model/
-!backend/data/streamvox_model/**
+backend/data/streamvox_model/*
+!backend/data/streamvox_model/*.md
 !backend/data/character-cards/
-!backend/data/character-cards/**
+# 只公开随产品提供的角色；用户新建的角色和参考录音默认留在本地。
+backend/data/character-cards/*
+!backend/data/character-cards/active.json
+!backend/data/character-cards/huohua/
+!backend/data/character-cards/huohua/**
+!backend/data/character-cards/yae-miko/
+!backend/data/character-cards/yae-miko/**
 backend/.mypy_cache/
 backend/.ruff_cache/
 /ckpt/
@@ -36,12 +45,23 @@ backend/ckpt/LocationList/*
 .env
 backend/.env
 /logs/
-# 协作助手手册、领域上下文和宣传片工程只留在开发仓。
+# 当前目录直接用于开源开发；内部规则、文档和规划只保留在本地。
 /AGENTS.md
+/CLAUDE.md
 /ARCHITECTURE.md
 /CONTEXT.md
 /docs/
 /marketing/
+/.planning/
+/.scratch/
+/.vscode/
+# 这些是个人录音、手工试验和联网探针，正式测试仍在各产品包中跟踪。
+/example/
+/tests/
+/test_onnx.py
+/test_sherpa_cam++.py
+/test_streamvox.py
+/test_weather.py
 ref_code
 .worktrees/
 exec
@@ -53,7 +73,6 @@ backend/assets/agent-workspace/.claude/**/__pycache__/
 backend/assets/agent-workspace/.claude/**/*.py[cod]
 
 dist/
-neartmate_release_github
 nearmate-film
 website/dist/
 # 官网工作流属于公开源码，需要与站点一起跟踪。

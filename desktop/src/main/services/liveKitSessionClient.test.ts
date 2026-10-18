@@ -77,7 +77,7 @@ describe("LiveKit session client", () => {
       aec_sidecar_debug_audio: {
         enabled: true,
         output_dir:
-          "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+          "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
         max_runs: 7
       },
       audio_devices: {
@@ -110,7 +110,7 @@ describe("LiveKit session client", () => {
       aecSidecarDebugAudio: {
         enabled: true,
         outputDir:
-          "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+          "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
         maxRuns: 7
       },
       audioDeviceSelection: {

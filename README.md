@@ -89,6 +89,8 @@ pnpm dev
 
 非 NVIDIA 设备使用 `pnpm python:install:universal` 安装 Python 依赖。首次启动按控制台提示连接模型服务、准备角色语音。依赖来自公开固定发行物，无需申请产品激活码。
 
+后端测试需要文本分词器 `backend/ckpt/tokenizer.json`。该外部模型资产不随源码提交，准备时须使用 [模型资产清单](installer/model-catalog.json) 中 `qwen3-tts-clone-0.6b-gguf` 的 `ckpt/tokenizer.json`，并核对其固定版本、文件大小和 SHA256；已有缓存也须通过同样校验。准备完成后，在根目录运行 `pnpm backend:test`。正式测试位于各产品包中，个人试验脚本和本机数据不进入 Git。
+
 安装包构建见 [安装包构建](installer/README.md)。官网源码位于 `website/`，在该目录运行 `npm test`、`npm run check` 和 `npm run build`。
 
 ## 一起体验 NearMate

@@ -260,7 +260,7 @@ function createLiveKitDesktopSession() {
     },
     aecSidecarDebugAudio: {
       enabled: false,
-      outputDir: "G:\\Workspace\\projects\\virtual_companion\\backend\\data\\debug-audio\\aec-sidecar",
+      outputDir: "C:\\NearMate-fixtures\\backend\\data\\debug-audio\\aec-sidecar",
       maxRuns: 7
     },
     audioDeviceSelection: {

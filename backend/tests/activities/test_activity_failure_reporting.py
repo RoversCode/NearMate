@@ -126,14 +126,14 @@ def test_http_status_and_request_id_enter_technical_detail() -> None:
 def test_sensitive_material_never_enters_public_failure() -> None:
     secret_message = (
         "Authorization: Bearer sk-abc123def456ghi789 failed for "
-        "C:\\Users\\SeungHee\\secret\\config.json"
+        "C:\\Users\\fixture-user\\secret\\config.json"
     )
     failure = failure_from_exception(RuntimeError(secret_message), stage_code="processing")
 
     public_text = failure.summary + failure.technical_detail + failure.suggested_action
     assert "sk-abc123def456ghi789" not in public_text
     assert "Bearer" not in public_text
-    assert "C:\\Users\\SeungHee" not in public_text
+    assert "C:\\Users\\fixture-user" not in public_text
     # 原始异常正文无条件不进入公开报告，只保留结构化异常类型。
     assert failure.technical_detail == "error_type=RuntimeError"
 
@@ -152,7 +152,7 @@ def test_invalid_provider_identifiers_are_dropped_without_exposing_message() -> 
 
     class ProviderError(RuntimeError):
         provider_code = "provider code with spaces and prompt"
-        request_id = "C:\\Users\\SeungHee\\secret\\config.json"
+        request_id = "C:\\Users\\fixture-user\\secret\\config.json"
 
     failure = failure_from_exception(
         ProviderError("system prompt and api_key=sk-secret"),
