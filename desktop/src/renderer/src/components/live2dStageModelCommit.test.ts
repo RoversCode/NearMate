@@ -63,7 +63,8 @@ describe("live2dStageModelCommit", () => {
     expect(activeModelPathRef.current).toBe("/live2d/new.model3.json");
     expect(onActiveLive2dModelChanged).toHaveBeenNthCalledWith(2, {
       model: nextModel,
-      ticker: app.ticker
+      ticker: app.ticker,
+      modelPath: "/live2d/new.model3.json"
     });
   });
 

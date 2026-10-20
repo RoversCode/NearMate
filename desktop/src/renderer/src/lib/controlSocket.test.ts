@@ -54,7 +54,7 @@ const sharedFallbackSettingsFixture: ReminderSettings = {
   followup_toggle_shortcut: "CommandOrControl+Alt+Space",
   avatar_visibility_shortcut_enabled: true,
   avatar_visibility_shortcut: "CommandOrControl+Alt+P",
-  selected_live2d_model_id: "Haru"
+  selected_live2d_model_id: "DeepSeekChibi"
 };
 
 /**

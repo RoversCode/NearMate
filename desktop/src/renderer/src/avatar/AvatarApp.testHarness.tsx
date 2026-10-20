@@ -17,6 +17,15 @@ const lipSyncControllerMockState = vi.hoisted(() => ({
     setModelBinding: ReturnType<typeof vi.fn<(binding: unknown) => void>>;
   }>
 }));
+const avatarActionControllerMockState = vi.hoisted(() => ({
+  instances: [] as Array<{
+    destroy: ReturnType<typeof vi.fn<() => void>>;
+    setModelBinding: ReturnType<typeof vi.fn<(binding: unknown) => boolean>>;
+    setState: ReturnType<typeof vi.fn<(state: string) => void>>;
+    reactToTap: ReturnType<typeof vi.fn<() => void>>;
+    playNextReaction: ReturnType<typeof vi.fn<() => void>>;
+  }>
+}));
 
 /**
  * getLipSyncControllerMockState 暴露被 mock 的唇形同步控制器实例。
@@ -25,6 +34,15 @@ const lipSyncControllerMockState = vi.hoisted(() => ({
  */
 export function getLipSyncControllerMockState(): typeof lipSyncControllerMockState {
   return lipSyncControllerMockState;
+}
+
+/**
+ * 提供动作控制器替身，测试 Avatar 接线而不启动真实 Cubism。
+ *
+ * @returns 当前测试创建的动作控制器实例。
+ */
+export function getAvatarActionControllerMockState(): typeof avatarActionControllerMockState {
+  return avatarActionControllerMockState;
 }
 
 vi.mock("../bootstrap/useBootstrapStatus", () => ({
@@ -62,6 +80,7 @@ vi.mock("../components/AvatarActionRail", () => ({
     petBounds: { x: number; y: number; width: number; height: number } | null;
     onOpenModels(): void;
     onOpenConsole(): void;
+    onPlayReaction?(): void;
   }) => {
     avatarPanelButtonRenderSpy(props);
 
@@ -73,6 +92,9 @@ vi.mock("../components/AvatarActionRail", () => ({
       <div className="avatar-action-rail-stub" data-avatar-interactive="true">
         <button className="avatar-action-models-stub" type="button" onClick={props.onOpenModels} />
         <button className="avatar-action-console-stub" type="button" onClick={props.onOpenConsole} />
+        {props.onPlayReaction ? (
+          <button className="avatar-action-reaction-stub" type="button" onClick={props.onPlayReaction} />
+        ) : null}
       </div>
     );
   }
@@ -123,6 +145,20 @@ vi.mock("../lib/live2dLipSync", () => ({
   }
 }));
 
+vi.mock("../lib/deepSeekAvatarController", () => ({
+  DeepSeekAvatarController: class DeepSeekAvatarController {
+    readonly destroy = vi.fn();
+    readonly setModelBinding = vi.fn((_binding: unknown) => false);
+    readonly setState = vi.fn();
+    readonly reactToTap = vi.fn();
+    readonly playNextReaction = vi.fn();
+
+    constructor() {
+      avatarActionControllerMockState.instances.push(this);
+    }
+  }
+}));
+
 export { AvatarApp } from "./AvatarApp";
 
 export let container: HTMLDivElement;
@@ -141,6 +177,7 @@ beforeEach(() => {
   avatarAssistantBubbleRenderSpy.mockReset();
   avatarTimedReminderBubbleRenderSpy.mockReset();
   lipSyncControllerMockState.instances.length = 0;
+  avatarActionControllerMockState.instances.length = 0;
   useBootstrapStatusMock.mockReset();
   // 既有 AvatarApp 测试关注 ready 后的头像交互；默认放行 bootstrap，阻断态由专门的 bootstrap 测试覆盖。
   useBootstrapStatusMock.mockReturnValue({

@@ -118,8 +118,8 @@ importers:
         specifier: ^6.27.0
         version: 6.27.0
       untitled-pixi-live2d-engine:
-        specifier: ^1.2.0
-        version: 1.2.0(@pixi/sound@6.0.1(pixi.js@8.18.1))(pixi.js@8.18.1)
+        specifier: 1.4.0
+        version: 1.4.0(@pixi/sound@6.0.1(pixi.js@8.18.1))(pixi.js@8.18.1)
     devDependencies:
       '@testing-library/react':
         specifier: ^16.0.1
@@ -3401,8 +3401,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  untitled-pixi-live2d-engine@1.2.0:
-    resolution: {integrity: sha512-qQDg67+ff2pttsjLq5KTAGbKde6KWGDIQ2MZ1t6SMczBv55dpHxJEIoiUwm/JPbn3s4akFd8sEVJWOwbgx/Jbw==}
+  untitled-pixi-live2d-engine@1.4.0:
+    resolution: {integrity: sha512-Jh5ROMR9/etaI2I4Ssq63CLS1c3kZyLI1nQatM7LgfBRAOEEJVML9hWx50yUZcSyB5AO9rICbr0jTK3h2E/SAQ==}
     peerDependencies:
       '@pixi/sound': ^6.0.1
       pixi.js: ^8.13.1
@@ -6940,7 +6940,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  untitled-pixi-live2d-engine@1.2.0(@pixi/sound@6.0.1(pixi.js@8.18.1))(pixi.js@8.18.1):
+  untitled-pixi-live2d-engine@1.4.0(@pixi/sound@6.0.1(pixi.js@8.18.1))(pixi.js@8.18.1):
     dependencies:
       '@pixi/sound': 6.0.1(pixi.js@8.18.1)
       pixi.js: 8.18.1

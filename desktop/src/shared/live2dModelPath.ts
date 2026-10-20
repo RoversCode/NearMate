@@ -4,7 +4,7 @@ import type { Live2dModelCatalogEntry } from "./live2dModelTypes";
  * DEFAULT_LIVE2D_MODEL_PATH 指向当前项目内复制好的默认 Live2D 资源。
  * 这里使用 renderer 公共资源相对路径，目的是让开发态与构建态都通过同一条 URL 访问模型文件。
  */
-export const DEFAULT_LIVE2D_MODEL_PATH = "./live2d/resources/Haru/Haru.model3.json";
+export const DEFAULT_LIVE2D_MODEL_PATH = "./live2d/resources/DeepSeekChibi/c_0120.model3.json";
 
 /**
  * resolveLive2dModelPath 负责统一模型路径覆盖规则。

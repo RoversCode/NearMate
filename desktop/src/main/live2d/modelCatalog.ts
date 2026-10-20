@@ -86,7 +86,7 @@ function buildCatalogEntry(
 
   return {
     id: modelId,
-    label: modelId,
+    label: modelId === "DeepSeekChibi" ? "大肥鱼（Q版）" : modelId,
     modelPath: `./${posix.join(LIVE2D_RENDERER_PUBLIC_ROOT, modelId, primaryModelFileName)}`
   };
 }

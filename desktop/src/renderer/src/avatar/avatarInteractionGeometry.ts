@@ -18,6 +18,8 @@ type AvatarInteractionPoint = {
 
 const ACTION_RAIL_WIDTH = 44;
 const ACTION_RAIL_HEIGHT = 164;
+// 四个 38px 按钮、三段 10px 间距和上下各 6px 内边距。
+const ACTION_RAIL_REACTION_HEIGHT = 194;
 const PANEL_BUTTON_EDGE_MARGIN = 16;
 const PANEL_BUTTON_GAP = 12;
 const PANEL_BUTTON_TOP_INSET = 8;
@@ -30,6 +32,7 @@ type AvatarActionRailRectInput = {
   petBounds: AvatarDragRegion | null;
   viewportWidth: number;
   viewportHeight: number;
+  hasReactionButton?: boolean;
 };
 
 type AvatarInteractionPointInput = {
@@ -50,7 +53,7 @@ type AvatarActivationPointInput = {
  * resolveAvatarActionRailRect 计算右侧动作栏在头像窗口内的真实矩形。
  *
  * Args:
- *   input: 当前人物边界与窗口尺寸。
+ *   input: 当前人物边界、窗口尺寸，以及实际绑定的模型是否提供动作按钮。
  *
  * Returns:
  *   动作栏矩形；人物边界缺失时回退到窗口右上角安全位置。
@@ -58,13 +61,14 @@ type AvatarActivationPointInput = {
 export function resolveAvatarActionRailRect(
   input: AvatarActionRailRectInput
 ): AvatarInteractionRect {
+  const height = input.hasReactionButton ? ACTION_RAIL_REACTION_HEIGHT : ACTION_RAIL_HEIGHT;
   const maxLeft = Math.max(
     PANEL_BUTTON_EDGE_MARGIN,
     input.viewportWidth - PANEL_BUTTON_EDGE_MARGIN - ACTION_RAIL_WIDTH
   );
   const maxTop = Math.max(
     PANEL_BUTTON_EDGE_MARGIN,
-    input.viewportHeight - PANEL_BUTTON_EDGE_MARGIN - ACTION_RAIL_HEIGHT
+    input.viewportHeight - PANEL_BUTTON_EDGE_MARGIN - height
   );
 
   if (!input.petBounds) {
@@ -72,7 +76,7 @@ export function resolveAvatarActionRailRect(
       x: maxLeft,
       y: PANEL_BUTTON_EDGE_MARGIN,
       width: ACTION_RAIL_WIDTH,
-      height: ACTION_RAIL_HEIGHT
+      height
     };
   }
 
@@ -83,7 +87,7 @@ export function resolveAvatarActionRailRect(
     x: clamp(preferredLeft, PANEL_BUTTON_EDGE_MARGIN, maxLeft),
     y: clamp(preferredTop, PANEL_BUTTON_EDGE_MARGIN, maxTop),
     width: ACTION_RAIL_WIDTH,
-    height: ACTION_RAIL_HEIGHT
+    height
   };
 }
 

@@ -1,0 +1,428 @@
+{
+  "upstreamRepository": "https://github.com/A8Chann/dsh-pet-live2d",
+  "upstreamRevision": "2b48355bc9fb0c99cd5d32df64675b1900629e88",
+  "modelFile": "c_0120.model3.json",
+  "license": "CC-BY-NC-SA-4.0",
+  "files": [
+    {
+      "path": "c_0120.model3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/c_0120.model3.json",
+      "bytes": 5601,
+      "sha256": "4e8b932f37c29ad74faacb59a5820f2fccd4531219c18e51abf4387d9cbeb625",
+      "gitBlobSha1": "7c37148b1eb9c48ee3f4edc0c8bdd9191497850e"
+    },
+    {
+      "path": "expressions/angry.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/angry.exp3.json",
+      "bytes": 1200,
+      "sha256": "ec41aada5b001e9de5cb41cbfd108c7dbed3962fc287e90d6a6ce219d49388ec",
+      "gitBlobSha1": "624b16d4d8bb2c0d91713f1228baa4128aa3594b"
+    },
+    {
+      "path": "expressions/blank-eyes.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/blank-eyes.exp3.json",
+      "bytes": 169,
+      "sha256": "fda8633386aa2592baefdc00ff45ddffc84ea4a64e536cea78c4e47916b3f253",
+      "gitBlobSha1": "bae9cf76f1cd27632c890622a85dff2df8386e14"
+    },
+    {
+      "path": "expressions/cat-paws.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/cat-paws.exp3.json",
+      "bytes": 380,
+      "sha256": "e0feb354e9fda5df1a4ea973ecbfc8c50569b780011bd442a599a0934dc1c30b",
+      "gitBlobSha1": "70110637de01a2e5ff8a824bec1f5febe1184583"
+    },
+    {
+      "path": "expressions/claw-recolor.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/claw-recolor.exp3.json",
+      "bytes": 164,
+      "sha256": "056acaef502cc6e20f6dccbc869ce481eac2f7f50337b8d252120d380aa5dbc2",
+      "gitBlobSha1": "6a5d6d454c30223f603aafa7a323c057fd502e2a"
+    },
+    {
+      "path": "expressions/claw.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/claw.exp3.json",
+      "bytes": 163,
+      "sha256": "39eed17880a986d38f6ba13f44f721705ccf8ad914aa45a0000a832a19974633",
+      "gitBlobSha1": "1a35dfd0a914b323f43fac492c74d8929a4b930e"
+    },
+    {
+      "path": "expressions/cry.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/cry.exp3.json",
+      "bytes": 1293,
+      "sha256": "edf4ff77c26e0cf5d8112bf0d5021738b44d829419314a1a2a97827713120013",
+      "gitBlobSha1": "b7cd9e895740db5d438741f769c6ee837269ea3e"
+    },
+    {
+      "path": "expressions/dark-tablecloth.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/dark-tablecloth.exp3.json",
+      "bytes": 205,
+      "sha256": "1255f9837c220d70036c189d272daff5dfb164a40e0241188ba7ca356c1acffb",
+      "gitBlobSha1": "5df9c1055316326efb74cc0530c7aa494ce1885e"
+    },
+    {
+      "path": "expressions/dizzy.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/dizzy.exp3.json",
+      "bytes": 823,
+      "sha256": "bc0b82f39cb90864e9cdcb8ac33391fe679c097bb049adad42766877da9c1045",
+      "gitBlobSha1": "b081f409cc236aedeb35b313958f5ed60d3833be"
+    },
+    {
+      "path": "expressions/draw-brush.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/draw-brush.exp3.json",
+      "bytes": 159,
+      "sha256": "24b77f1d343332ec1958d2c33fe0c1e04829e7bc5b1ff925c99d6fbc3155ea14",
+      "gitBlobSha1": "db0da2a3886e82e504cb9fcd7c7dd22b3cc2c1ba"
+    },
+    {
+      "path": "expressions/draw-eraser.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/draw-eraser.exp3.json",
+      "bytes": 159,
+      "sha256": "a044bf8cb109c866888fe83fa351a9100ab7d85d9eccf3378a7db654197c5e0e",
+      "gitBlobSha1": "8d3a885d6939cf82df6302e4b61f08a5c1a1ed84"
+    },
+    {
+      "path": "expressions/draw-undo.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/draw-undo.exp3.json",
+      "bytes": 163,
+      "sha256": "2ac796fc510041d7a05867758e7c1a6107500f6f5b6cfd4cd13ea1b04f392ad0",
+      "gitBlobSha1": "5b7c10e3b9125471e5969d9118ba2c382e994303"
+    },
+    {
+      "path": "expressions/drool.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/drool.exp3.json",
+      "bytes": 169,
+      "sha256": "1f493067c7951029c7f2abd77c8888831837d4c55828966e8f386f76804799da",
+      "gitBlobSha1": "668af739ed1478b1b70f9390d82c4f5f4f0a1788"
+    },
+    {
+      "path": "expressions/excited.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/excited.exp3.json",
+      "bytes": 1433,
+      "sha256": "25fb0e4d803187eeef9566512c6f96a99e386a5ce1ac1b0ee6bf6773b178d269",
+      "gitBlobSha1": "cd5c6b7c9958144956177641d524e51d59c669b0"
+    },
+    {
+      "path": "expressions/exclaim.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/exclaim.exp3.json",
+      "bytes": 169,
+      "sha256": "0bcfa612595200dcd8ab7894ea31b656adbb48bc54527e34e21703eac3548504",
+      "gitBlobSha1": "305d4fa1608f590442950cd824c4dafefc15fe44"
+    },
+    {
+      "path": "expressions/facial-red.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/facial-red.exp3.json",
+      "bytes": 165,
+      "sha256": "f9c4b846582dfaa5b2ea6f9b502379bbc2594f8d5de0ddf377ef37ecf2fae429",
+      "gitBlobSha1": "61e31c423b032c8846f40b62c3bd70e7d8b7e0d0"
+    },
+    {
+      "path": "expressions/glasses-oval.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/glasses-oval.exp3.json",
+      "bytes": 169,
+      "sha256": "ffe2b516b9d844d40655ae102dff22829e99af4347cb7e48a1b242f9cb18143d",
+      "gitBlobSha1": "a0acb07c2a1174b6bc84cddf5ec976d5f0123453"
+    },
+    {
+      "path": "expressions/glasses-round.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/glasses-round.exp3.json",
+      "bytes": 169,
+      "sha256": "2efbb7759f14448a76eaf383469960fb76fe47b37014d18ac847eebda083e6f9",
+      "gitBlobSha1": "e9c899b9547abea60bdf9730f631c811238bb5b2"
+    },
+    {
+      "path": "expressions/glasses-square.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/glasses-square.exp3.json",
+      "bytes": 169,
+      "sha256": "111fdc92c2bf916dd982ee2d16d9b005f1acfbf063aa39e28c5ba365701ad493",
+      "gitBlobSha1": "3fd806879f3fee3cef5c36d79cac4da6c9dc1ab9"
+    },
+    {
+      "path": "expressions/gloomy.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/gloomy.exp3.json",
+      "bytes": 165,
+      "sha256": "8f71ff1b91c03ec2b7dc3773494d94f30c599ee62767fb4e53c98a49cae617cb",
+      "gitBlobSha1": "c9560dd063527c5d76639dafe86cbda5b7922310"
+    },
+    {
+      "path": "expressions/hands-peace.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/hands-peace.exp3.json",
+      "bytes": 163,
+      "sha256": "f85650e953d2f8acc9be501270ce7bc512f4d98dfca877b933c4cff009067070",
+      "gitBlobSha1": "b93158b1e2360625895785cd5c76bc8c999c988e"
+    },
+    {
+      "path": "expressions/headband.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/headband.exp3.json",
+      "bytes": 214,
+      "sha256": "cd51d9a1771de3b32f6174f691a691204ae16d7b26b93b45c94040e83889447a",
+      "gitBlobSha1": "bd4ae85ae44e2a6ded2c80a97338909e869b7073"
+    },
+    {
+      "path": "expressions/heart-pop.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/heart-pop.exp3.json",
+      "bytes": 161,
+      "sha256": "caa9a2474cf99ea9419d846978e52fff1173c05b36adc555ca3879be06b53694",
+      "gitBlobSha1": "757994ed8351f9d1ed0b3ef50958f3d946f242f3"
+    },
+    {
+      "path": "expressions/heartbeat.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/heartbeat.exp3.json",
+      "bytes": 169,
+      "sha256": "21e51341dd14899f67585774b91f59e1928930f29c2f6a95892dd655fced9512",
+      "gitBlobSha1": "0cfa620db6567455af5b75fe170fb1aa499070a7"
+    },
+    {
+      "path": "expressions/ketchup-squeeze.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/ketchup-squeeze.exp3.json",
+      "bytes": 159,
+      "sha256": "25aec63e078ddea99be7fe0b4b73df464170a3a5a61e71dd719f2e9ed02adbe1",
+      "gitBlobSha1": "c348ea36dbdbdfbd3cae5a370800042daded9fef"
+    },
+    {
+      "path": "expressions/love-eyes.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/love-eyes.exp3.json",
+      "bytes": 1319,
+      "sha256": "5be7abfa7be644592c4dd6c5a8ebaea0462f9ceb96177764d871a47273bea7af",
+      "gitBlobSha1": "c982afacc1442c325b9dd317bfdd17f1b71b39fa"
+    },
+    {
+      "path": "expressions/menu-press.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/menu-press.exp3.json",
+      "bytes": 163,
+      "sha256": "c4c97a0f12d2d41e186586c1655933d06fdfb7e9b77ea154abd9ac472365eab0",
+      "gitBlobSha1": "d3bd9f01522d51afa99fc5c90114d71d7d5ca9fa"
+    },
+    {
+      "path": "expressions/naughty.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/naughty.exp3.json",
+      "bytes": 389,
+      "sha256": "390e63e1f7ecdbb04d8a10611f06bc14829b98b34fefe35ed543fc69fb35b737",
+      "gitBlobSha1": "940bcf94d2cd530c195630a24808d09ca30814d5"
+    },
+    {
+      "path": "expressions/omurice.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/omurice.exp3.json",
+      "bytes": 313,
+      "sha256": "342385b553d35e172f535167b505be28afa868a1ea41f263d5058341fd55a75e",
+      "gitBlobSha1": "e0461f393dae341f395a7e94b090ea2f1f1090fe"
+    },
+    {
+      "path": "expressions/parfait.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/parfait.exp3.json",
+      "bytes": 164,
+      "sha256": "c392fb0481aaa8262494e19c0c372b25800ee2aad653593e66e1db0ee132c51c",
+      "gitBlobSha1": "406b43de5f227064dd731dcd42e21377cd246e67"
+    },
+    {
+      "path": "expressions/phone-recolor.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/phone-recolor.exp3.json",
+      "bytes": 163,
+      "sha256": "ffe6d4381d62a6350f0df0227e27be7d8bbd1abcf57da2362db24ee548f20454",
+      "gitBlobSha1": "5e25ffccc3ee83f972dc384470b28392774b2cec"
+    },
+    {
+      "path": "expressions/ponytail.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/ponytail.exp3.json",
+      "bytes": 205,
+      "sha256": "bfcf09bb982092d16191887f7f165c14b467c84dff7eed75fea35c6e5fbe1603",
+      "gitBlobSha1": "f9a21892cb637ab6967016c08d7429c0d466afe6"
+    },
+    {
+      "path": "expressions/question.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/question.exp3.json",
+      "bytes": 169,
+      "sha256": "eb50ace022b7544ae09bfef7a0eb7ccc9f58371ddc665ea4319d7b0a438a9c56",
+      "gitBlobSha1": "b5d611ee530a3e3ca422408abeec9fd49c3446dd"
+    },
+    {
+      "path": "expressions/sad.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sad.exp3.json",
+      "bytes": 754,
+      "sha256": "c4214cb079d1e6b392e1f48327b51e902a64bef3eb6d807b80ad4e8bef4d641e",
+      "gitBlobSha1": "3864a3d4831a0c0b896705c0beaa37ae339d9212"
+    },
+    {
+      "path": "expressions/soul-out.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/soul-out.exp3.json",
+      "bytes": 169,
+      "sha256": "3968bdbc5ef6701cfc13235fa877e0a4cd378f0f7a7e1e3c271abb19831b0e70",
+      "gitBlobSha1": "8b0569552b0c972e6f5dea7eedef1150dcfb516f"
+    },
+    {
+      "path": "expressions/sparkle.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sparkle.exp3.json",
+      "bytes": 171,
+      "sha256": "ffda77f41d5a0c9df8c53d10ba459022893d2fb237dacb7f5eb41e07cd3e9ed3",
+      "gitBlobSha1": "cfb2b747b6e373c0a11c5c34871172709d04c123"
+    },
+    {
+      "path": "expressions/star-eyes.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/star-eyes.exp3.json",
+      "bytes": 169,
+      "sha256": "d4767e003c156c6d7549354dc8caf3ed29925e516b360ab7b9d07da5381ec7f4",
+      "gitBlobSha1": "0ba114c3872b69db82b91f46e232c78ad0fc7db1"
+    },
+    {
+      "path": "expressions/sticker-bow.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sticker-bow.exp3.json",
+      "bytes": 169,
+      "sha256": "0d6f795fe4ef71af10796cb037515a06fd1df7730415df29fbc9b6156ff1fc6f",
+      "gitBlobSha1": "92c5cf35c3705430ab90fef564e421ef45590c6a"
+    },
+    {
+      "path": "expressions/sticker-cat.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sticker-cat.exp3.json",
+      "bytes": 169,
+      "sha256": "0f51de511dff88afb09c7b2e80ad262dedc44014578ce9f4a9a4118f6ec08cc1",
+      "gitBlobSha1": "800223e56a0225be350ea1e093ef205971e3ed11"
+    },
+    {
+      "path": "expressions/sticker-rabbit.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sticker-rabbit.exp3.json",
+      "bytes": 169,
+      "sha256": "da65f75a8a64b99af29d81bba1d31806b10ccdeb87e746de1b7ead37eb3e2105",
+      "gitBlobSha1": "2da43d440d0b1236803439684c237b86a2441468"
+    },
+    {
+      "path": "expressions/sunglasses.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sunglasses.exp3.json",
+      "bytes": 389,
+      "sha256": "bb6d0e30aeaec829b32fcc41bd9960e6582d5f9029a3a2bda0908bcd72c07623",
+      "gitBlobSha1": "c50c159a166defb0262c004aa54c679a1e2f85f2"
+    },
+    {
+      "path": "expressions/sweat.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/sweat.exp3.json",
+      "bytes": 169,
+      "sha256": "517e5a0b1cd887c869eda083020526c4c240ff6913f49f9021eeac05655f4961",
+      "gitBlobSha1": "93a8b7f28bfa9eb342d74599a4b93d03f348e1e5"
+    },
+    {
+      "path": "expressions/tongue-out.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/tongue-out.exp3.json",
+      "bytes": 576,
+      "sha256": "2edce2e6973ece82a77e114f60d57d283d30527f9b68a7f082134c0a6bc2b1a0",
+      "gitBlobSha1": "2c04e345d085c4544bbd0384965303b42f299e66"
+    },
+    {
+      "path": "expressions/whale-on-desk.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/whale-on-desk.exp3.json",
+      "bytes": 215,
+      "sha256": "4c41dd719d607e564dcc0e0fff7416f597fa5ef9fdd13b3543907b140164e2b8",
+      "gitBlobSha1": "42c2bcac66efb74b80c77ce4e46d1ee4da06507b"
+    },
+    {
+      "path": "expressions/whale.exp3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/expressions/whale.exp3.json",
+      "bytes": 208,
+      "sha256": "3627cf66669ebd75ded276188593f5e645cb4e49216f5f4aaeb5912effa29202",
+      "gitBlobSha1": "0155304a388fd64ed0103820339eeab36f90cc04"
+    },
+    {
+      "path": "LICENSE",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/LICENSE",
+      "bytes": 1650,
+      "sha256": "5b438ec8d90d51955dc3c026a044f499febaca8de945ba5e9a604ef777ebab30",
+      "gitBlobSha1": "d87c0108b53163733c82c9e400ce3344ba3fb7c8"
+    },
+    {
+      "path": "model/c_0120.cdi3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/model/c_0120.cdi3.json",
+      "bytes": 28364,
+      "sha256": "a04133a70c8676a9e8e6e3773d1bd047333791b1d3b84896e73dc57eb489f1c5",
+      "gitBlobSha1": "c2aa49673ab0a6dc7d4be51418aa9f0723a58314"
+    },
+    {
+      "path": "model/c_0120.moc3",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/model/c_0120.moc3",
+      "bytes": 2119552,
+      "sha256": "37d62cc7ebe2fe93350c934a2c023aac44e306833f63d83a130c005e2945ce1c",
+      "gitBlobSha1": "f7723451826a56f5f19a482a9c6d6c48c27b1f95"
+    },
+    {
+      "path": "model/c_0120.physics3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/model/c_0120.physics3.json",
+      "bytes": 38775,
+      "sha256": "36b71d419c8692e8831641d16e7c16699792531309658b4d71a3f49fc6a00a9c",
+      "gitBlobSha1": "73d58e1163bdcb7f0cda7d6143c033ee193989dd"
+    },
+    {
+      "path": "motions/bubble-gum.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/bubble-gum.motion3.json",
+      "bytes": 3470,
+      "sha256": "c9672aab4e398f7ca096b47511a6b9ad5af65fd3fb62d7388cc6ae5bd67fb820",
+      "gitBlobSha1": "7101f67484a9a20e6742db558049a899f35131c2"
+    },
+    {
+      "path": "motions/hammer.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/hammer.motion3.json",
+      "bytes": 10871,
+      "sha256": "73800fe5d76a6378aec56e249bb5ef57a538e763da1566ae5ababe3e6e8db998",
+      "gitBlobSha1": "95b45e6f8a3b074c609409f7f50fe1e62d5008bb"
+    },
+    {
+      "path": "motions/idle.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/idle.motion3.json",
+      "bytes": 45228,
+      "sha256": "00364b3e9f4502b04a2794b5d2bd455cc50ac0d6876dc3886d04194e37033a38",
+      "gitBlobSha1": "03bab02effbf4daec29792c4d138fe74752387bc"
+    },
+    {
+      "path": "motions/ketchup.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/ketchup.motion3.json",
+      "bytes": 7282,
+      "sha256": "a63332b5a9ad5ad9a9980d9ed32c6c09cabb9cf87a35bc2b3dfceaf3419e342d",
+      "gitBlobSha1": "196ee215a93a5e16667187f30c1fb9ec18736f79"
+    },
+    {
+      "path": "motions/open-case.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/open-case.motion3.json",
+      "bytes": 1181,
+      "sha256": "ef5b088705eb20d7f5a55c3ebed52bd2d7ed64e9faf8cf502e7d4f8e20c57512",
+      "gitBlobSha1": "65eab3b4d84b825a3198b3377bdf4816066e1b3d"
+    },
+    {
+      "path": "motions/selfie-quick.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/selfie-quick.motion3.json",
+      "bytes": 550,
+      "sha256": "9a93e9ac0aa77c45c2c9dbf33558bc265d3a58c9a73033446483861ec768fcd6",
+      "gitBlobSha1": "476181b632a69e6b4105a291458b00793e800e9a"
+    },
+    {
+      "path": "motions/selfie.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/selfie.motion3.json",
+      "bytes": 6580,
+      "sha256": "5848a992e0ebc4f3447166eb7e38ac678f32d17198b16c0d56048f13b8c2e110",
+      "gitBlobSha1": "1bba5c531dcfe9340f7dc1265173b137bf3c86f0"
+    },
+    {
+      "path": "motions/spray-water.motion3.json",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/motions/spray-water.motion3.json",
+      "bytes": 404,
+      "sha256": "98e36262742639074b73faeffcd4da95c5eca4901fd483f93c7a448b1a1f0ee6",
+      "gitBlobSha1": "6d0e9e5378255b55283dc28291e181fe85549de2"
+    },
+    {
+      "path": "textures/texture_00.png",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/textures/texture_00.png",
+      "bytes": 1768051,
+      "sha256": "d74a8b7ed11f17f086afd22935d27d869b7d6fc19e94486b21445de19483fc0a",
+      "gitBlobSha1": "23c11f584dca5c06dcc58a8d3506ed6b331c25f5"
+    },
+    {
+      "path": "textures/texture_01.png",
+      "sourcePath": "dsh-live2d-pet/pets/ds-whale-girl/textures/texture_01.png",
+      "bytes": 90177,
+      "sha256": "39a6da7736cbae495494be1dde515874a2e4fe72c21f399c47da33924b3d43b9",
+      "gitBlobSha1": "63b455ac958dafbad806f8c3f5b319709a7d46bd"
+    },
+    {
+      "path": "使用须知.txt",
+      "sourcePath": "model-packs/使用须知.txt",
+      "bytes": 201,
+      "sha256": "11a09fc7bb10176ef479d71302ff32c9ed30f7b959caea0c97bd95eaae56e515",
+      "gitBlobSha1": "c7efb42c5800a973f2ef64418179f46306333684"
+    }
+  ]
+}

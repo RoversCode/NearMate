@@ -117,6 +117,8 @@ pnpm dev
 
 NearMate 自有代码采用 [Apache-2.0](LICENSE)。第三方依赖、Live2D 运行库与模型、语音模型和参考素材分别适用原有许可，详见 [第三方声明](THIRD_PARTY_NOTICES.md)。
 
+内置 Q 版大肥鱼虚拟形象是社区同人模型，按 **CC BY-NC-SA 4.0（署名、非商业、相同方式共享）**独立分发，不属于 Apache-2.0 授权，也不是 DeepSeek 官方形象。模型及其改编须保留署名并遵守上述条件；商业使用需另获授权。来源与完整署名见[模型说明](desktop/src/renderer/public/live2d/resources/DeepSeekChibi/NOTICE.txt)。
+
 ## 支持项目
 
 如果 NearMate 对你有用，欢迎给项目点一个 **Star ⭐**，也欢迎分享给需要桌面 AI 搭子的朋友。

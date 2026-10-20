@@ -32,6 +32,26 @@ backend/data/character-cards/*
 !backend/data/character-cards/huohua/**
 !backend/data/character-cards/yae-miko/
 !backend/data/character-cards/yae-miko/**
+# 只公开产品内置的虚拟形象；手动下载到此处的其它模型默认留在本地。
+/desktop/src/renderer/public/live2d/resources/*
+!/desktop/src/renderer/public/live2d/resources/Haru/
+!/desktop/src/renderer/public/live2d/resources/Haru/**
+!/desktop/src/renderer/public/live2d/resources/Hiyori/
+!/desktop/src/renderer/public/live2d/resources/Hiyori/**
+!/desktop/src/renderer/public/live2d/resources/Mao/
+!/desktop/src/renderer/public/live2d/resources/Mao/**
+!/desktop/src/renderer/public/live2d/resources/Mark/
+!/desktop/src/renderer/public/live2d/resources/Mark/**
+!/desktop/src/renderer/public/live2d/resources/Natori/
+!/desktop/src/renderer/public/live2d/resources/Natori/**
+!/desktop/src/renderer/public/live2d/resources/Ren/
+!/desktop/src/renderer/public/live2d/resources/Ren/**
+!/desktop/src/renderer/public/live2d/resources/Rice/
+!/desktop/src/renderer/public/live2d/resources/Rice/**
+!/desktop/src/renderer/public/live2d/resources/Wanko/
+!/desktop/src/renderer/public/live2d/resources/Wanko/**
+!/desktop/src/renderer/public/live2d/resources/DeepSeekChibi/
+!/desktop/src/renderer/public/live2d/resources/DeepSeekChibi/**
 backend/.mypy_cache/
 backend/.ruff_cache/
 /ckpt/

@@ -61,4 +61,25 @@ describe("calculateAvatarDragRegion", () => {
       height: 505
     });
   });
+
+  it("半身模型的交互边界可以上移，排除桌面下方的透明区域", () => {
+    expect(calculateAvatarDragRegion({
+      x: 200,
+      y: 400,
+      scale: 0.5,
+      modelWidth: 400,
+      modelHeight: 400,
+      interactionBounds: {
+        widthRatio: 0.85,
+        heightRatio: 0.79,
+        offsetXRatio: 0.055,
+        offsetYRatio: -0.13
+      }
+    })).toEqual({
+      x: 126,
+      y: 216,
+      width: 170,
+      height: 158
+    });
+  });
 });

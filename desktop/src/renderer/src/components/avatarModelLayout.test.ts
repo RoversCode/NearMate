@@ -59,6 +59,30 @@ describe("calculateAvatarModelLayout", () => {
     expect(layout.y).toBeCloseTo(507.6);
   });
 
+  it.each([
+    { width: 480, height: 480 },
+    { width: 360, height: 360 },
+    { width: 360, height: 640 },
+    { width: 720, height: 360 }
+  ])("Q 版大肥鱼在 $width × $height 窗口中为右侧锤子保留空间", ({ width, height }) => {
+    const layout = calculateAvatarModelLayout({
+      mode: "pet",
+      stageWidth: width,
+      stageHeight: height,
+      modelWidth: 4068,
+      modelHeight: 4068,
+      presentationProfile: getAvatarPresentationProfile("DeepSeekChibi")
+    });
+    const canvasSize = 4068 * layout.scale;
+    const canvasLeft = layout.x - canvasSize / 2;
+
+    // 实测锤子可伸到画布右缘以外，按 1.15 倍画布位置留出少量动作余量。
+    expect(canvasLeft).toBeGreaterThanOrEqual(0);
+    expect(canvasLeft + canvasSize * 1.15).toBeLessThan(width);
+    expect(layout.y - canvasSize).toBeGreaterThanOrEqual(0);
+    expect(layout.y).toBeLessThan(height);
+  });
+
   it("模型尺寸异常时会按展示档案锚点回退到稳定位置，避免渲染链出现 NaN", () => {
     const layout = calculateAvatarModelLayout({
       mode: "pet",

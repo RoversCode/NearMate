@@ -28,6 +28,7 @@ import { useAvatarModelSwitch } from "./useAvatarModelSwitch";
 import { useAvatarPetSurface } from "./useAvatarPetSurface";
 import { AvatarMaterialFeedbackToast, type AvatarMaterialFeedback } from "./AvatarMaterialFeedbackToast";
 import { ShortcutSound } from "../lib/shortcutSound";
+import { DeepSeekAvatarController } from "../lib/deepSeekAvatarController";
 
 declare global {
   interface Window {
@@ -94,9 +95,11 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
   const [viewState, dispatch] = useReducer(reduceAvatarViewState, initialAvatarViewState);
   const [pendingModelId, setPendingModelId] = useState<string | null>(null);
   const [materialFeedback, setMaterialFeedback] = useState<AvatarMaterialFeedback>(null);
+  const [supportsAvatarReactions, setSupportsAvatarReactions] = useState(false);
   const materialFeedbackTimerRef = useRef<number | null>(null);
   const appliedPresentationProfileModelIdRef = useRef<string | null>(null);
   const lipSyncControllerRef = useRef<Live2dLipSyncController | null>(null);
+  const avatarActionControllerRef = useRef<DeepSeekAvatarController | null>(null);
   const materialSoundPlayerRef = useRef<ReturnType<typeof createMaterialDeliverySoundPlayer> | null>(null);
 
   /**
@@ -104,6 +107,13 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
    */
   if (lipSyncControllerRef.current === null) {
     lipSyncControllerRef.current = new Live2dLipSyncController({
+      reportDiagnostic(level, message, details) {
+        avatarBridge?.reportDiagnostic(level, message, details);
+      }
+    });
+  }
+  if (avatarActionControllerRef.current === null) {
+    avatarActionControllerRef.current = new DeepSeekAvatarController({
       reportDiagnostic(level, message, details) {
         avatarBridge?.reportDiagnostic(level, message, details);
       }
@@ -122,6 +132,10 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
       lipSyncControllerRef.current?.setAudioElement(element);
     }
   });
+  const companionDisplayState = avatarRuntime.companionStatus?.state ?? "syncing";
+  useEffect(() => {
+    avatarActionControllerRef.current?.setState(companionDisplayState);
+  }, [companionDisplayState]);
   const { feedbackActive: reminderFeedbackActive, stopFeedback: stopReminderFeedback } =
     useAvatarTimedReminderFeedback(
       avatarRuntime.timedReminderSnapshot,
@@ -161,8 +175,10 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
   useEffect(() => {
     return () => {
       clearMaterialFeedbackTimer();
+      // StrictMode 会在同一组件上重放副作用；释放外部资源后保留可重新绑定的控制器，
+      // 避免重放期间没有 render 重建 ref，导致后续模型和音频回调丢失接收方。
       lipSyncControllerRef.current?.destroy();
-      lipSyncControllerRef.current = null;
+      avatarActionControllerRef.current?.destroy();
     };
   }, []);
 
@@ -229,6 +245,7 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
     avatarBridge,
     bubbleText: bottomBubbleText,
     controlsVisible: viewState.controlsVisible,
+    hasReactionButton: supportsAvatarReactions,
     presentationProfile
   });
   const {
@@ -249,6 +266,10 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
     releaseAvatarInteraction();
     hideAvatarControlsImmediately();
     avatarBridge?.openChat?.();
+  };
+  const reactToAvatarTap = () => {
+    avatarActionControllerRef.current?.reactToTap();
+    openChat();
   };
 
   return (
@@ -316,12 +337,16 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
         mode="pet"
         onModelReady={handleModelReady}
         onModelLoadFailed={handleModelLoadFailed}
-        onAvatarTap={openChat}
+        onAvatarTap={reactToAvatarTap}
         onPetBoundsChange={bounds => {
           petSurface.updatePetBounds(bounds);
         }}
         onActiveLive2dModelChanged={(binding: Live2dLipSyncModelBinding | null) => {
           lipSyncControllerRef.current?.setModelBinding(binding);
+          // 只有已经提交到舞台的模型才能启用动作，切换中的目标不能改变旧人物的交互。
+          setSupportsAvatarReactions(
+            avatarActionControllerRef.current?.setModelBinding(binding) ?? false
+          );
         }}
       />
       <AvatarResizeFrame
@@ -348,7 +373,7 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
         onDragStart={petSurface.dragHandlers.onDragStart}
         onDragMove={petSurface.dragHandlers.onDragMove}
         onDragEnd={petSurface.dragHandlers.onDragEnd}
-        onTap={openChat}
+        onTap={reactToAvatarTap}
       />
       {/* Chat 展开后，所有对话与提醒只在 Chat 主场投影；桌宠仍保留动作和媒体播放。 */}
       {!chatExpanded && avatarRuntime.reflectionStatus ? (
@@ -400,6 +425,9 @@ function AvatarReadyApp({ avatarBridge }: AvatarReadyAppProps) {
         visible={viewState.controlsVisible}
         petBounds={petSurface.petBounds}
         onOpenChat={openChat}
+        onPlayReaction={supportsAvatarReactions
+          ? () => avatarActionControllerRef.current?.playNextReaction()
+          : undefined}
         onOpenModels={() => {
           releaseAvatarInteraction();
           hideAvatarControlsImmediately();

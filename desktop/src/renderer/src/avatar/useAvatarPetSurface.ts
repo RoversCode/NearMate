@@ -33,6 +33,7 @@ type UseAvatarPetSurfaceInput = {
   >;
   bubbleText?: string;
   controlsVisible: boolean;
+  hasReactionButton?: boolean;
   measureBubbleHeight?(bubbleWidth: number): number;
   presentationProfile: AvatarPresentationProfile;
   resizeFrameInteractiveWhenHidden?: boolean;
@@ -44,7 +45,7 @@ type UseAvatarPetSurfaceInput = {
  * useAvatarPetSurface 管理桌宠窗口共用的身体边界、可见区、拖拽缩放和气泡定位输入。
  *
  * Args:
- *   input: avatar bridge、人物展示档案、气泡文本和本地控制可见性。
+ *   input: avatar bridge、人物展示档案、气泡文本、本地控制可见性和模型动作按钮能力。
  *
  * Returns:
  *   Avatar ready/bootstrap 壳都可直接消费的桌宠交互 surface。
@@ -56,7 +57,8 @@ export function useAvatarPetSurface(input: UseAvatarPetSurfaceInput) {
   const panelButtonRect = resolveAvatarActionRailRect({
     petBounds,
     viewportWidth: window.innerWidth,
-    viewportHeight: window.innerHeight
+    viewportHeight: window.innerHeight,
+    hasReactionButton: input.hasReactionButton
   });
   const resizeFrameRect = resolveAvatarResizeFrameRect(petBounds);
   const avatarInteractionHotspotBounds = resolveAvatarInteractionHotspotRect(

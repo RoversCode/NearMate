@@ -23,6 +23,7 @@
     "desktop": {
       "entry": [
         "electron.vite.config.ts",
+        "scripts/*.mjs",
         "src/main/index.ts",
         "src/preload/*.ts",
         "src/renderer/src/*-main.tsx",

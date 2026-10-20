@@ -91,6 +91,20 @@ describe("modelCatalog", () => {
     ]);
   });
 
+  it("Q 版大肥鱼使用中文名称，资源路径仍保留模型原文件名", () => {
+    const resourcesRoot = mkdtempSync(join(tmpdir(), "live2d-catalog-"));
+    temporaryDirectoryPaths.push(resourcesRoot);
+    createModelDirectory(resourcesRoot, "DeepSeekChibi", ["c_0120.model3.json"]);
+
+    expect(loadLive2dModelCatalog({ resourcesRoot })).toEqual([
+      {
+        id: "DeepSeekChibi",
+        label: "大肥鱼（Q版）",
+        modelPath: "./live2d/resources/DeepSeekChibi/c_0120.model3.json"
+      }
+    ]);
+  });
+
   it("目录里有多个候选但没有同名主文件时，排除该目录避免不稳定切换", () => {
     const resourcesRoot = mkdtempSync(join(tmpdir(), "live2d-catalog-"));
     temporaryDirectoryPaths.push(resourcesRoot);

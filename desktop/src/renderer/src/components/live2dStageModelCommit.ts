@@ -68,7 +68,8 @@ export function commitLive2dStageModel({
   setActiveModelLayoutVersion(version => version + 1);
   onActiveLive2dModelChanged?.({
     model: nextModel,
-    ticker: app.ticker
+    ticker: app.ticker,
+    modelPath
   });
 
   return previousModel;
