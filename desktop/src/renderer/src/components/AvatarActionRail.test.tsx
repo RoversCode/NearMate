@@ -112,6 +112,32 @@ describe("AvatarActionRail", () => {
     expect(rail.style.top).toBe("16px");
   });
 
+  it("支持动作的模型增加逗一逗按钮，完整四按钮矩形仍留在窗口内", () => {
+    setViewport(360, 240);
+    const onPlayReaction = vi.fn();
+    act(() => {
+      root.render(
+        <AvatarActionRail
+          visible={true}
+          petBounds={{ x: 100, y: 180, width: 160, height: 220 }}
+          onOpenChat={vi.fn()}
+          onOpenModels={vi.fn()}
+          onOpenConsole={vi.fn()}
+          onPlayReaction={onPlayReaction}
+        />
+      );
+    });
+
+    const rail = container.querySelector(".avatar-action-rail") as HTMLElement;
+    const buttons = Array.from(container.querySelectorAll("button"));
+    expect(buttons).toHaveLength(4);
+    expect(rail.style.height).toBe("194px");
+    expect(rail.style.top).toBe("30px");
+    expect(buttons[3].getAttribute("aria-label")).toBe("逗一逗");
+    act(() => buttons[3].click());
+    expect(onPlayReaction).toHaveBeenCalledOnce();
+  });
+
   it("不可见时不渲染，避免隐藏按钮截获桌面点击", () => {
     act(() => {
       root.render(

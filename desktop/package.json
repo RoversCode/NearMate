@@ -24,7 +24,7 @@
     "react-dom": "^18.3.1",
     "sharp": "^0.35.3",
     "undici": "^6.27.0",
-    "untitled-pixi-live2d-engine": "^1.2.0"
+    "untitled-pixi-live2d-engine": "1.4.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",

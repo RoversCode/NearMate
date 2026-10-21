@@ -57,6 +57,8 @@ export type Live2dLipSyncTicker = {
 export type Live2dLipSyncModelBinding = {
   model: Live2dLipSyncModel;
   ticker: Live2dLipSyncTicker;
+  /** 已实际提交到舞台的模型路径，不使用尚未完成切换的目标路径。 */
+  modelPath?: string;
 };
 
 export type Live2dLipSyncAudioGraph = {

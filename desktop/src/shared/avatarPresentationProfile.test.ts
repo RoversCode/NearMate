@@ -46,6 +46,7 @@ describe("avatarPresentationProfile", () => {
 
   it("默认档案与人物档案都会以冻结对象形式暴露，避免共享真相源被误改", () => {
     const hiyoriProfile = getAvatarPresentationProfile("Hiyori");
+    const whaleProfile = getAvatarPresentationProfile("DeepSeekChibi");
 
     /**
      * 展示档案会同时被 main 与 renderer 复用，
@@ -62,5 +63,11 @@ describe("avatarPresentationProfile", () => {
     expect(Object.isFrozen(hiyoriProfile.layout.footAnchor)).toBe(true);
     expect(Object.isFrozen(hiyoriProfile.layout.interactionBounds)).toBe(true);
     expect(Object.isFrozen(hiyoriProfile.layout.interactionHotspot)).toBe(true);
+    expect(Object.isFrozen(whaleProfile)).toBe(true);
+    expect(Object.isFrozen(whaleProfile.layout)).toBe(true);
+    expect(Object.isFrozen(whaleProfile.layout.headAnchor)).toBe(true);
+    expect(Object.isFrozen(whaleProfile.layout.footAnchor)).toBe(true);
+    expect(Object.isFrozen(whaleProfile.layout.interactionBounds)).toBe(true);
+    expect(Object.isFrozen(whaleProfile.layout.interactionHotspot)).toBe(true);
   });
 });

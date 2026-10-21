@@ -1,0 +1,67 @@
+Q 版大肥鱼 / DS 鲸鱼娘 — 来源、署名与许可
+============================================================
+
+本目录的模型、美术、动作和表情独立适用 CC BY-NC-SA 4.0，
+不属于 NearMate 自有代码的 Apache-2.0 授权。
+协议：https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans
+全文：https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-hans
+
+来源与版本
+------------------------------------------------------------
+整理来源：A8Chann / dsh-pet-live2d
+仓库：https://github.com/A8Chann/dsh-pet-live2d
+固定提交：2b48355bc9fb0c99cd5d32df64675b1900629e88
+模型目录：dsh-live2d-pet/pets/ds-whale-girl/
+原始使用须知：model-packs/使用须知.txt
+原始发布视频：https://www.bilibili.com/video/BV16yYi69EQT/
+
+作者与署名
+------------------------------------------------------------
+上善无形（上善）：鲸鱼娘角色原作，原创 OC「溟月」。
+  https://www.pixiv.net/users/62155430
+  https://space.bilibili.com/4456176
+  原始许可说明：https://www.bilibili.com/opus/1231977657712771073
+
+ZipZipPipe：加入 DeepSeek 元素的女仆鲸鱼娘二次设计。
+  https://www.pixiv.net/users/18604994
+  https://space.bilibili.com/4168597
+  原始说明：https://www.pixiv.net/artworks/148186519
+
+氵六青：Q 版模型的发布作者。
+  https://space.bilibili.com/11272072
+
+茶坤菜的：原始发布视频中以「模型」署名的共同创作者。
+  https://space.bilibili.com/2505395
+  作者昵称可能变化，以上固定 UID 用于辨认来源。
+
+A8Chann：此处采用的 Live2D 素材包整理与模型入口配置。
+  https://github.com/A8Chann
+
+许可证据范围
+------------------------------------------------------------
+上善无形的原始动态与 ZipZipPipe 的原始作品说明明确采用或遵循
+CC BY-NC-SA 4.0；本目录保留上游的 LICENSE 与原始使用须知。
+A8Chann 的 NOTICE.md 声明氵六青已授权其转载与开源该模型。
+这项模型转载授权是上游的转述，NearMate 没有取得其原始授权记录，
+也不将它表述为 NearMate 直接取得了所有创作者的单独授权。
+上游文件未列出茶坤菜的；这里按原视频的模型署名补充保留。
+
+你可以在许可范围内分享与改编这些素材；须保留署名、注明修改、
+遵守非商业性使用要求，并以相同许可分享素材的改编。
+原始使用须知中的「商用直播」文字不能替代基础角色的 NC 条件，
+也不能被理解为所有创作者都已授予商业使用许可。
+商业使用需另行获得相应权利人的授权。
+
+NearMate 的处理
+------------------------------------------------------------
+c_0120.model3.json 以及其引用的 moc3、纹理、物理、显示信息、
+动作与表情文件均保持上游原始字节，没有修改模型数据。
+NearMate 在应用代码中安排动作的一次播放、道具复位与返回待机，
+并通过模型既有参数驱动语音口型；未改写原始动作的循环标记。
+asset-manifest.json 记录每个上游文件的路径、大小、SHA256 与 Git
+blob 摘要，用于检查源码和构建产物中的素材是否完整。
+本目录不包含上游插件代码、pet.json 或其运行时依赖。
+
+此虚拟形象是社区同人创作，与 DeepSeek 官方没有隶属、合作或
+认可关系；署名不表示任何作者对 NearMate 的认可。
+Live2D Cubism Core 单独适用 Live2D 的条款，不受本目录许可覆盖。

@@ -37,6 +37,34 @@ describe("avatarInteractionGeometry", () => {
     expect(resolveAvatarInteractionHotspotRect(null)).toBeNull();
   });
 
+  it("第四个动作按钮扩展命中区，切回普通模型后恢复三按钮高度", () => {
+    const commonInput = { petBounds, viewportWidth: 920, viewportHeight: 760 };
+    const reactionRail = resolveAvatarActionRailRect({
+      ...commonInput,
+      hasReactionButton: true
+    });
+    const normalRail = resolveAvatarActionRailRect({
+      ...commonInput,
+      hasReactionButton: false
+    });
+    const fourthButtonPoint = { x: reactionRail.x + 22, y: reactionRail.y + 180 };
+
+    expect(reactionRail.height).toBe(194);
+    expect(normalRail.height).toBe(164);
+    expect(isAvatarInteractionPoint({
+      point: fourthButtonPoint,
+      petBounds: null,
+      buttonRect: reactionRail,
+      resizeFrameRect: null
+    })).toBe(true);
+    expect(isAvatarInteractionPoint({
+      point: fourthButtonPoint,
+      petBounds: null,
+      buttonRect: normalRail,
+      resizeFrameRect: null
+    })).toBe(false);
+  });
+
   it("核心激活矩形复用主交互热区", () => {
     expect(resolveAvatarActivationRect(petBounds)).toEqual({
       x: 250,

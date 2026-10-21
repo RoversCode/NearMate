@@ -25,6 +25,8 @@ export type AvatarPresentationProfile = Readonly<{
       widthRatio: number;
       heightRatio: number;
       offsetXRatio?: number;
+      /** 相对模型画布高度移动交互边界，裁掉半身模型下方的透明留白。 */
+      offsetYRatio?: number;
     }>;
     interactionHotspot?: AvatarInteractionHotspot;
   }>;
@@ -98,12 +100,46 @@ export const DEFAULT_AVATAR_PRESENTATION_PROFILE: AvatarPresentationProfile =
   });
 
 /**
- * AVATAR_PRESENTATION_PROFILES 只保存相对默认档案的少量人物差异配置。
- * 这里先补上 Hiyori，让她具备更大的默认窗口与更贴近上半身的大头像构图。
+ * AVATAR_PRESENTATION_PROFILES 保存人物各自的构图与交互边界。
+ * 半身模型按真实身体收窄热区，动作伸出的道具仍保留在窗口留白内。
  */
 const AVATAR_PRESENTATION_PROFILES: Readonly<
   Record<string, AvatarPresentationProfile>
 > = Object.freeze({
+  DeepSeekChibi: freezeAvatarPresentationProfile({
+    windowWidth: 480,
+    windowHeight: 480,
+    minWidth: 360,
+    minHeight: 360,
+    layout: {
+      // 锤子会伸出原画布右缘，人物略偏左并留出两侧空间，避免动作被窗口裁掉。
+      targetWidthRatio: 0.8,
+      targetHeightRatio: 0.9,
+      anchorX: 0.44,
+      anchorY: 0.98,
+      headAnchor: {
+        x: 0.44,
+        y: 0.04
+      },
+      footAnchor: {
+        x: 0.5,
+        y: 1
+      },
+      // 模型画布为正方形，桌前身体约占 x=0.13..0.98、y=0.08..0.87。
+      interactionBounds: {
+        widthRatio: 0.85,
+        heightRatio: 0.79,
+        offsetXRatio: 0.055,
+        offsetYRatio: -0.13
+      },
+      interactionHotspot: {
+        xRatio: 0.16,
+        yRatio: 0.08,
+        widthRatio: 0.48,
+        heightRatio: 0.62
+      }
+    }
+  }),
   Hiyori: freezeAvatarPresentationProfile({
     windowWidth: 640,
     windowHeight: 760,

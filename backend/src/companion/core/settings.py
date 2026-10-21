@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     selection_capture_shortcut_enabled: bool = True  # 是否启用捕获当前选中内容为材料的全局快捷键。
     selection_capture_shortcut: str = "CommandOrControl+Alt+C"  # 桌面端用于捕获选中文本或图片的 Electron accelerator。
 
-    selected_live2d_model_id: str = "Haru"  # 默认选中的 Live2D 模型标识，供桌面端恢复上次角色外观。
+    selected_live2d_model_id: str = "DeepSeekChibi"  # 默认虚拟形象为 Q 版大肥鱼；已有用户选择仍由本地设置恢复。
     user_call_name: str = "用户"  # 旧版用户设置兜底字段；新版对用户的称呼由角色卡 meta 管理。
     user_self_intro: str = ""  # 用户在控制台主动填写的自我简介，只作为显式配置进入提示词，不由聊天自动生成。
     user_extra_notes: str = ""  # 用户在控制台主动填写的自由补充，用于补充少量稳定背景信息。

@@ -2,3 +2,5 @@
 installer/licenses/msvc-runtime/*.rtf binary
 # 固定分词器按原始字节检出，避免换行转换改变清单里的 SHA256。
 backend/ckpt/tokenizer.json binary
+# 内置 Q 版模型按上游原始字节校验，不能让 Git 自动转换 JSON 或许可文件的换行。
+desktop/src/renderer/public/live2d/resources/DeepSeekChibi/** -text

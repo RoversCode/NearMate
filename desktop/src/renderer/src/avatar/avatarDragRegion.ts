@@ -8,6 +8,7 @@ export type AvatarDragRegionInput = {
     widthRatio: number;
     heightRatio: number;
     offsetXRatio?: number;
+    offsetYRatio?: number;
   };
 };
 
@@ -19,9 +20,10 @@ export type AvatarDragRegion = {
 };
 
 /**
- * calculateAvatarDragRegion 根据 Live2D 模型的底部中心锚点计算真实可拖拽区域。
- * 核心入参是模型锚点坐标、缩放比例和模型原始宽高，输出为四舍五入后的矩形边界。
- * 边界异常：本函数只做确定性几何换算，不吞掉异常数值，调用方应在模型布局阶段保证输入有效。
+ * 根据模型画布的底部中心锚点，计算身体所在的固定交互边界。
+ *
+ * @param input 模型锚点、缩放、画布尺寸和相对画布的身体边界；调用方保证数值有效。
+ * @returns 四舍五入后的交互矩形，未配置偏移时保持原有底部对齐方式。
  */
 export function calculateAvatarDragRegion(input: AvatarDragRegionInput): AvatarDragRegion {
   /**
@@ -33,16 +35,18 @@ export function calculateAvatarDragRegion(input: AvatarDragRegionInput): AvatarD
   const widthRatio = input.interactionBounds?.widthRatio ?? 1;
   const heightRatio = input.interactionBounds?.heightRatio ?? 1;
   const offsetX = visibleWidth * (input.interactionBounds?.offsetXRatio ?? 0);
+  const offsetY = visibleHeight * (input.interactionBounds?.offsetYRatio ?? 0);
   const width = visibleWidth * widthRatio;
   const height = visibleHeight * heightRatio;
 
   /**
    * 拖拽热区以模型底部中心为锚点收缩。
-   * 某些模型的透明外接盒与真实人物重心不一致，offsetX 用于把热区对齐到视觉身体中心。
+   * 某些模型的透明外接盒与真实人物重心不一致，横向偏移对齐身体中心，
+   * 纵向偏移则移走半身模型桌面下方的透明区域，不让留白挡住桌面操作。
    */
   return {
     x: Math.round(input.x + offsetX - width / 2),
-    y: Math.round(input.y - height),
+    y: Math.round(input.y + offsetY - height),
     width: Math.round(width),
     height: Math.round(height)
   };

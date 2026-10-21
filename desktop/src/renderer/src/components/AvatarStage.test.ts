@@ -322,7 +322,8 @@ describe("AvatarStage", () => {
 
     expect(onActiveLive2dModelChanged).toHaveBeenCalledWith({
       model,
-      ticker: mockApplicationInstances[0]?.ticker
+      ticker: mockApplicationInstances[0]?.ticker,
+      modelPath: "/live2d/resources/Haru/Haru.model3.json"
     });
   });
 
@@ -427,14 +428,16 @@ describe("AvatarStage", () => {
       [
         {
           model: firstModel,
-          ticker: mockApplicationInstances[0]?.ticker
+          ticker: mockApplicationInstances[0]?.ticker,
+          modelPath: "/live2d/resources/Haru/Haru.model3.json"
         }
       ],
       [null],
       [
         {
           model: secondModel,
-          ticker: mockApplicationInstances[0]?.ticker
+          ticker: mockApplicationInstances[0]?.ticker,
+          modelPath: "/live2d/resources/Natori/Natori.model3.json"
         }
       ],
       [null]

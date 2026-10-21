@@ -7,9 +7,9 @@ import {
 } from "./live2dModelPath";
 
 describe("live2dModelPath", () => {
-  it("未提供环境变量时，回退到项目内复制的 Cubism 5 Haru 模型资源", () => {
+  it("未提供环境变量时，回退到内置 Q 版大肥鱼模型", () => {
     expect(resolveLive2dModelPath(undefined)).toBe(DEFAULT_LIVE2D_MODEL_PATH);
-    expect(DEFAULT_LIVE2D_MODEL_PATH).toBe("./live2d/resources/Haru/Haru.model3.json");
+    expect(DEFAULT_LIVE2D_MODEL_PATH).toBe("./live2d/resources/DeepSeekChibi/c_0120.model3.json");
     expect(resolveLive2dModelPath("")).toBe(DEFAULT_LIVE2D_MODEL_PATH);
     expect(resolveLive2dModelPath("   ")).toBe(DEFAULT_LIVE2D_MODEL_PATH);
   });
@@ -40,6 +40,19 @@ describe("live2dModelPath", () => {
         fallbackModelPath: DEFAULT_LIVE2D_MODEL_PATH
       })
     ).toBe("/live2d/resources/Natori/Natori.model3.json");
+  });
+
+  it("默认形象更新后，仍尊重用户已经选中的 Haru", () => {
+    const haruPath = "./live2d/resources/Haru/Haru.model3.json";
+
+    expect(resolveSelectedLive2dModelPath({
+      catalog: [
+        { id: "DeepSeekChibi", label: "大肥鱼（Q版）", modelPath: DEFAULT_LIVE2D_MODEL_PATH },
+        { id: "Haru", label: "Haru", modelPath: haruPath }
+      ],
+      selectedModelId: "Haru",
+      fallbackModelPath: DEFAULT_LIVE2D_MODEL_PATH
+    })).toBe(haruPath);
   });
 
   it("selected_live2d_model_id 缺失或不命中时，稳定回退到默认模型路径", () => {

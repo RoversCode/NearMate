@@ -170,4 +170,25 @@ describe("avatarStageLayout", () => {
       height: 700
     });
   });
+
+  it("Q 版大肥鱼按身体区域上报边界，下方留白不占用拖拽和气泡定位", () => {
+    const onPetBoundsChange = vi.fn();
+    reportAvatarStagePetBounds({
+      app: {
+        renderer: { width: 960, height: 960 },
+        screen: { width: 480, height: 480 }
+      },
+      mode: "pet",
+      model: { internalModel: { width: 4068, height: 4068 } },
+      presentationProfile: getAvatarPresentationProfile("DeepSeekChibi"),
+      onPetBoundsChange
+    });
+
+    expect(onPetBoundsChange).toHaveBeenCalledWith({
+      x: 69,
+      y: 117,
+      width: 326,
+      height: 303
+    });
+  });
 });
