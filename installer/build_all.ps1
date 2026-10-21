@@ -226,7 +226,7 @@ foreach ($currentProfile in $profiles) {
     if ($LASTEXITCODE -ne 0) { throw "依赖清单生成失败：$currentProfile" }
     $dependencies | Set-Content -LiteralPath (Join-Path $releaseDirectory 'dependencies.json') -Encoding utf8
     @"
-NearMate 0.2.0 Windows x64 安装包（$currentProfile）
+NearMate 0.3.0 Windows x64 安装包（$currentProfile）
 
 请完整保留本目录中的安装程序与所有 .bin 分卷，运行 NearMate-$currentProfile-setup.exe。
 请使用默认安装目录或较短路径，避免 Windows 传统路径长度限制。

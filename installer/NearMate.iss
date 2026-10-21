@@ -9,7 +9,7 @@
 ; 沿用历史 AppId，Windows 才能把本次安装识别为原 NearMate 的升级。
 AppId={{8D5D75A7-8E4F-4F7D-9E1D-5A7E1A7E9D01}
 AppName=NearMate
-AppVersion=0.2.0
+AppVersion=0.3.0
 AppPublisher=NearMate
 DefaultDirName={localappdata}\Programs\NearMate
 DefaultGroupName=NearMate
