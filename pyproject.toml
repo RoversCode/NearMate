@@ -1,6 +1,6 @@
 [project]
 name = "virtual-companion"
-version = "0.2.0"
+version = "0.3.0"
 description = "桌面虚拟伴侣统一 Python 开发项目"
 requires-python = ">=3.12,<3.13"
 dependencies = [
