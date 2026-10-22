@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "published",
-  "publishedAt": "2026-10-16",
-  "releaseUrl": "https://github.com/RoversCode/NearMate/releases/tag/v0.2.0",
-  "checksumsUrl": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/SHA256SUMS.txt",
+  "publishedAt": "2026-10-22",
+  "releaseUrl": "https://github.com/RoversCode/NearMate/releases/tag/v0.3.0",
+  "checksumsUrl": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/SHA256SUMS.txt",
   "profiles": {
     "universal": {
       "assets": [
         {
           "name": "NearMate-universal-setup.exe",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-universal-setup.exe",
-          "size": 4681604,
-          "sha256": "d7b09019bfefa86ac9e2e2ad60f05f14ec76d7c2913381eef1cb60ec52e6fa20"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-universal-setup.exe",
+          "size": 4684130,
+          "sha256": "19f405600985ea8b7c06468edbe95f8f7b4e0f6e72dfba54724bf40e813236a8"
         },
         {
           "name": "NearMate-universal-setup-1.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-universal-setup-1.bin",
-          "size": 1995318272,
-          "sha256": "46cdec9752843693f93f960c440b0fd5932704ed5371ee0089605699f382727e"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-universal-setup-1.bin",
+          "size": 1995315712,
+          "sha256": "c9a0a3306c5a132ed334523d325c3e0168479733e53fec39065ff0e8f6ed8d92"
         },
         {
           "name": "NearMate-universal-setup-2.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-universal-setup-2.bin",
-          "size": 265430181,
-          "sha256": "e4270aad71593aa56cde708fa96d89b727c2c7592abac82ce286656a1e80aafa"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-universal-setup-2.bin",
+          "size": 1019435317,
+          "sha256": "becd763b27ab97948eb68c98cc6b050fcd980641b31c9f019480ff42e863db50"
         }
       ]
     },
@@ -32,21 +32,27 @@
       "assets": [
         {
           "name": "NearMate-cuda-setup.exe",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-cuda-setup.exe",
-          "size": 4688985,
-          "sha256": "2833b0384d2b2da093ddde971b0dcedf34f1a123b1a50b79f44b70063463dd78"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-cuda-setup.exe",
+          "size": 4691381,
+          "sha256": "f28a921ea3530ce13967678921514ff5594cc0461cc2720caf79e7dbdcc00e21"
         },
         {
           "name": "NearMate-cuda-setup-1.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-cuda-setup-1.bin",
-          "size": 1995310592,
-          "sha256": "0868d455605bbe00fb5a8e6d37e811b51fc0dae2ff6348b0ce69ac6165f16e79"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-cuda-setup-1.bin",
+          "size": 1995308544,
+          "sha256": "816e9b1e4d89d37746c68c486d20aaa8cc87c367a5095036894a043cec571a0d"
         },
         {
           "name": "NearMate-cuda-setup-2.bin",
-          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.2.0/NearMate-cuda-setup-2.bin",
-          "size": 1413670126,
-          "sha256": "ded7d27fa00b7cd09ee2b0fc1d177fd6cf40a84bb5173d9a8ed8ee72a0f23b9b"
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-cuda-setup-2.bin",
+          "size": 2000000000,
+          "sha256": "2c1d1a2dd7551b2988317eee0131864069430be1d6429346aa3c9cd63b0ab192"
+        },
+        {
+          "name": "NearMate-cuda-setup-3.bin",
+          "url": "https://github.com/RoversCode/NearMate/releases/download/v0.3.0/NearMate-cuda-setup-3.bin",
+          "size": 168007005,
+          "sha256": "66098fc10ed6484e89bc073db9c8b77d031abf46603f9f613dde5322a5bfe604"
         }
       ]
     }
